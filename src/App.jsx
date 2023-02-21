@@ -1,12 +1,14 @@
-import './App.css';
-import LoginContainer from './components/LoginContainer';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <LoginContainer></LoginContainer>
-    </div>
-  );
-}
+//import pages
+// import AccountCenter from "./pages/AccountCenter/AccountCenter";
+// import ChangeUsername from "./pages/AccountCenter/ChangeUsername/ChangeUsername";
+// import ChangePassword from "./pages/AccountCenter/ChangePassword/ChangePassword";
+
+const App = () => {
+  return <div>
+    <LoginContainer/>
+  </div>;
+};
 
 export default App;
