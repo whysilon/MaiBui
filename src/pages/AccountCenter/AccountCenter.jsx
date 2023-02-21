@@ -5,7 +5,7 @@ import "./AccountCenter.css";
 
 //Components
 import UserProfile from "./UserProfile.jsx";
-import NavBar from "../../Components/NavBar";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 
 //Passing data
 // import { userProfileData } from "./userProfileData.jsx";
@@ -15,7 +15,7 @@ function AccountCenter() {
 
   return (
     <div className="flex-col page">
-      <NavBar currentLocation={currentLocation} />
+      <AccountCenterNavBar currentLocation={currentLocation} />
       <UserProfile className="self-center" />
       <span
         onClick={() => {

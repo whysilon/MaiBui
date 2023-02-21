@@ -2,10 +2,9 @@ import React from "react";
 import { Router, useLocation } from "react-router-dom";
 import BackButton from "./BackButton";
 import HomeButton from "./HomeButton";
-
 // TODO:Functionality
 
-function NavBar(props) {
+function AccountCenterNavBar(props) {
   // const location = useLocation();
   // const currentPageName = useLocation().pathname.substring(1);
 
@@ -31,9 +30,9 @@ function NavBar(props) {
       <img
         className="image"
         src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/63eaee595a7e3f031030d055/63eaf4d142b69d0011f65b03/16763425968649173759.png"
-      />
+      style={{marginRight: "30px"}}/>
     </div>
   );
 }
 
-export default NavBar;
+export default AccountCenterNavBar;

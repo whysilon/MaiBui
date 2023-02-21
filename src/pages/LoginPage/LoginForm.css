@@ -12,12 +12,12 @@
     text-align: left;
 }
 
-.form {
+.formDetails {
     padding-top: 25px;
     padding-bottom: 20px;
 }
 
-.form input,
+.formDetails input,
 button {
     height: 50px;
     border-color: black;
@@ -25,6 +25,7 @@ button {
     border-radius: 40.5px;
     width: 100%;
     padding: auto;
+    text-align: center;
 }
 
 button {
@@ -32,6 +33,11 @@ button {
     background-color: #41B723;
     margin: 20px 0;
     font-size: 1.2rem;
+}
+
+button:hover {
+    background-color: #69df4c;
+    cursor: pointer;
 }
 
 a {
