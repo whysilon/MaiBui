@@ -1,0 +1,28 @@
+.user-profile {
+  margin-top: 50px;
+  display: flex;
+}
+.greeting {
+  color: #000000;
+  font-size: 6rem;
+  font-family: Inter;
+  line-height: 7.19rem;
+  margin-left: 60px;
+}
+.username {
+  color: #000000;
+  font-size: 4rem;
+  font-family: Inter;
+  font-weight: 700;
+  line-height: 4.81rem;
+  margin-left: 60px;
+}
+.profile-img {
+  border-radius: 7.94rem;
+  width: 15.88rem;
+  height: 15.88rem;
+}
+.group_2 {
+  margin-top: 2.5rem;
+  height: 12.09rem;
+}
