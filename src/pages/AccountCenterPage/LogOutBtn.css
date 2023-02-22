@@ -1,12 +1,13 @@
 .button {
-  margin-top: 5.88rem;
-  /* padding: 1.88rem 0 1.5rem; */
-  border: 0;
-  background-color: #40b623;
-  border-radius: 2.38rem;
-  width: 26.5rem;
+    margin-top: 5.88rem;
+    /* padding: 1.88rem 0 1.5rem; */
+    border: 0;
+    background-color: #40b623;
+    border-radius: 2.38rem;
+    width: 26.5rem;
 }
-button:hover {
-  background-color: #69df4c;
-  cursor: pointer;
+
+.button:hover {
+    background-color: #69df4c;
+    cursor: pointer;
 }

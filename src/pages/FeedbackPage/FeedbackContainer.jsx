@@ -1,6 +1,6 @@
 import FeedbackForm from "./FeedbackForm";
 
-import HomePageNavBar from "../../Components/HomePageNavBar";
+import HomePageNavBar from "../../components/HomePageNavBar";
 
 const FeedbackContainer = () => {
   return (

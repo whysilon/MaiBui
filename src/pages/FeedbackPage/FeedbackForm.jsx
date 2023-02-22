@@ -77,13 +77,13 @@ const FeedbackForm = () => {
 
   return (
     <form className="feedbackForm" onSubmit={feedbackHandler}>
-      <div className="block-1">
+      <div className="feedbackblock-1">
         <div className="details">
           <h1>Feedback</h1>
           <p>Your feedback is greatly appreciated.</p>
         </div>
       </div>
-      <div className="block-2">
+      <div className="feedbackblock-2">
         <div className="NameAndAge">
           <p>Name:</p>
           <input value={enteredName} onChange={nameHandler} type="text" />
@@ -98,7 +98,7 @@ const FeedbackForm = () => {
           />
         </div>
       </div>
-      <div className="block-3">
+      <div className="feedbackblock-3">
         <div className = "experience">
           <p>Details Of Experience:</p>
           <textarea className="exp" value={enteredExp} cols="40" rows="5" onChange={expHandler} />

@@ -7,7 +7,8 @@ import ChangeUsername from "./pages/AccountCenterPage/ChangeUsername/ChangeUsern
 import ChangePassword from "./pages/AccountCenterPage/ChangePassword/ChangePassword";
 import LoginContainer from "./pages/LoginPage/LoginContainer";
 import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
-import HomePageNavBar from "./Components/HomePageNavBar";
+import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
+import HomePageNavBar from "./components/HomePageNavBar";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
           />
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/feedback" element={<FeedbackContainer />} />
+          <Route path="/restaurant" element={<SelectRestaurantContainer />} />
         </Routes>
       </Router>
     </div>

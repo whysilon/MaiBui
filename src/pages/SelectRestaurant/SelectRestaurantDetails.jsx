@@ -1,4 +1,5 @@
 import "./SelectRestaurantDetails.css";
+import { Link } from "react-router-dom";
 
 const SelectRestaurantDetails = () => {
   return (
@@ -16,12 +17,12 @@ const SelectRestaurantDetails = () => {
         </div>
       </div>
       <div className="block-3">
-        <button href="#navigate">Navigate</button>
-        <button href="#reserve"className="oddle">
+        <button ><Link to="/navigate">Navigate</Link></button>
+        <button className="oddle">
             <img src="https://cdn-icons-png.flaticon.com/512/3313/3313619.png"/>
-            <span>Oddle Eats</span>
+            <Link to="/reserve">Oddle Eats</Link>
         </button>
-        <button href="#feedback">Give feedback</button>
+        <button><Link to="/feedback">Give Feedback</Link></button>
       </div>
     </div>
   );

@@ -35,6 +35,7 @@ function AccountCenterNavBar(props) {
         onClick={() => {
           console.log(currentLocation);
         }}
+        style={{fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif", color: "black"}}
         className="location-name sefl-center"
       >
         {currentLocation}

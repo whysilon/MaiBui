@@ -1,5 +1,6 @@
 import "./LoginForm.css";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const LoginForm = (props) => {
   const [enteredUsername, setEnteredUserName] = useState("");
@@ -54,12 +55,10 @@ const LoginForm = (props) => {
             onChange={passwordHandler}
           />
         </div>
-        <a href="#forgotPassword" className="smallText">
-          Forgot your password?
-        </a>
+        <Link to="/forgotpassword" className="loginLinks">Forgot Password?</Link>
         <button type="submit">Login</button>
         <p className="smallText">
-          Don't have an account?<a href="#signup"> Sign Up</a>
+          Don't have an account? <Link to="/signup" className="loginLinks">Sign Up</Link>
         </p>
       </div>
     </form>

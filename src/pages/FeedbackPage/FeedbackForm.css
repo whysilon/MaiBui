@@ -1,7 +1,6 @@
 .feedbackForm {
     display: grid;
-    grid-template-rows: 45vh 55vh;
-    grid-template-columns: 30vw 30vw 40vw;
+    grid-template-rows: 40vh 47.4vh;
 }
 
 input,
@@ -15,10 +14,10 @@ textarea {
     text-align: center;
 }
 
-.block-1 {
+.feedbackblock-1 {
     grid-column: 1/ span 2;
     align-content: center;
-    padding: 5%;
+    padding: 1% 5% 5% 20%;
 }
 
 .details {
@@ -26,20 +25,20 @@ textarea {
     margin-left: 10%;
 }
 
-.block-2 {
-    padding: 14%;
+.feedbackblock-2 {
+    padding: 6% 40% 14% 14%;
 }
 
 .age {
     width: 30%;
 }
 
-.block-3 {
+.feedbackblock-3 {
     grid-column: 1 / span 3;
     padding: 0 14%;
 }
 
-.block-3 textarea {
+.feedbackblock-3 textarea {
     padding: 15px;
     height: 20vh;
     text-align: left;

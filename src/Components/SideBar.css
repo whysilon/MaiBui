@@ -1,9 +1,7 @@
 .bm-burger-button {
-    position: fixed;
+    position: sticky;
     width: 36px;
     height: 30px;
-    left: 36px;
-    top: 36px;
 }
 
 .menu-item {
@@ -48,7 +46,7 @@
   */
 
 .bm-menu-wrap {
-    position: fixed;
+    position: sticky;
     height: 100%;
     top: 0;
     bottom: 0;
