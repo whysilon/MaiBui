@@ -28,7 +28,7 @@ function AccountCenterNavBar(props) {
   return (
     <div
       className="navbar"
-      style={{ display: "flex", margin: "auto", height: "85px" }}
+      style={{ position:'sticky', top:'0', display: "flex", margin: "auto", height: "70px" }}
     >
       <BackButton />
       <span
@@ -40,6 +40,7 @@ function AccountCenterNavBar(props) {
         {currentLocation}
       </span>
       <HomeButton />
+
     </div>
   );
 }

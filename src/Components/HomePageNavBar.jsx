@@ -35,6 +35,7 @@ function HomePageNavBar() {
       <span className="location-name sefl-center">{currentLocation}</span>
       {/* </div> */}
       <HomeButton />
+
     </div>
   );
 }
