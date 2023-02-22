@@ -1,0 +1,52 @@
+.details {
+    margin: 0;
+    padding: 0;
+}
+
+.block-1 {
+    height: 15vh;
+    padding: 0;
+    padding-left: 10%;
+}
+
+.block-3 {
+    height: 10vh;
+    padding-top: 3%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.block-2 {
+    margin-top: 5px;
+    height: 15vh;
+    padding: 0;
+    padding: 10%;
+    background-color: redd;
+}
+
+p {
+    width: 80%;
+    padding: 5px;
+}
+
+button {
+    width: 200px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+}
+
+img {
+    width: 32px;
+    height: 32px;
+    color: white;
+}
+
+.oddle {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
