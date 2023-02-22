@@ -3,7 +3,7 @@ import "./UserProfile.css";
 //Passing data
 import { userProfileData } from "./userProfileData.jsx";
 
-const UserProfile = () => {
+const UserProfileContainer = () => {
   return (
     <div className="self-center user-profile ">
       <img className="profile-img" src={userProfileData.img} />
@@ -17,4 +17,4 @@ const UserProfile = () => {
   );
 };
 
-export default UserProfile;
+export default UserProfileContainer;
