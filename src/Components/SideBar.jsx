@@ -1,9 +1,14 @@
-import React from 'react';
-import { slide as Menu } from 'react-burger-menu';
-import './SideBar.css';
+import React from "react";
+import { slide as Menu } from "react-burger-menu";
+import { Link } from "react-router-dom";
 
+//CSS
+import "./SideBar.css";
 
-export default props => {
+//Pages
+import AccountCenterPage from "../pages/AccountCenterPage/AccountCenterPage";
+
+export default (props) => {
   return (
     <Menu>
       <a className="menu-item" href="/">
@@ -15,7 +20,7 @@ export default props => {
       <a className="menu-item" href="/calorie">
         Calorie Calculator
       </a>
-      <a className="menu-item" href="/account">
+      <a className="menu-item" href="/account-center">
         Account Center
       </a>
     </Menu>
