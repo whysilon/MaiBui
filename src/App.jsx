@@ -10,7 +10,7 @@ import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
 const App = () => {
   return <div>
     {/* <LoginContainer/> */}
-    {/* <FeedbackContainer/> */}
+    <FeedbackContainer/>
   </div>;
 };
 

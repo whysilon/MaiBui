@@ -1,4 +1,3 @@
-import "./FeedbackContainer.css";
 import FeedbackForm from "./FeedbackForm";
 
 import HomePageNavBar from "../../components/HomePageNavBar";

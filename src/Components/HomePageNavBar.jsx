@@ -20,14 +20,17 @@ function HomePageNavBar(props) {
     // <div className={`flex-row justify-between`}>
     <div
       className="navbar"
-      style={{ display: "flex", margin: "auto", height: "85px" }}
-    >
+      style={{position:'sticky', top:'0', display: "flex", margin: "auto", height: "70px" }}>
       <SideBar/>
       <span className="location-name sefl-center">{props.currentLocation}</span>
       {/* </div> */}
       <img
         className="image"
-        src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/63eaee595a7e3f031030d055/63eaf4d142b69d0011f65b03/16763425968649173759.png" style={{paddingRight: '30px'}}/>
+        src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/63eaee595a7e3f031030d055/63eaf4d142b69d0011f65b03/16763425968649173759.png" style={{position: 'fixed',
+        width: '40px',
+        height: '40px',
+        right: '40px',
+        top: '30px'}}/>
     </div>
   );
 }

@@ -1,0 +1,52 @@
+.feedbackForm {
+    display: grid;
+    grid-template-rows: 45vh 55vh;
+    grid-template-columns: 30vw 30vw 40vw;
+}
+
+input,
+textarea {
+    height: 50px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 40.5px;
+    width: 100%;
+    padding: auto;
+    text-align: center;
+}
+
+.block-1 {
+    grid-column: 1/ span 2;
+    align-content: center;
+    padding: 5%;
+}
+
+.details {
+    font-size: 2rem;
+    margin-left: 10%;
+}
+
+.block-2 {
+    padding: 14%;
+}
+
+.age {
+    width: 30%;
+}
+
+.block-3 {
+    grid-column: 1 / span 3;
+    padding: 0 14%;
+}
+
+.block-3 textarea {
+    padding: 15px;
+    height: 20vh;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+button {
+    width: 150px;
+    margin-left: 10px;
+}
