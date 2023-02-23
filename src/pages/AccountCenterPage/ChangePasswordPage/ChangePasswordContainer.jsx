@@ -1,13 +1,14 @@
 import React from "react";
-
-//Component
 import AccountCenterNavBar from "../../../components/AccountCenterNavBar";
-const ChangeUsername = () => {
+import ChangePasswordForm from "./ChangePasswordForm";
+
+const ChangePasswordContainer = () => {
   return (
     <div>
       <AccountCenterNavBar />
+      <ChangePasswordForm />
     </div>
   );
 };
 
-export default ChangeUsername;
+export default ChangePasswordContainer;

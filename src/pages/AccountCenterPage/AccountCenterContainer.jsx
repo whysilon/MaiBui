@@ -3,14 +3,14 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 //CSS
-import "./AccountCenterPage.css";
+import "./AccountCenterContainer.css";
 
 //Components
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import LogOutBtn from "./LogOutBtn";
 import UserProfileContainer from "./UserProfileContainer.jsx";
 
-function AccountCenterPage() {
+function AccountCenterContainer() {
   return (
     <div className="flex-col page">
       <AccountCenterNavBar />
@@ -42,4 +42,4 @@ function AccountCenterPage() {
   );
 }
 
-export default AccountCenterPage;
+export default AccountCenterContainer;
