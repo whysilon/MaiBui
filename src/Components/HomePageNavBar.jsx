@@ -32,10 +32,14 @@ function HomePageNavBar() {
       style={{ display: "flex", margin: "auto", height: "85px" }}
     >
       <SideBar />
-      <span className="location-name sefl-center" style={{fontFamily: "'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif", color: "black"}}>{currentLocation}</span>
+      <span
+        className="location-name sefl-center"
+        // style={{ color: "black" }}
+      >
+        {currentLocation}
+      </span>
       {/* </div> */}
       <HomeButton />
-
     </div>
   );
 }
