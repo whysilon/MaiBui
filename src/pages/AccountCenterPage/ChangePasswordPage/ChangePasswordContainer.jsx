@@ -4,8 +4,9 @@ import ChangePasswordForm from "./ChangePasswordForm";
 
 const ChangePasswordContainer = () => {
   return (
-    <div>
+    <div className="flex-col page">
       <AccountCenterNavBar />
+
       <ChangePasswordForm />
     </div>
   );

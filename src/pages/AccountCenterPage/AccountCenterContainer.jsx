@@ -25,7 +25,7 @@ function AccountCenterContainer() {
           Change username
         </Link>
       </span>
-      {/* TODO: implement change username page */}
+
       <span
         onClick={() => {
           console.log("Change Password is clicked");
@@ -36,7 +36,7 @@ function AccountCenterContainer() {
           Change password
         </Link>
       </span>
-      {/* TODO:implement change password page */}
+
       <LogOutBtn />
     </div>
   );
