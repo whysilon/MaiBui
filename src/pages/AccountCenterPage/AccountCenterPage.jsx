@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./AccountCenterPage.css";
 
 //Components
-import AccountCenterNavBar from "../../Components/AccountCenterNavBar";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import LogOutBtn from "./LogOutBtn";
 import UserProfileContainer from "./UserProfileContainer.jsx";
 
@@ -21,7 +21,9 @@ function AccountCenterPage() {
         }}
         className="self-center hyperlink"
       >
-        <Link to="/account-center/change-username">Change username</Link>
+        <Link className="hyperlink" to="/account-center/change-username">
+          Change username
+        </Link>
       </span>
       {/* TODO: implement change username page */}
       <span
@@ -30,7 +32,9 @@ function AccountCenterPage() {
         }}
         className="self-center hyperlink"
       >
-        <Link to="/account-center/change-password">Change password</Link>
+        <Link className="hyperlink" to="/account-center/change-password">
+          Change password
+        </Link>
       </span>
       {/* TODO:implement change password page */}
       <LogOutBtn />

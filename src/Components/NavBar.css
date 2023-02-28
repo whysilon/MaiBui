@@ -11,3 +11,8 @@
   border-bottom-width: 2px;
   height: 60px;
 }
+
+.location-name {
+  /* fontFamily: Franklin Gothic Medium, Arial Narrow, Arial, sans-serif;  */
+  color: black;
+}

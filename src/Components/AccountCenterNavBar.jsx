@@ -28,19 +28,25 @@ function AccountCenterNavBar(props) {
   return (
     <div
       className="navbar"
-      style={{ position:'sticky', top:'0', display: "flex", margin: "auto", height: "70px" }}
+      style={{
+        position: "sticky",
+        top: "0",
+        display: "flex",
+        margin: "auto",
+        height: "70px",
+      }}
     >
       <BackButton />
       <span
         onClick={() => {
           console.log(currentLocation);
         }}
+        // style={{ color: "black" }}
         className="location-name sefl-center"
       >
         {currentLocation}
       </span>
       <HomeButton />
-
     </div>
   );
 }

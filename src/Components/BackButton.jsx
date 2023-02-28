@@ -11,6 +11,7 @@ function BackButton() {
     marginTop: "2.5px",
     width: "4rem",
     height: "4rem",
+    cursor: "pointer"
   };
 
   function handleBackClick() {

@@ -10,6 +10,7 @@ function HomeButton() {
     marginTop: "auto",
     width: "3rem",
     height: "3rem",
+    cursor: "pointer"
   };
 
   function handleClick() {

@@ -11,7 +11,7 @@ import AccountCenterPage from "../pages/AccountCenterPage/AccountCenterPage";
 export default (props) => {
   return (
     <Menu>
-      <a className="menu-item" href="/">
+      <a className="menu-item" href="/searchRestaurant">
         Search Restaurant
       </a>
       <a className="menu-item" href="/nearby">
