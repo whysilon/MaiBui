@@ -1,12 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import {
-  Switch,
-  FormControlLabel,
-  IconButton,
-  TextField,
-  InputAdornment,
-} from "@mui/material";
+import { Button, TextField, Stack } from "@mui/material";
+
 //CSS
 import "./ChangeUsernameForm.css";
 
@@ -19,41 +14,40 @@ const ChangeUsernameForm = () => {
     const changeUsernameDetails = {
       newUsername: enteredNewUsername,
     };
-
-    // //Checks if details are blank
-    // if (changeUsernameDetails.username == "") {
-    //   alert("Leave no fields blank!");
-
-    //   setEnterNewUsername("");
-    // }
-    // //else checks details with database
-    // else {
-    //   console.log(changeUsernameDetails);
-    //   setEnterNewUsername("");
-    // }
   };
   //TODO:backend
   return (
-    <form className="change-username-form" onSubmit={changeUsernameHandler}>
-      <div className="change-username-form-container">
-        <div className="form-details">
-          <p>New username:</p>
-          <TextField
-            value={enteredNewUsername}
-            onChange={newUsernameHandler}
-            label="Enter new username"
-            margin="normal"
-            error={enteredNewUsername === ""}
-            helperText={enteredNewUsername === "" ? "Empty field!" : " "}
-            type="text"
-          >
-            {/* Enter new username here */}
-          </TextField>
+    <React.Fragment>
+      <Stack
+        spacing={6}
+        sx={{
+          alignSelf: "center",
+          margin: 10,
+          padding: 10,
+          alignItems: "center",
+        }}
+      >
+        <form className="change-password-form" onSubmit={changeUsernameHandler}>
+          <div className="change-password-form-container">
+            <div className="form-details">
+              <TextField
+                value={enteredNewUsername}
+                onChange={newUsernameHandler}
+                label="Enter new username"
+                margin="normal"
+                error={enteredNewUsername === ""}
+                helperText={enteredNewUsername === "" ? "Empty field!" : " "}
+                type="text"
+              >
+                {/* Enter new username here */}
+              </TextField>
 
-          <IconButton type="submit">Confirm Change</IconButton>
-        </div>
-      </div>
-    </form>
+              <Button type="submit">Confirm Change</Button>
+            </div>
+          </div>
+        </form>
+      </Stack>
+    </React.Fragment>
   );
 };
 

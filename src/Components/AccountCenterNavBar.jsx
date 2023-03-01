@@ -10,14 +10,15 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { userProfileData } from "../pages/AccountCenterPage/userProfileData";
 import SideBar from "./SideBar";
+import IconButton from "@mui/material/IconButton";
+import Popover from "@mui/material/Popover";
+import Divider from "@mui/material/Divider";
+import Stack from "@mui/material/Stack";
 
 //CSS
-import "./NavBar.css";
+// import "./NavBar.css";
 
 //Components
-import BackButton from "./BackButton";
-import HomeButton from "./HomeButton";
-// TODO:Functionality
 
 function AccountCenterNavBar(props) {
   const location = useLocation();
@@ -54,92 +55,99 @@ function AccountCenterNavBar(props) {
   const currentLocation = capitalizeLastSegment(pathname);
 
   return (
-    // <AppBar
-    //   className="navbar"
-    //   style={{
-    //     position: "sticky",
-    //     top: "0",
-    //     display: "flex",
-    //     margin: "auto",
-    //     height: "70px",
-    //   }}
-    // >
-    //   <MenuIcon />
-    //   <span
-    //     onClick={() => {
-    //       console.log(currentLocation);
-    //     }}
-    //     // style={{ color: "black" }}
-    //     className="location-name sefl-center"
-    //   >
-    //     {currentLocation}
-    //   </span>
-    //   <HomeButton />
-    //   {/* <p style={{ fontSize: "1rem", width: "20%" }}>Currently logged in as</p> */}
-    //   <Chip
-    //     onClick={handleAvatarChipClick}
-    //     avatar={<Avatar src={userProfileData.img} />}
-    //     label={userProfileData.username}
-    //     variant="outlined"
-    //   ></Chip>
-    // </AppBar>
+    //TODO:conditional redering of login/un logged in pages (home, account center and its child pages)
+    //TODO: databasae
+    //TODO: MUI global style (skeleton, breadcombs)
+    <AppBar position="static" color="inherit" className="navbar">
+      <Toolbar>
+        <SideBar />
+        <Typography
+          variant="h4"
+          align="center"
+          // noWrap="true"
+          sx={{ flexGrow: 2 }}
+        >
+          {currentLocation}
+        </Typography>
 
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="inherit" className="navbar">
-        <Toolbar>
-          <SideBar />
-          <Typography
-            variant="h4"
-            align="center"
-            noWrap="true"
-            sx={{ flexGrow: 2 }}
-          >
-            {currentLocation}
-          </Typography>
+        {auth && (
+          <div>
+            <IconButton
+              onClick={handleMenu}
+              edge={false}
+              style={{ width: "100%", margin: "2px" }}
+              sx={{
+                p: 0,
+                ...(open && {
+                  "&:before": {
+                    zIndex: 1,
+                    content: "''",
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "50%",
+                    position: "absolute",
+                  },
+                }),
+              }}
+            >
+              <Avatar src={userProfileData.img} />
+            </IconButton>
 
-          {auth && (
-            <div>
-              <Chip
-                onClick={handleMenu}
-                avatar={<Avatar src={userProfileData.img} />}
-                label={userProfileData.username}
-                variant="outlined"
-              ></Chip>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={open}
+              onClose={handleClose}
+              PaperProps={{
+                sx: {
+                  p: 0,
+                  mt: 1.5,
+                  ml: 0.75,
+                  width: 180,
+                  "& .MuiMenuItem-root": {
+                    typography: "body2",
+                    borderRadius: 0.75,
+                  },
+                },
+              }}
+            >
+              <Box sx={{ my: 1.5, px: 2.5 }}>
+                <Stack direction="row" spacing={1}>
+                  <Avatar src={userProfileData.img} />
+                  <Typography variant="h6" noWrap>
+                    {userProfileData.username}
+                  </Typography>
+                </Stack>
+              </Box>
 
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "right",
+              <Divider sx={{ borderStyle: "dashed" }} />
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  handleAccountCenter();
                 }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={anchorEl}
-                onClose={handleClose}
               >
-                <MenuItem
-                  onClick={() => {
-                    handleClose();
-                    handleAccountCenter();
-                  }}
-                >
-                  <AccountCircle />
-                  Account Center
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <Logout />
-                  Log Out
-                </MenuItem>
-              </Menu>
-            </div>
-          )}
-        </Toolbar>
-      </AppBar>
-    </Box>
+                <AccountCircle />
+                Account Center
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Logout />
+                Log Out
+              </MenuItem>
+            </Menu>
+          </div>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
 

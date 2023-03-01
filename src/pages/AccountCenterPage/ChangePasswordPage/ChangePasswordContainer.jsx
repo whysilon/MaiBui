@@ -6,7 +6,6 @@ const ChangePasswordContainer = () => {
   return (
     <div className="flex-col page">
       <AccountCenterNavBar />
-
       <ChangePasswordForm />
     </div>
   );

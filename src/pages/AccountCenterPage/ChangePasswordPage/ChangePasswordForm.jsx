@@ -7,6 +7,8 @@ import {
   TextField,
   InputAdornment,
   Button,
+  Stack,
+  Box,
 } from "@mui/material";
 
 //CSS
@@ -48,10 +50,22 @@ const ChangePasswordForm = (props) => {
     };
   };
 
+  const confirmChangeHandler = () => {
+    console.log("Password is changed");
+  };
+
   return (
-    <React.Fragment>
+    <Box>
       <form className="change-password-form" onSubmit={changePwdHandler}>
-        <div className="change-password-form-container">
+        <Stack
+          spacing={6}
+          sx={{
+            alignSelf: "center",
+            margin: 10,
+            padding: 10,
+            alignItems: "center",
+          }}
+        >
           <div className="form-details">
             <TextField
               className="input-rounded"
@@ -80,7 +94,13 @@ const ChangePasswordForm = (props) => {
               error={
                 enteredNewPwd === "" || enteredNewPwd !== enteredConfirmedPwd
               }
-              helperText={enteredNewPwd === "" ? "Empty field!" : " "}
+              helperText={
+                enteredNewPwd === ""
+                  ? "Empty field!"
+                  : enteredNewPwd !== enteredConfirmedPwd
+                  ? "Passwords do not match!"
+                  : ""
+              }
             ></TextField>
             <br />
             <TextField
@@ -88,13 +108,19 @@ const ChangePasswordForm = (props) => {
               value={enteredConfirmedPwd}
               onChange={confirmPwdHandler}
               type={pwdShown ? "text" : "password"}
-              label="Confirm new password"
+              label="Confirm password"
               margin="normal"
               error={
                 enteredConfirmedPwd === "" ||
                 enteredNewPwd !== enteredConfirmedPwd
               }
-              helperText={enteredConfirmedPwd === "" ? "Empty field!" : " "}
+              helperText={
+                enteredConfirmedPwd === ""
+                  ? "Empty field!"
+                  : enteredNewPwd !== enteredConfirmedPwd
+                  ? "Passwords do not match!"
+                  : ""
+              }
             ></TextField>
             <br />
 
@@ -105,9 +131,9 @@ const ChangePasswordForm = (props) => {
 
             <Button type="submit">Confirm Change</Button>
           </div>
-        </div>
+        </Stack>
       </form>
-    </React.Fragment>
+    </Box>
   );
 };
 

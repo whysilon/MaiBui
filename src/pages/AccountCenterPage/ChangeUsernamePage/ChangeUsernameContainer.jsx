@@ -3,13 +3,15 @@ import React from "react";
 //Components
 import AccountCenterNavBar from "../../../components/AccountCenterNavBar";
 import ChangeUsernameForm from "./ChangeUsernameForm";
-
+import { Container } from "@mui/material";
 const ChangeUsernameContainer = () => {
   return (
-    <div>
-      <AccountCenterNavBar />
-      <ChangeUsernameForm />
-    </div>
+    <>
+      <div className="flex-col page">
+        <AccountCenterNavBar />
+        <ChangeUsernameForm />
+      </div>
+    </>
   );
 };
 

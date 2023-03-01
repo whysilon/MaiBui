@@ -4,6 +4,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
+  margin-top: auto;
 }
 
 .change-username-form-container {
@@ -23,6 +24,7 @@
   text-align: left;
   font-size: larger;
   text-indent: 20px;
+  align-items: center;
 
   /* margin: 10px; */
 }
@@ -34,16 +36,14 @@
   width: 100%;
   padding: auto;
   text-align: center;
-  margin-top: 50px;
 }
-/* button {
-  color: white;
-  background-color: #41b723;
-  margin: 15px 0;
-  font-size: 1.2rem;
-} */
 
 button:hover {
   background-color: #69df4c;
   cursor: pointer;
+}
+
+.input-rounded {
+  border-radius: 500px;
+  display: flex;
 }

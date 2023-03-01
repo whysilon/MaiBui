@@ -1,10 +1,13 @@
 .button {
-  margin-top: 5.88rem;
-  /* padding: 1.88rem 0 1.5rem; */
   border: 0;
   background-color: #40b623;
-  border-radius: 2.38rem;
+  height: 50px;
+  border-radius: 40.5px;
   width: 26.5rem;
+  padding: auto;
+  text-align: center;
+  display: block;
+  /* align-self: ; */
 }
 
 .button:hover {

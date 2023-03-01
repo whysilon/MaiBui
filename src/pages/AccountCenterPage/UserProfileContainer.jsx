@@ -1,24 +1,29 @@
 import React from "react";
 import "./UserProfile.css";
+
+import { Typography, Stack } from "@mui/material";
+
 //Passing data
 import { userProfileData } from "./userProfileData.jsx";
 import { Avatar } from "@mui/material";
 
 const UserProfileContainer = () => {
   return (
-    <div className="self-center user-profile ">
+    <Stack
+      // direction="row"
+      spacing={4}
+      alignItems="center"
+      // className="self-center"
+      style={{ margin: "50px", alignSelf: "center" }}
+    >
       <Avatar
-        className="profile-img"
+        // className="profile-img"
         src={userProfileData.img}
         sx={{ width: 200, height: 200 }}
       />
-      <div className="self-center">
-        <span className="greeting">
-          Hi, <br />
-        </span>
-        <span className="username">{userProfileData.username}</span>
-      </div>
-    </div>
+
+      <Typography variant="h2">Welcome, {userProfileData.username}</Typography>
+    </Stack>
   );
 };
 
