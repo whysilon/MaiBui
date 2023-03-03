@@ -25,7 +25,7 @@ function BackButton() {
   return (
     // <Link to={"../.."}>
 
-    <IconButton style={{ width: "8%", margin: "2px", padding: "2px" }}>
+    <IconButton style={{ maxWidth: "55px", margin: "2px", padding: "2px" }}>
       <ArrowBackIcon
         alt="Back"
         onClick={handleBackClick}
