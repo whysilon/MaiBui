@@ -1,4 +1,4 @@
-import HomePageNavBar from "../../Components/HomePageNavBar"
+import HomePageNavBar from "../../components/HomePageNavBar"
 import CalorieCalculator from "./CalorieCalculator"
 import "./CalorieContainer.css"
 

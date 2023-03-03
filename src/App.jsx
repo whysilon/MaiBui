@@ -8,7 +8,7 @@ import ChangePassword from "./pages/AccountCenterPage/ChangePassword/ChangePassw
 import LoginContainer from "./pages/LoginPage/LoginContainer";
 import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
 import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
-import HomePageNavBar from "./Components/HomePageNavBar";
+import HomePageNavBar from "./components/HomePageNavBar";
 import CalorieContainer from "./pages/CalorieCalculator/CalorieContainer";
 
 const App = () => {
