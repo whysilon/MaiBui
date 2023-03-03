@@ -6,8 +6,7 @@ import { Link } from "react-router-dom";
 import "./SideBar.css";
 
 //Pages
-import AccountCenterPage from "../pages/AccountCenterPage/AccountCenterPage";
-
+import AccountCenterContainer from "../pages/AccountCenterPage/AccountCenterContainer";
 export default (props) => {
   return (
     <Menu>
@@ -17,7 +16,7 @@ export default (props) => {
       <a className="menu-item" href="/nearby">
         Nearby Restaurant
       </a>
-      <a className="menu-item" href="/calorie">
+      <a className="menu-item" href="/calorie-calculator">
         Calorie Calculator
       </a>
       <a className="menu-item" href="/account-center">
