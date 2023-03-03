@@ -4,7 +4,7 @@ import "./CalorieContainer.css"
 
 function CalorieContainer() {
     return (
-        <div>
+        <div className="background">
             <HomePageNavBar/>
             <CalorieCalculator/>
         </div>
