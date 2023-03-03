@@ -1,5 +1,5 @@
 import React from "react";
-import AccountCenterNavBar from "../../../components/AccountCenterNavBar";
+import AccountCenterNavBar from "../../../Components/AccountCenterNavBar";
 const ChangePassword = () => {
   return (
     <div>

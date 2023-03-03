@@ -17,7 +17,7 @@ export default (props) => {
       <a className="menu-item" href="/nearby">
         Nearby Restaurant
       </a>
-      <a className="menu-item" href="/calorie">
+      <a className="menu-item" href="/calorie-calculator">
         Calorie Calculator
       </a>
       <a className="menu-item" href="/account-center">

@@ -1,4 +1,4 @@
-import HomePageNavBar from "../../components/HomePageNavBar";
+import HomePageNavBar from "../../Components/HomePageNavBar";
 import SelectRestaurantDetails from "./SelectRestaurantDetails";
 
 const SelectRestaurantContainer = () => {

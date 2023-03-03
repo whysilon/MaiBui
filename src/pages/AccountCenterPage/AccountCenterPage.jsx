@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import "./AccountCenterPage.css";
 
 //Components
-import AccountCenterNavBar from "../../components/AccountCenterNavBar";
+import AccountCenterNavBar from "../../Components/AccountCenterNavBar";
 import LogOutBtn from "./LogOutBtn";
 import UserProfileContainer from "./UserProfileContainer.jsx";
 
