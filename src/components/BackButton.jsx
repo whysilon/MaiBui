@@ -1,18 +1,21 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 // TODO: functionality
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function BackButton() {
   const navigate = useNavigate();
 
   //style
-  const style = {
-    marginRight: "1px",
-    marginTop: "2.5px",
-    width: "4rem",
-    height: "4rem",
-    cursor: "pointer"
-  };
+  // const style = {
+  //   marginRight: "1px",
+  //   marginTop: "2.5px",
+  //   width: "4rem",
+  //   height: "4rem",
+  //   cursor: "pointer",
+  // };
 
   function handleBackClick() {
     console.log("Back Button clicked");
@@ -20,13 +23,17 @@ function BackButton() {
   }
 
   return (
-    <img
-      src="https://codefun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/63eaee595a7e3f031030d055/63eaf4d142b69d0011f65b03/16763425892709961737.png"
-      alt="Back"
-      style={style}
-      onClick={handleBackClick}
-      className="items-start"
-    ></img>
+    // <Link to={"../.."}>
+
+    <IconButton style={{ maxWidth: "55px", margin: "2px", padding: "2px" }}>
+      <ArrowBackIcon
+        alt="Back"
+        onClick={handleBackClick}
+        fontSize="large"
+        style={{ color: "black" }}
+      ></ArrowBackIcon>
+    </IconButton>
+    // </Link>
   );
 }
 

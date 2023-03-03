@@ -2,9 +2,9 @@ import React from "react";
 
 //Components
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AccountCenterPage from "./pages/AccountCenterPage/AccountCenterPage";
-import ChangeUsername from "./pages/AccountCenterPage/ChangeUsername/ChangeUsername";
-import ChangePassword from "./pages/AccountCenterPage/ChangePassword/ChangePassword";
+import AccountCenterContainer from "./pages/AccountCenterPage/AccountCenterContainer";
+import ChangeUsernameContainer from "./pages/AccountCenterPage/ChangeUsernamePage/ChangeUsernameContainer";
+import ChangePasswordContainer from "./pages/AccountCenterPage/ChangePasswordPage/ChangePasswordContainer";
 import LoginContainer from "./pages/LoginPage/LoginContainer";
 import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
 import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
@@ -18,19 +18,19 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePageNavBar />} />
           <Route path="/home" element={<HomePageNavBar />} />
-          <Route path="/account-center" element={<AccountCenterPage />} />
+          <Route path="/account-center" element={<AccountCenterContainer />} />
           <Route
             path="/account-center/change-username"
-            element={<ChangeUsername />}
+            element={<ChangeUsernameContainer />}
           />
           <Route
             path="/account-center/change-password"
-            element={<ChangePassword />}
+            element={<ChangePasswordContainer />}
           />
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/feedback" element={<FeedbackContainer />} />
           <Route path="/restaurant" element={<SelectRestaurantContainer />} />
-          <Route path="/calorie-calculator" element = {<CalorieContainer/>}/>
+          <Route path="/calorie-calculator" element={<CalorieContainer />} />
         </Routes>
       </Router>
     </div>
