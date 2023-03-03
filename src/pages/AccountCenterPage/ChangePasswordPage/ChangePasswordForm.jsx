@@ -10,9 +10,11 @@ import {
   Stack,
   Box,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 //CSS
 import "./ChangePasswordForm.css";
+import { margin } from "@mui/system";
 
 const ChangePasswordForm = (props) => {
   const [enteredOldPwd, setEnterOldPwd] = useState("");
@@ -41,7 +43,7 @@ const ChangePasswordForm = (props) => {
 
   //TODO: check with DB
   const changePwdHandler = (event) => {
-    event.preventDefault();
+    // event.preventDefault();
 
     const changePwdDetails = {
       oldPwd: enteredOldPwd,
@@ -58,78 +60,94 @@ const ChangePasswordForm = (props) => {
     <Box>
       <form className="change-password-form" onSubmit={changePwdHandler}>
         <Stack
-          spacing={6}
+          spacing={4}
           sx={{
             alignSelf: "center",
-            margin: 10,
-            padding: 10,
+            margin: 5,
+            padding: 5,
             alignItems: "center",
           }}
         >
           <div className="form-details">
-            <TextField
-              className="input-rounded"
-              value={enteredOldPwd}
-              onChange={oldPwdHandler}
-              type={pwdShown ? "text" : "password"}
-              variant="outlined"
-              label="Enter old password"
-              margin="normal"
-              error={enteredOldPwd === ""}
-              helperText={enteredOldPwd === "" ? "Empty field!" : " "}
+            <Stack spacing={3}>
+              <TextField
+                className="input-rounded"
+                value={enteredOldPwd}
+                onChange={oldPwdHandler}
+                type={pwdShown ? "text" : "password"}
+                variant="outlined"
+                label="Enter old password"
+                margin="normal"
+                error={enteredOldPwd === ""}
+                helperText={enteredOldPwd === "" ? "Empty field!" : " "}
 
-              //TODO: error helper text for 2nd codition
-              //TODO:input radius
-            ></TextField>
+                //TODO: error helper text for 2nd codition
+                //TODO:input radius
+              ></TextField>
 
-            <br />
-            <TextField
-              className="input-rounded"
-              value={enteredNewPwd}
-              onChange={newPwdHandler}
-              type={pwdShown ? "text" : "password"}
-              variant="outlined"
-              label="Enter new password"
-              margin="normal"
-              error={
-                enteredNewPwd === "" || enteredNewPwd !== enteredConfirmedPwd
-              }
-              helperText={
-                enteredNewPwd === ""
-                  ? "Empty field!"
-                  : enteredNewPwd !== enteredConfirmedPwd
-                  ? "Passwords do not match!"
-                  : ""
-              }
-            ></TextField>
-            <br />
-            <TextField
-              className="input-rounded"
-              value={enteredConfirmedPwd}
-              onChange={confirmPwdHandler}
-              type={pwdShown ? "text" : "password"}
-              label="Confirm password"
-              margin="normal"
-              error={
-                enteredConfirmedPwd === "" ||
-                enteredNewPwd !== enteredConfirmedPwd
-              }
-              helperText={
-                enteredConfirmedPwd === ""
-                  ? "Empty field!"
-                  : enteredNewPwd !== enteredConfirmedPwd
-                  ? "Passwords do not match!"
-                  : ""
-              }
-            ></TextField>
-            <br />
+              <TextField
+                className="input-rounded"
+                value={enteredNewPwd}
+                onChange={newPwdHandler}
+                type={pwdShown ? "text" : "password"}
+                variant="outlined"
+                label="Enter new password"
+                margin="normal"
+                error={
+                  enteredNewPwd === "" || enteredNewPwd !== enteredConfirmedPwd
+                }
+                helperText={
+                  enteredNewPwd === ""
+                    ? "Empty field!"
+                    : // : enteredNewPwd !== enteredConfirmedPwd
+                      // ? "Passwords do not match!"
+                      ""
+                }
+              ></TextField>
+
+              <TextField
+                className="input-rounded"
+                value={enteredConfirmedPwd}
+                onChange={confirmPwdHandler}
+                type={pwdShown ? "text" : "password"}
+                label="Confirm password"
+                margin="normal"
+                error={
+                  enteredConfirmedPwd === "" ||
+                  enteredNewPwd !== enteredConfirmedPwd
+                }
+                helperText={
+                  enteredConfirmedPwd === ""
+                    ? "Empty field!"
+                    : enteredNewPwd !== enteredConfirmedPwd
+                    ? "Passwords do not match!"
+                    : ""
+                }
+              ></TextField>
+            </Stack>
 
             <FormControlLabel
               label="Show password"
               control={<Switch onClick={togglePwdShown} />}
             />
-
-            <Button type="submit">Confirm Change</Button>
+            <Stack sx={{ margin: 5 }} direction="row" spacing={6}>
+              <Link to={"/account-center"}>
+                <Button type="reset" id="cancel">
+                  Cancel
+                </Button>
+              </Link>
+              <Button
+                type="submit"
+                disabled={
+                  !enteredConfirmedPwd ||
+                  !enteredNewPwd ||
+                  !enteredOldPwd ||
+                  enteredNewPwd !== enteredConfirmedPwd
+                }
+              >
+                Confirm Change
+              </Button>
+            </Stack>
           </div>
         </Stack>
       </form>

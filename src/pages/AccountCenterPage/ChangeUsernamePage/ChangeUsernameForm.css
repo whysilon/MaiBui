@@ -24,26 +24,28 @@
   text-align: left;
   font-size: larger;
   text-indent: 20px;
-  align-items: center;
-
   /* margin: 10px; */
 }
 .form-details button {
-  border: 0;
+  /* border: 0; */
   background-color: #40b623;
-  height: 50px;
+  /* height: 50px; */
   border-radius: 40.5px;
-  width: 100%;
-  padding: auto;
-  text-align: center;
+  color: #ffffff;
+  /* text-align: center; */
+  min-width: 180px;
+}
+#cancel {
+  /* border: 0; */
+  background-color: #eef5ec;
+  /* height: 50px; */
+  /* border-radius: 40.5px; */
+  color: #69df4c;
+  /* text-align: center; */
+  min-width: 180px;
 }
 
 button:hover {
   background-color: #69df4c;
   cursor: pointer;
-}
-
-.input-rounded {
-  border-radius: 500px;
-  display: flex;
 }

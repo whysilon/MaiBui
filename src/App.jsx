@@ -9,7 +9,6 @@ import LoginContainer from "./pages/LoginPage/LoginContainer";
 import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
 import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
 import HomePageNavBar from "./components/HomePageNavBar";
-
 const App = () => {
   return (
     <div>

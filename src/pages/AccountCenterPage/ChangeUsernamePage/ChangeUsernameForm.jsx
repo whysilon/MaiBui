@@ -4,6 +4,7 @@ import { Button, TextField, Stack } from "@mui/material";
 
 //CSS
 import "./ChangeUsernameForm.css";
+import { Link } from "react-router-dom";
 
 const ChangeUsernameForm = () => {
   const [enteredNewUsername, setEnterNewUsername] = useState("");
@@ -15,34 +16,46 @@ const ChangeUsernameForm = () => {
       newUsername: enteredNewUsername,
     };
   };
-  //TODO:backend
+  //TODO:check with DB
   return (
     <React.Fragment>
       <Stack
         spacing={6}
         sx={{
           alignSelf: "center",
-          margin: 10,
-          padding: 10,
+          margin: 5,
+          padding: 5,
           alignItems: "center",
         }}
       >
         <form className="change-password-form" onSubmit={changeUsernameHandler}>
           <div className="change-password-form-container">
             <div className="form-details">
-              <TextField
-                value={enteredNewUsername}
-                onChange={newUsernameHandler}
-                label="Enter new username"
-                margin="normal"
-                error={enteredNewUsername === ""}
-                helperText={enteredNewUsername === "" ? "Empty field!" : " "}
-                type="text"
-              >
-                {/* Enter new username here */}
-              </TextField>
+              <Stack>
+                <TextField
+                  value={enteredNewUsername}
+                  onChange={newUsernameHandler}
+                  label="Enter new username"
+                  margin="normal"
+                  error={enteredNewUsername === ""}
+                  helperText={enteredNewUsername === "" ? "Empty field!" : " "}
+                  type="text"
+                >
+                  {/* Enter new username here */}
+                </TextField>
+              </Stack>
 
-              <Button type="submit">Confirm Change</Button>
+              <Stack sx={{ margin: 5 }} direction="row" spacing={6}>
+                <Link to={"/account-center"}>
+                  <Button type="reset" id="cancel">
+                    Cancel
+                  </Button>
+                </Link>
+
+                <Button type="submit" disabled={!enteredNewUsername}>
+                  Confirm Change
+                </Button>
+              </Stack>
             </div>
           </div>
         </form>

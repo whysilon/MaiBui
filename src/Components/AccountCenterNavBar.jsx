@@ -11,9 +11,9 @@ import Menu from "@mui/material/Menu";
 import { userProfileData } from "../pages/AccountCenterPage/userProfileData";
 import SideBar from "./SideBar";
 import IconButton from "@mui/material/IconButton";
-import Popover from "@mui/material/Popover";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
+import Backbutton from "../components/BackButton";
 
 //CSS
 // import "./NavBar.css";
@@ -57,15 +57,17 @@ function AccountCenterNavBar(props) {
   return (
     //TODO:conditional redering of login/un logged in pages (home, account center and its child pages)
     //TODO: databasae
-    //TODO: MUI global style (skeleton, breadcombs)
+
     <AppBar position="static" color="inherit" className="navbar">
       <Toolbar>
         <SideBar />
+        <Backbutton />
+
         <Typography
-          variant="h4"
+          variant="h5"
           align="center"
           // noWrap="true"
-          sx={{ flexGrow: 2 }}
+          sx={{ flexGrow: 1 }}
         >
           {currentLocation}
         </Typography>
@@ -121,7 +123,7 @@ function AccountCenterNavBar(props) {
               }}
             >
               <Box sx={{ my: 1.5, px: 2.5 }}>
-                <Stack direction="row" spacing={1}>
+                <Stack direction="row" spacing={2} alignItems="center">
                   <Avatar src={userProfileData.img} />
                   <Typography variant="h6" noWrap>
                     {userProfileData.username}
