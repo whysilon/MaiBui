@@ -2,12 +2,12 @@
     position: sticky;
     width: 36px;
     height: 30px;
+    margin-top: 10px;
 }
 
 .menu-item {
     color: white;
     text-decoration: underline;
-    margin-top: 30px;
 }
 
 
@@ -58,7 +58,6 @@
 
 .bm-menu {
     background: #41B723;
-    padding: 2.5em 1.5em 0;
     font-size: 1.3em;
     overflow-y: hidden !important;
 }
@@ -76,6 +75,7 @@
 .bm-item-list {
     color: white;
     padding: 0.8em;
+    margin-top: 10px;
 }
 
 
@@ -83,6 +83,7 @@
 
 .bm-item {
     display: inline-block;
+    margin-top: 10%;
 }
 
 
