@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TextField, FormControlLabel, Switch } from "@mui/material";
 import PasswordChecklist from "react-password-checklist"
+import { WindowSharp } from "@mui/icons-material";
 
 
 // Must be able to check if username is taken
@@ -61,6 +62,7 @@ const SignupForm = (props) => {
     }
     //else checks details with database
     else {
+      window.location.href = "/login"
       alert("Successfully Signed Up! Redirecting...")
       console.log(signupDetails);
     }
@@ -154,7 +156,7 @@ const SignupForm = (props) => {
               label="Show password"
               control={<Switch onClick={togglePwdShown} />}
             />
-          <button type="submit">Sign Up</button>
+          <button type="submit" href="#url" id="signup-link">Sign Up</button>
         </div>
       </div>
     </form>
