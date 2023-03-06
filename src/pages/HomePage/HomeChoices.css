@@ -1,20 +1,41 @@
+.homechoices-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .homechoices-container {
     display: flex;
     justify-content: space-around;
-    height: calc(100vh - 100px);
+    height: calc(80vh - 102px);
 }
 
 .homechoices-choice {
     background-color: #41B723;
     width: 20vw;
-    height: 80%;
-    text-align: center;
-    padding: 20px;
+    height: 85%;
     margin: auto;
+    padding: 26px;
+    text-align: center;
     box-shadow: 10px 10px 5px 12px rgb(231, 230, 230);
 }
 
 .homechoices-choice:hover {
     transform: scale(1.1);
     cursor: pointer;
+}
+
+.homechoices-parent-container span {
+    font-size: 2rem;
+    word-wrap: break-word;
+}
+
+.homechoices-choice h1 {
+    font-size: 3rem;
+}
+
+.homechoices-choice span {
+    font-size: 1.6rem;
+    padding: 10px;
 }
