@@ -10,6 +10,7 @@ import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
 import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
 import HomePageNavBar from "./components/HomePageNavBar";
 import CalorieContainer from "./pages/CalorieCalculator/CalorieContainer";
+import SignupContainer from "./pages/SignupPage/SignupContainer"
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
           <Route path="/feedback" element={<FeedbackContainer />} />
           <Route path="/restaurant" element={<SelectRestaurantContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
+          <Route path="/signup" element={<SignupContainer />} />
         </Routes>
       </Router>
     </div>

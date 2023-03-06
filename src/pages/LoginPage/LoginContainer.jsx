@@ -4,7 +4,7 @@ import LoginForm from "./LoginForm";
 
 const LoginContainer = () => {
   return (
-    <div className="container">
+    <div className="login-container">
       <LoginPicture/>
       <LoginForm/>
     </div>
