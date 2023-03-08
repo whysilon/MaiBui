@@ -12,6 +12,7 @@ import HomePageNavBar from "./components/HomePageNavBar";
 import CalorieContainer from "./pages/CalorieCalculator/CalorieContainer";
 import SignupContainer from "./pages/SignupPage/SignupContainer"
 import HomeContainer from "./pages/HomePage/HomeContainer";
+import ForgotPasswordContainer from "./pages/ForgotPasswordPage/ForgotPasswordContainer";
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/restaurant" element={<SelectRestaurantContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
           <Route path="/signup" element={<SignupContainer />} />
+          <Route path="/forgot-password" element={<ForgotPasswordContainer />} />
         </Routes>
       </Router>
     </div>

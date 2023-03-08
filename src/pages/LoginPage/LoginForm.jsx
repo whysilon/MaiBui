@@ -18,18 +18,19 @@ const LoginForm = (props) => {
   const loginHandler = (event) => {
     event.preventDefault();
 
-    const loginDetails = {
+    let loginDetails = {
       username: enteredUsername,
       password: enteredPassword,
     };
 
     //Checks if details are blank
-    if (loginDetails.username == "" || loginDetails.password == "") {
+    if (loginDetails.username === "" || loginDetails.password === "") {
       alert("Leave no fields blank!");
     }
     //else checks details with database
     else {
       console.log(loginDetails);
+      window.location.href="/home"
     }
   };
 
@@ -74,7 +75,7 @@ const LoginForm = (props) => {
           ></TextField>
         </div>
         <div className="login-bottom-box">
-          <Link to="/forgotpassword" className="loginLinks">
+          <Link to="/forgot-password" className="loginLinks">
             Forgot Password?
           </Link>
           <button type="submit">Login</button>
