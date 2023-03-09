@@ -1,6 +1,8 @@
 import "./SelectRestaurantDetails.css";
 import { Link } from "react-router-dom";
 
+// To do: Sync Google API with details
+
 const SelectRestaurantDetails = () => {
   return (
     <div className="details">
