@@ -1,13 +1,14 @@
 import HomePageNavBar from "../../components/HomePageNavBar";
 import CalorieCalculator from "./CalorieCalculator";
 import "./CalorieContainer.css";
+import React from "react";
 
 function CalorieContainer() {
   return (
-    <div className="background">
+    <body className="background">
       <HomePageNavBar />
       <CalorieCalculator />
-    </div>
+    </body>
   );
 }
 
