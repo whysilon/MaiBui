@@ -10,7 +10,8 @@ import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
 import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
 import HomePageNavBar from "./components/HomePageNavBar";
 import CalorieContainer from "./pages/CalorieCalculator/CalorieContainer";
-
+import NavigateContainer from "./pages/NavigateRestaurant/NavigateContainer";
+import FoodListContainer from "./pages/FoodListPage/FoodListContainer";
 const App = () => {
   return (
     <div>
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/restaurant" element={<SelectRestaurantContainer />} />
           <Route path="/navigate-restaurant" element={<NavigateContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
+          <Route path="/food" element={<FoodListContainer/>}/>
         </Routes>
       </Router>
     </div>
