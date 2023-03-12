@@ -1,0 +1,9 @@
+.search{
+    margin-left: 10vw;    
+    flex:auto;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    height: 15vh;
+    ;
+}
