@@ -18,14 +18,14 @@ const HomeChoices = () => {
           </div>
 
           <div className="homechoices-choice">
-            <a href="/search">
+            <a href="/navigate-restaurant">
               <h1>Search For Restaurant</h1>
               <span>Get to know any of your favourite restaurants with a click of a button!</span>
             </a>
           </div>
 
           <div className="homechoices-choice">
-            <a href="/navigate">
+            <a href="/recommend">
               <h1>Recommend Nearby Healthy Restaurant</h1>
               <span>Let us recommend you amazing healthy delicacies around you!</span>
             </a>

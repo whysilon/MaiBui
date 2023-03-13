@@ -13,6 +13,7 @@ import CalorieContainer from "./pages/CalorieCalculator/CalorieContainer";
 import SignupContainer from "./pages/SignupPage/SignupContainer"
 import HomeContainer from "./pages/HomePage/HomeContainer";
 import ForgotPasswordContainer from "./pages/ForgotPasswordPage/ForgotPasswordContainer";
+import NavigateContainer from "./pages/NavigateRestaurant/NavigateContainer"
 
 const App = () => {
   return (
