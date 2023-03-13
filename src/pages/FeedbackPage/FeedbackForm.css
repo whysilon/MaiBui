@@ -3,21 +3,10 @@
     grid-template-rows: 40vh 47.4vh;
 }
 
-input,
-textarea {
-    height: 50px;
-    border-color: black;
-    border-style: solid;
-    border-radius: 40.5px;
-    width: 100%;
-    padding: auto;
-    text-align: center;
-}
-
 .feedbackblock-1 {
     grid-column: 1/ span 2;
     align-content: center;
-    padding: 1% 5% 5% 20%;
+    padding: 2% 5% 5% 21.5%;
 }
 
 .details {
@@ -38,9 +27,9 @@ textarea {
     padding: 0 14%;
 }
 
-.feedbackblock-3 textarea {
-    padding: 15px;
-    height: 20vh;
+.feedbackblock-3 .exp {
+    padding: 10px;
+    width: 67vw;
     text-align: left;
     word-wrap: break-word;
 }
