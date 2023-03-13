@@ -10,11 +10,11 @@ function CalorieCalculator() {
             width: '20%',
             backgroundColor: "#e0e0de",
             borderRadius: 50,
-            margin: 0
+            margin: 0,
+            textAlign: 'right'
           }
         
           const fillerStyles = {
-            height: '100%',
             width: `${completed}%`,
             backgroundColor: bgcolor,
             borderRadius: 'inherit',
@@ -34,20 +34,15 @@ function CalorieCalculator() {
             </div>
         )
     }
-    const UserData = {bgcolor: "purple", completed: 40};
+    let limit = 2000;
+    let current = 480;
+    const UserData = {bgcolor: "purple", completed: current/limit * 100};
+    
     return (
-        <div className="container">
-            <div className="daily">
-                <p>Daily Calorie Limit: 2000</p>
-            </div>
             <div>
                 <ProgressBar bgcolor = {UserData.bgcolor}
                              completed = {UserData.completed}/>
             </div>
-            <div classNamee="customInput">
-                <CustomInput/>
-            </div>
-        </div>
     )
 }
 

@@ -1,8 +1,26 @@
 .background{
-    flex: auto;
-    flex-direction: column;
     background-image: url("../../../public/LettuceBG.png");
     background-position:right;
     background-color: white;
     background-repeat: no-repeat;
+}
+.aligner{
+    display: flex;
+    flex:auto;
+    flex-direction: column;
+    gap: 10vh;
+    margin-left: 4vw;
+}
+.daily{
+    display: inline;
+    font-size: x-large;
+}
+
+.customInput{
+    gap: 10vh;
+ }
+
+.helloUser{
+    font-size:xx-large;
+    font-style: oblique;
 }

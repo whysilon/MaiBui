@@ -25,15 +25,15 @@ function CustomInput(){
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <ModalDialog
-          aria-labelledby="basic-modal-dialog-title"
-          aria-describedby="basic-modal-dialog-description"
+          aria-labelledby="Custom Input"
+          aria-describedby="Add custom calories"
           sx={{ maxWidth: 500 }}
         >
           <Typography id="basic-modal-dialog-title" component="h2">
             Add custom calories
           </Typography>
           <Typography id="basic-modal-dialog-description" textColor="text.tertiary">
-            Fill in the name and calories
+            Fill in the food name and calories
           </Typography>
           <form
             onSubmit={(event) => {
@@ -43,7 +43,7 @@ function CustomInput(){
           >
             <Stack spacing={2}>
               <FormControl>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Food Name</FormLabel>
                 <Input autoFocus required />
               </FormControl>
               <FormControl>

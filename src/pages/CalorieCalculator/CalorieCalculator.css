@@ -1,19 +1,9 @@
-.container {
-    margin-left: 10vw;
-    flex: auto;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5vh;
-}
-
-.daily{
-    display: inline;
-}
-
 .bar{
     height:fit-content;
 }
 
-.customInput{
-   gap: 10vh;
+.alignRight{
+    float: right;
 }
+
+
