@@ -1,6 +1,6 @@
-.container{
-    margin-left: 10vw;    
-    flex:auto;
+.container {
+    margin-left: 10vw;
+    flex: auto;
     flex-direction: column;
     justify-content: center;
     gap: 5vh;
