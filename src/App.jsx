@@ -10,6 +10,9 @@ import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
 import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
 import HomePageNavBar from "./components/HomePageNavBar";
 import CalorieContainer from "./pages/CalorieCalculator/CalorieContainer";
+import NavigateContainer from "./pages/NavigateRestaurant/NavigateContainer";
+import RecommendContainer from "./pages/RecommendRestaurant/RecommendContainer";
+import SearchContainer from "./pages/SearchRestaurant/SearchContainer";
 
 const App = () => {
   return (
@@ -31,7 +34,10 @@ const App = () => {
           <Route path="/feedback" element={<FeedbackContainer />} />
           <Route path="/restaurant" element={<SelectRestaurantContainer />} />
           <Route path="/navigate-restaurant" element={<NavigateContainer />} />
+          <Route path="/nearby" element={<RecommendContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
+          <Route path="/recommend-restaurant" element={<RecommendContainer />} />
+          <Route path="/searchRestaurant" element={<SearchContainer />} />
         </Routes>
       </Router>
     </div>
@@ -39,3 +45,4 @@ const App = () => {
 };
 
 export default App;
+
