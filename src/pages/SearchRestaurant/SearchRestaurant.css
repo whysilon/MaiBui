@@ -5,5 +5,8 @@
     justify-content: center;
     text-align: center;
     height: 15vh;
-    ;
+    
+}
+input{
+    width: 50vh;
 }
