@@ -10,10 +10,10 @@ import AccountCenterContainer from "../pages/AccountCenterPage/AccountCenterCont
 export default (props) => {
   return (
     <Menu>
-      <a className="menu-item" href="/searchRestaurant">
+      <a className="menu-item" href="/search-restaurant">
         Search Restaurant
       </a>
-      <a className="menu-item" href="/nearby">
+      <a className="menu-item" href="/recommend-restaurant">
         Nearby Restaurant
       </a>
       <a className="menu-item" href="/calorie-calculator">

@@ -34,15 +34,12 @@ const App = () => {
           <Route path="/feedback" element={<FeedbackContainer />} />
           <Route path="/restaurant" element={<SelectRestaurantContainer />} />
           <Route path="/navigate-restaurant" element={<NavigateContainer />} />
-          <Route path="/nearby" element={<RecommendContainer />} />
+          <Route path="/recommend-restaurant" element={<RecommendContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
           <Route path="/recommend-restaurant" element={<RecommendContainer />} />
-          <Route path="/searchRestaurant" element={<SearchContainer />} />
+          <Route path="/search-restaurant" element={<SearchContainer />} />
         </Routes>
       </Router>
     </div>
   );
 };
-
-export default App;
-
