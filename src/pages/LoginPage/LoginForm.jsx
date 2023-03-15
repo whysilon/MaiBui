@@ -1,19 +1,62 @@
+// CSS
 import "./LoginForm.css";
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
 
-const LoginForm = (props) => {
+/**
+ * Displays the login form of LoginContainer 
+ * 
+ * @author Marcus Yeo
+ * @returns HTML of LoginForm
+ */
+
+const LoginForm = () => {
+  
+  /**
+   * Storage/setters for userename input variable in login
+   * form 
+   */
+
   const [enteredUsername, setEnteredUserName] = useState("");
+  
+  /**
+  * Storage/setters for password input variable in login
+  * form 
+  */
+  
   const [enteredPassword, setEnteredPassword] = useState("");
+
+
+  /**
+   * Changes the username storage based on 
+   * input
+   * 
+   * @param {onChange} event 
+   */
 
   const usernameHandler = (event) => {
     setEnteredUserName(event.target.value);
   };
 
+  /**
+   * Changes the password storage based on 
+   * input
+   * 
+   * @param {onChange} event 
+   */
+
   const passwordHandler = (event) => {
     setEnteredPassword(event.target.value);
   };
+
+  /**
+   * Tallies the loginDetails with database
+   * and transits to Home Page
+   * 
+   * @param {onSubmit} event 
+   */
 
   const loginHandler = (event) => {
     event.preventDefault();

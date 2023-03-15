@@ -1,13 +1,19 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
-import { Link } from "react-router-dom";
 
 //CSS
 import "./SideBar.css";
 
-//Pages
-import AccountCenterContainer from "../pages/AccountCenterPage/AccountCenterContainer";
-export default (props) => {
+
+/**
+ * Displays a sidebar that displays links to 
+ * different pages of the website
+ * 
+ * @author Marcus Yeo
+ * 
+ */
+
+function SideBar() {
   return (
     <Menu>
       <a className="menu-item" href="/searchRestaurant">
@@ -25,3 +31,5 @@ export default (props) => {
     </Menu>
   );
 };
+
+export default SideBar;

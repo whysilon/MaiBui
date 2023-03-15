@@ -1,4 +1,6 @@
+// CSS
 import "./SignupForm.css";
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TextField, FormControlLabel, Switch } from "@mui/material";
@@ -6,40 +8,107 @@ import PasswordChecklist from "react-password-checklist"
 import { WindowSharp } from "@mui/icons-material";
 
 
-// Must be able to check if username is taken
+//TODO: Must be able to check if username is taken
 
+/**
+ * Displays the sign up form of the sign up page 
+ * 
+ * @author Marcus Yeo
+ * @returns HTML of Sign Up form
+ */
 
-const SignupForm = (props) => {
+const SignupForm = () => {
+  /**
+   * Storage/setters of username input variable
+   */
   const [enteredUsername, setEnteredUserName] = useState("");
+  /**
+   * Storage/setters of password input variable
+   */
   const [enteredPassword, setEnteredPassword] = useState("");
+  /**
+   * Storage/setters of cfmpassword input variable
+   */  
   const [enteredCfmPassword, setEnteredCfmPassword] = useState("");
+  /**
+   * Storage/setters of show password boolean variable
+   */
   const [pwdShown, setPwdShown] = useState(false);
+  /**
+   * Storage/setters of password validator boolean variable
+   */
   const [validPwd, setValidPwd] = useState(false);
+  /**
+  * Storage/setters of name validator boolean variable
+  */
   const [validName, setValidName] = useState(false);
+
+/**
+ * Changes username storage based on username input
+ * 
+ * @param {onChange} event 
+ */
 
   const usernameHandler = (event) => {
     setEnteredUserName(event.target.value);
   };
 
+/**
+ * Changes password storage based on password input
+ * 
+ * @param {onChange} event 
+ */
+
   const passwordHandler = (event) => {
     setEnteredPassword(event.target.value);
   };
+
+/**
+ * Changes cfmpassword storage based on cfmpassword input
+ * 
+ * @param {onChange} event 
+ */
 
   const cfmpasswordHandler = (event) => {
     setEnteredCfmPassword(event.target.value);
   };
 
+/**
+ * Changes togglPwd variable based on togglePwd input
+ * 
+ * @param {onClick} event 
+ */
+
   const togglePwdShown = () => {
     setPwdShown(!pwdShown);
   };
+
+/**
+ * Changes validPwd boolean based on validPwd input
+ * 
+ * @param {onChange} event 
+ */
   
   const validPwdHandler = (valid) => {
     setValidPwd(valid);
   }
 
+/**
+ * Changes validName boolean based on validName input
+ * 
+ * @param {onChange} event 
+ */
+
   const validNameHandler = (valid) => {
     setValidName(valid);
   }
+
+/**
+ * POSTS signup details and logins the user
+ * to homepage
+ * 
+ * @param {onSubmit} event 
+ */
 
   const signupHandler = (event) => {
     event.preventDefault();
