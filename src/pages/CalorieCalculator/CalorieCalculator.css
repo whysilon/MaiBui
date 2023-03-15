@@ -3,12 +3,17 @@
     flex: auto;
     flex-direction: column;
     justify-content: center;
+    gap: 5vh;
 }
 
-.daily {
-    height: fit-content;
+.daily{
+    display: inline;
 }
 
-.bar {
-    height: fit-content;
+.bar{
+    height:fit-content;
+}
+
+.customInput{
+   gap: 10vh;
 }

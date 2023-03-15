@@ -1,4 +1,6 @@
 .background{
+    flex: auto;
+    flex-direction: column;
     background-image: url("../../../public/LettuceBG.png");
     background-position:right;
     background-color: white;

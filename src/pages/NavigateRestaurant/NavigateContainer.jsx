@@ -4,9 +4,9 @@ import "./NavigateContainer.css"
 
 const NavigateContainer = () => {
     return (
-        <div className="container">
-            <header><HomePageNavBar /></header>
-            <body><Navigate/></body>
+        <div className="navigate-container">
+            <HomePageNavBar />
+            <Navigate/>
         </div>
     );
 }
