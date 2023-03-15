@@ -1,6 +1,5 @@
 import "./CalorieCalculator.css"
 import React from "react"
-import CustomInput from "./CustomInput";
 
 function CalorieCalculator() {
     const ProgressBar = (props) => {
