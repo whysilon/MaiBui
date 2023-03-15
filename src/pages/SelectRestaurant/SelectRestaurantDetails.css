@@ -1,7 +1,13 @@
+/* Entire page of Restaurant page */
+
 .details {
     margin: 0;
     padding: 0;
 }
+
+
+/* Title, address and operating hours of 
+restaurant */
 
 .block-1 {
     height: 15vh;
@@ -9,11 +15,17 @@
     padding-left: 10%;
 }
 
+
+/*Bottom buttons */
+
 .block-3 {
     height: 10vh;
     display: flex;
     justify-content: space-evenly;
 }
+
+
+/* Dine in, takeaway and number of feedbacks */
 
 .block-2 {
     margin-top: 5px;
@@ -23,26 +35,41 @@
     background-color: redd;
 }
 
-p {
+
+/* p of page */
+
+.details p {
     width: 80%;
     padding: 5px;
 }
 
-button {
+
+/* buttons of page */
+
+.details button {
     width: 200px;
 }
 
-a {
+
+/* a of page */
+
+.details a {
     text-decoration: none;
     color: white;
     text-align: center;
 }
 
-img {
+
+/* image of restaurant */
+
+.details img {
     width: 32px;
     height: 32px;
     color: white;
 }
+
+
+/* Oddle icon in oddle button */
 
 .oddle {
     display: flex;
