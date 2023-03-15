@@ -1,6 +1,14 @@
 
-
+// CSS
 import './HomeChoices.css';
+
+/**
+ * Displays the different selections on the 
+ * home page.
+ * 
+ * @author Marcus Yeo
+ * @returns HTML of HomePage content
+ */
 
 const HomeChoices = () => {
     return (

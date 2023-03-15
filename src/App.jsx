@@ -8,13 +8,11 @@ import ChangePasswordContainer from "./pages/AccountCenterPage/ChangePasswordPag
 import LoginContainer from "./pages/LoginPage/LoginContainer";
 import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
 import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
-import HomePageNavBar from "./components/HomePageNavBar";
 import CalorieContainer from "./pages/CalorieCalculator/CalorieContainer";
 import SignupContainer from "./pages/SignupPage/SignupContainer"
 import HomeContainer from "./pages/HomePage/HomeContainer";
 import ForgotPasswordContainer from "./pages/ForgotPasswordPage/ForgotPasswordContainer";
 import NavigateContainer from "./pages/NavigateRestaurant/NavigateContainer"
-import NavigateContainer from "./pages/NavigateRestaurant/NavigateContainer";
 import FoodListContainer from "./pages/FoodListPage/FoodListContainer";
 
 const App = () => {

@@ -1,7 +1,13 @@
+/* Entire feedback form  */
+
 .feedbackForm {
     display: grid;
     grid-template-rows: 40vh 47.4vh;
 }
+
+
+/* Title and subheading of feedback
+page */
 
 .feedbackblock-1 {
     grid-column: 1/ span 2;
@@ -9,23 +15,38 @@
     padding: 2% 5% 5% 21.5%;
 }
 
+
+/* Contents of feedback block 1 */
+
 .details {
     font-size: 2rem;
     margin-left: 10%;
 }
 
+
+/* Name and age of feedback form */
+
 .feedbackblock-2 {
     padding: 6% 40% 14% 14%;
 }
+
+
+/* Age input */
 
 .age {
     width: 30%;
 }
 
+
+/* Experience input of feedback form */
+
 .feedbackblock-3 {
     grid-column: 1 / span 3;
     padding: 0 14%;
 }
+
+
+/* Experience textbox */
 
 .feedbackblock-3 .exp {
     padding: 10px;
@@ -33,6 +54,9 @@
     text-align: left;
     word-wrap: break-word;
 }
+
+
+/* Submit button  */
 
 button {
     width: 150px;

@@ -2,20 +2,56 @@ import "./FeedbackForm.css";
 import React, { useState, useEffect} from "react";
 import { TextField } from "@mui/material";
 
+/**
+ * Displays the feedback form showed on
+ * FeedbackContainer
+ * 
+ * @author Marcus Yeo
+ * @returns HTML of feedback form
+ */
+
 const FeedbackForm = () => {
+
+  /**Storage/setters for feedback form 
+   * input variables */
+
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [enteredExp, setEnteredExp] = useState("");
   const [expCount, setExpCount] = useState("");
+
+  /**
+   * Sets name storage based on change
+   * in name input
+   * 
+   * @param {onChange} event 
+   */
 
   const nameHandler = (event) => {
     setEnteredName(event.target.value);
 
   };
 
+  /**
+   * Sets age storage based on change
+   * in age input
+   * 
+   * @param {onChange} event 
+   */
+
   const ageHandler = (event) => {
     setEnteredAge(event.target.value);
   };
+
+  /**
+   * Sets experience storage based on change
+   * in experience input
+   * 
+   * Warns user in red if input length >= 512 by
+   * making input red
+   * 
+   * @param {onChange} event 
+   */
 
   const expHandler = (event) => {
     if(enteredExp.length >= 512){
@@ -26,6 +62,13 @@ const FeedbackForm = () => {
     }
     setEnteredExp(event.target.value);
   };
+
+  /**
+   * Coallates all details in feedback form and
+   * POSTS to database
+   * 
+   * @param {onSubmit} event 
+   */
 
   const feedbackHandler = (event) => {
     event.preventDefault();
@@ -68,6 +111,10 @@ const FeedbackForm = () => {
       setExpCount(0);
     }
   };
+
+  /**
+   * Updates character count of experience input
+   */
 
   useEffect(() => {
     // update char count (including whitespaces)

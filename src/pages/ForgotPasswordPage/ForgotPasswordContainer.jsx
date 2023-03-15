@@ -1,5 +1,7 @@
 import { TextField } from '@mui/material';
 import { useState } from 'react';
+
+// CSS
 import './ForgotPassword.css';
 
 /*todo : tally username with database and return password.
@@ -7,12 +9,38 @@ import './ForgotPassword.css';
 */
 
 
+
+/**
+ * Displays the ForgotPassword page directed from
+ * LoginPage page
+ * 
+ * @author Marcus Yeo
+ * @returns HTML of ForgotPassword page
+ */
+
 const ForgotPasswordContainer = () => {
+
+    //Storage/setter of username input
+
     const [forgotUsername, setForgotUsername] = useState("");
+
+    /**
+     * Changes content of username based on 
+     * input
+     * 
+     * @param {onChange} event 
+     */
 
     const forgotUsernameHandler = (event) => {
         setForgotUsername(event.target.value);
     }
+    
+    /**
+     * Tallies username with database and returns
+     * corresponding password
+     * 
+     * @param {onSubmit} event 
+     */
 
     const submitHandler = (event) => {
         event.preventDefault();
@@ -21,6 +49,7 @@ const ForgotPasswordContainer = () => {
             username : forgotUsername,
         };
 
+        //blank input
         if(forgotpasswordDetails.username === ""){
             alert("Please enter a username!");
         }

@@ -1,3 +1,5 @@
+/* Container containing Login Form */
+
 .loginForm {
     background-color: #ffff;
     width: 100%;
@@ -6,6 +8,9 @@
     justify-content: center;
 }
 
+
+/* Contents of Login Form */
+
 .loginForm_container {
     width: 37%;
     margin: auto;
@@ -13,13 +18,19 @@
     text-align: left;
 }
 
+
+/*Container containing username and password
+inputs*/
+
 .formDetails {
     padding-top: 25px;
     padding-bottom: 20px;
 }
 
-.formDetails .login-text,
-button {
+
+/* Text box of the form*/
+
+.formDetails .login-text {
     height: 50px;
     border-color: black;
     border-style: solid;
@@ -28,16 +39,32 @@ button {
     text-align: center;
 }
 
+
+/* All buttons */
+
 button {
+    height: 50px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 40.5px;
+    width: 100%;
+    text-align: center;
     color: white;
     background-color: #41b723;
     font-size: 1.2rem;
 }
 
+
+/* Hovering over buttons */
+
 button:hover {
     background-color: #69df4c;
     cursor: pointer;
 }
+
+
+/* Links directing to ForgotPassword page and
+SignUp page */
 
 .loginLinks {
     color: #41b723;
@@ -46,17 +73,29 @@ button:hover {
     cursor: pointer;
 }
 
+
+/*  */
+
 .smallText {
     font-size: 1.2rem;
 }
+
+
+/* h1 of page */
 
 h1 {
     font-size: 4rem;
 }
 
+
+/* p of page */
+
 p {
     font-size: 1.5rem;
 }
+
+
+/* Bottom half contents of form */
 
 .login-bottom-box {
     display: flex;
