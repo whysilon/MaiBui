@@ -1,64 +1,51 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import Button from '@mui/material/Button';
-import { Search } from '@mui/icons-material';
-class SearchBar extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.state = {
-            input: 'Hi!',
-        };
-        this.api = process.env.REACT_APP_API_KEY
-        this.appid = process.env.REACT_APP_API_ID
-    }
-    passSearchTerm = () => {
-        const client = axios.create({
-            baseURL: "https://trackapi.nutritionix.com/v2/"
-        });
-        client.get('search/instant',{
-            params: {
-                query :this.state.input,
-                branded : 'false'
-            },
-            headers: {
-                'x-app-id': this.appid,
-                'x-app-key': this.api,
-                'x-remote-user-id': '0',
-            }})
-            .then((response) => {
-                console.log(response.data)
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }
-    render() {
-        return (
-            <div>
-                <form>
-                    <h5>Search for Nutrition Info</h5>
-                    <p>Not sure how many calories are in that bagel? Search here to find out.</p>
+import { useState, useEffect } from "react";
+import TextField from "@mui/material/TextField";
+import NutritionixAPIControl from "../pages/FoodListPage/NutritionixAPIControl";
+import DisplayFoodList from "../pages/FoodListPage/DisplayFoodList";
+import { Autocomplete, Box, Typography } from "@mui/material";
 
-                    <div>
-                        <div>
-                            <input onChange={event => this.setState({ input: event.target.value })}
-                                type='text' id='search' name='search' placeholder='Enter food to find nutrition information'/>
-                        </div>
-                        <div>
-                            <Button variant = 'outlined' onClick={(event) => {
-                                event.preventDefault();
-                                this.passSearchTerm();
-                                }}
-                                endIcon={<Search/>}
-                                > Search
-                            </Button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        );
+
+function SearchBar(){
+    const [input, setInput] = useState("Cereal")
+    const [list, setList]= useState([]);
+    useEffect(()=>{
+        NutritionixAPIControl(input)
+        .then(res=>setList(res))
+    },[])
+
+    const handleInput = (e)=>{
+    console.log(e.target.value)
+    setInput(e.target.value.toLowerCase())
     }
+
+  return (
+    <Box
+    sx={{
+        width: 400,
+        height: 660,
+        margin:'100px auto',
+        
+        display:'flex',
+        flexDirection:'column',
+        justifyContent:'space-evenly'
+     }}>
+        <Typography variant='h4' component={'h1'}>React Search Bar</Typography>
+        <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={list.map(item=>item.title)}
+            defaultValue = "Cereal"
+            renderInput={(params) => <TextField {...params} 
+            label="Search title"
+            onSelect={handleInput}
+            sx={{
+            width: 350,
+            margin:'10px auto',
+        }}  />}
+    />
+    <DisplayFoodList searchstring={input} list={list}/>
+    </Box>
+    );
 }
 
 export default SearchBar;
