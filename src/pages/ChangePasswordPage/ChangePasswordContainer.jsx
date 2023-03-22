@@ -1,5 +1,5 @@
 import React from "react";
-import AccountCenterNavBar from "../../../components/AccountCenterNavBar";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import ChangePasswordForm from "./ChangePasswordForm";
 
 const ChangePasswordContainer = () => {

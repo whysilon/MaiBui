@@ -11,6 +11,7 @@ import {
   Box,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import PasswordChecklist from "react-password-checklist";
 
 //CSS
 import "./ChangePasswordForm.css";
@@ -21,6 +22,7 @@ const ChangePasswordForm = (props) => {
   const [enteredNewPwd, setEnterNewPwd] = useState("");
   const [enteredConfirmedPwd, setEnterConfirmPwd] = useState("");
   const [pwdShown, setPwdShown] = useState(false);
+  const [validPwd, setValidPwd] = useState(false);
 
   const oldPwdHandler = (event) => {
     setEnterOldPwd(event.target.value);
@@ -30,6 +32,10 @@ const ChangePasswordForm = (props) => {
   };
   const confirmPwdHandler = (event) => {
     setEnterConfirmPwd(event.target.value);
+  };
+
+  const validPwdHandler = (valid) => {
+    setValidPwd(valid);
   };
 
   function clearInputField() {
@@ -43,13 +49,15 @@ const ChangePasswordForm = (props) => {
 
   //TODO: check with DB
   const changePwdHandler = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
 
     const changePwdDetails = {
       oldPwd: enteredOldPwd,
       newPwd: enteredNewPwd,
       confirmedPwd: enteredConfirmedPwd,
     };
+    window.location.href = "/account-center";
+    console.log(changePwdDetails);
   };
 
   const confirmChangeHandler = () => {
@@ -130,6 +138,23 @@ const ChangePasswordForm = (props) => {
               label="Show password"
               control={<Switch onClick={togglePwdShown} />}
             />
+            <PasswordChecklist
+              className="signup-pwd-checker"
+              rules={[
+                "minLength",
+                "capital",
+                "lowercase",
+                "number",
+                "specialChar",
+                "match",
+              ]}
+              minLength={8}
+              value={enteredNewPwd}
+              valueAgain={enteredConfirmedPwd}
+              onChange={(isValid) => {
+                validPwdHandler(isValid);
+              }}
+            />
             <Stack sx={{ margin: 5 }} direction="row" spacing={6}>
               <Link to={"/account-center"}>
                 <Button type="reset" id="cancel">
@@ -142,7 +167,8 @@ const ChangePasswordForm = (props) => {
                   !enteredConfirmedPwd ||
                   !enteredNewPwd ||
                   !enteredOldPwd ||
-                  enteredNewPwd !== enteredConfirmedPwd
+                  enteredNewPwd !== enteredConfirmedPwd ||
+                  !validPwd
                 }
               >
                 Confirm Change

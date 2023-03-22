@@ -1,7 +1,7 @@
 import React from "react";
 
 //Components
-import AccountCenterNavBar from "../../../components/AccountCenterNavBar";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import ChangeUsernameForm from "./ChangeUsernameForm";
 import { Container } from "@mui/material";
 const ChangeUsernameContainer = () => {
