@@ -64,6 +64,24 @@ const ChangePasswordForm = (props) => {
     console.log("Password is changed");
   };
 
+  const handleCancel = () => {
+    if (
+      enteredOldPwd !== "" ||
+      enteredNewPwd !== "" ||
+      enteredConfirmedPwd !== ""
+    ) {
+      if (
+        window.confirm(
+          "You have unsaved changes. Are you sure you want to cancel?"
+        )
+      ) {
+        window.location.href = "/account-center";
+      }
+    } else {
+      window.location.href = "/account-center";
+    }
+  };
+
   return (
     <Box>
       <form className="change-password-form" onSubmit={changePwdHandler}>
@@ -156,11 +174,10 @@ const ChangePasswordForm = (props) => {
               }}
             />
             <Stack sx={{ margin: 5 }} direction="row" spacing={6}>
-              <Link to={"/account-center"}>
-                <Button type="reset" id="cancel">
-                  Cancel
-                </Button>
-              </Link>
+              <Button type="reset" id="cancel" onClick={handleCancel}>
+                Cancel
+              </Button>
+
               <Button
                 type="submit"
                 disabled={

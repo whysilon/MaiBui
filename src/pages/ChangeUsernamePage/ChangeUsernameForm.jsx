@@ -1,33 +1,32 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Button, TextField, Stack } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
-//CSS
-// import "./ChangeUsernameForm.css";
 import { Link } from "react-router-dom";
 
 const ChangeUsernameForm = () => {
   const [enteredNewUsername, setEnterNewUsername] = useState("");
   const [validUsername, setValidUsername] = useState(false);
 
-  const newUsernameHandler = (event) => {
-    setEnterNewUsername(event.target.value);
-  };
   const changeUsernameHandler = (event) => {
     event.preventDefault();
-    const changeUsernameDetails = {
-      newUsername: enteredNewUsername,
-    };
-
     window.location.href = "/account-center";
-    console.log(changeUsernameDetails);
+    console.log({ newUsername: enteredNewUsername });
   };
 
-  const validUsernameHandler = (valid) => {
-    setValidUsername(valid);
+  const handleCancel = () => {
+    if (enteredNewUsername !== "") {
+      if (
+        window.confirm(
+          "You have unsaved changes. Are you sure you want to cancel?"
+        )
+      ) {
+        window.location.href = "/account-center";
+      }
+    } else {
+      window.location.href = "/account-center";
+    }
   };
 
-  //TODO:check with DB
   return (
     <React.Fragment>
       <Stack
@@ -45,24 +44,20 @@ const ChangeUsernameForm = () => {
               <Stack>
                 <TextField
                   value={enteredNewUsername}
-                  onChange={newUsernameHandler}
+                  onChange={(event) => setEnterNewUsername(event.target.value)}
                   label="Enter new username"
                   margin="normal"
                   error={enteredNewUsername === ""}
                   helperText={enteredNewUsername === "" ? "Empty field!" : " "}
                   type="text"
-                >
-                  {/* Enter new username here */}
-                </TextField>
+                />
               </Stack>
               <PasswordChecklist
                 rules={["minLength", "maxLength"]}
                 maxLength={13}
                 minLength={1}
                 value={enteredNewUsername}
-                onChange={(validUsername) => {
-                  validUsernameHandler(validUsername);
-                }}
+                onChange={(valid) => setValidUsername(valid)}
                 messages={{
                   maxLength: "Username must be 13 characters long maximum.",
                   minLength: "Username must be 1 characters long minimally.",
@@ -70,11 +65,9 @@ const ChangeUsernameForm = () => {
               />
 
               <Stack sx={{ margin: 5 }} direction="row" spacing={6}>
-                <Link to={"/account-center"}>
-                  <Button type="reset" id="cancel">
-                    Cancel
-                  </Button>
-                </Link>
+                <Button type="reset" id="cancel" onClick={handleCancel}>
+                  Cancel
+                </Button>
 
                 <Button
                   type="submit"
