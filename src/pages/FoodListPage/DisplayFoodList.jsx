@@ -1,11 +1,30 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Stack } from '@mui/system';
-import { Paper, Box, Typography } from '@mui/material';
+import { Paper, Box, Typography, CircularProgress } from '@mui/material';
+import NutritionixAPIControl from './NutritionixAPIControl';
 
 
-export default function DisplayFoodList({list}) {
-    console.log(list)
-    return (
+class DisplayFoodList extends Component {
+    constructor(props){
+        super(props);
+        this.state = {list : [],
+                      loading : true,
+                      query: ""
+                    }
+    }
+    fetchData = () => {
+       async function fetchFood (){
+        if(!(this.query === "")){
+        const data = await NutritionixAPIControl(this.query)
+        this.list = data
+       }
+    }  
+    }
+    render() { 
+        if (this.state.loading) {return (<CircularProgress/>)}
+        else { 
+            this.fetchData()
+            return (
         <Box>
         <Stack spacing={2}
         sx={{
@@ -14,7 +33,7 @@ export default function DisplayFoodList({list}) {
         
         }}
         >
-        {list.map((item,i) => (
+        {this.state.list.map((item,i) => (
                     <Paper key={i}
                     sx={{
                         textAlign:'left'
@@ -25,7 +44,11 @@ export default function DisplayFoodList({list}) {
                     </Paper>
         ))}
             
-</Stack>
-    </Box>
-  )
+        </Stack>
+        </Box>
+            )
+        }
+    }
 }
+
+export default DisplayFoodList
