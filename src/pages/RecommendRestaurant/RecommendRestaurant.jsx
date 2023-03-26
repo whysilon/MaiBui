@@ -1,11 +1,12 @@
 import "./RecommendRestaurant.css"
 import React from "react"
+import { Link } from "react-router-dom";
 
 function RecommendRestaurant(props)
 {
     let service;
     const google = window.google;
-    const [data, setData] = React.useState([]);
+    var [data, setData] = React.useState([]);
     var currentLocation = new google.maps.LatLng(props.latitude,props.longitude);
 
     const request = {
@@ -22,13 +23,28 @@ function RecommendRestaurant(props)
             setData(results);
         }
     }
-    const renderList = data.map((item, index) =>
-                                <div key={index}>{item.name}</div>
-    );
+
+    function displayResults(data){
+        if(data.length === 0){
+            return(<p>There are no nearby restaurants!</p>);
+        }
+        else{
+            return(
+                data.map((result) => (
+                    <div>
+                    <button key={result.id}>
+                        <Link to="/select-restaurant" state={result}>{result.name}</Link>
+                    </button>
+                    </div>
+                ))
+            );
+        }
+    }
+    
     return(
         <div className="recommend">
             <h1 style={{fontSize: 40}}>Nearby Restaurants</h1>
-            {renderList}
+            {displayResults(data)}
         </div>
     )
 }
