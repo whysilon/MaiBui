@@ -1,7 +1,8 @@
 import "./SelectRestaurantDetails.css";
 import { Link } from "react-router-dom";
 
-const SelectRestaurantDetails = () => {
+const SelectRestaurantDetails = (props) => {
+  console.log(props);
   return (
     <div className="details">
       <div className="block-1">
@@ -17,7 +18,7 @@ const SelectRestaurantDetails = () => {
         </div>
       </div>
       <div className="block-3">
-        <button ><Link to="/navigate">Navigate</Link></button>
+        <button ><Link to="/navigate-restaurant">Navigate</Link></button>
         <button className="oddle">
             <img src="https://cdn-icons-png.flaticon.com/512/3313/3313619.png"/>
             <Link to="/reserve">Oddle Eats</Link>
