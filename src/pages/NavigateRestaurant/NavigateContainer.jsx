@@ -1,12 +1,12 @@
-import HomePageNavBar from "../../components/HomePageNavBar";
+import BackButton from "../../components/BackButton";
 import Navigate from "./Navigate";
 import "./NavigateContainer.css"
 
-const NavigateContainer = () => {
+const NavigateContainer = (props) => {
     return (
-        <div className="container">
-            <header><HomePageNavBar /></header>
-            <body><Navigate/></body>
+        <div>
+            <BackButton />
+            <Navigate />
         </div>
     );
 }
