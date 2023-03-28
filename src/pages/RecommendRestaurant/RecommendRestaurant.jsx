@@ -29,15 +29,13 @@ function RecommendRestaurant(props)
             return(<p>There are no nearby restaurants!</p>);
         }
         else{
-            return(
-                data.map((result) => (
-                    <div>
-                    <button key={result.id}>
-                        <Link to="/select-restaurant" state={result}>{result.name}</Link>
-                    </button>
-                    </div>
-                ))
-            );
+            return(data.map((result) => (
+                                        <div className="results">
+                                            <button key={result.id} style={{ width: "500px", height: "50px",}}>
+                                                <Link to="/select-restaurant" state={result}>{result.name}</Link>
+                                            </button>
+                                        </div>
+            )));
         }
     }
     
