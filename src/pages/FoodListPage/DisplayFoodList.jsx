@@ -1,30 +1,37 @@
-import React, { Component } from 'react'
+import React, {useState , useEffect } from 'react'
 import { Stack } from '@mui/system';
 import { Paper, Box, Typography, CircularProgress } from '@mui/material';
 import NutritionixAPIControl from './NutritionixAPIControl';
 
 
-class DisplayFoodList extends Component {
-    constructor(props){
-        super(props);
-        this.state = {list : [],
-                      loading : true,
-                      query: ""
-                    }
+function DisplayFoodList({query}){
+    const [list,setList] = useState([])
+    const [loading,setLoading] = useState(true)
+    useEffect(() => {
+    console.log(query)
+    let ignore = false;
+    if(query === ""){
+        console.log("here",ignore)
+        ignore = true;
     }
-    fetchData = () => {
-       async function fetchFood (){
-        if(!(this.query === "")){
-        const data = await NutritionixAPIControl(this.query)
-        this.list = data
-       }
-    }  
+    setLoading(true)
+    if(!ignore){
+    console.log("there")
+    NutritionixAPIControl(query).then(res => {
+        if(!ignore) {
+            setList(res)
+            setLoading(false)
+        }
+    })};
+    return () => {
+        ignore = true;
     }
-    render() { 
-        if (this.state.loading) {return (<CircularProgress/>)}
-        else { 
-            this.fetchData()
-            return (
+    }, [query])
+
+    return (
+        <>
+        {loading ? (<CircularProgress/>) : 
+        (
         <Box>
         <Stack spacing={2}
         sx={{
@@ -33,7 +40,7 @@ class DisplayFoodList extends Component {
         
         }}
         >
-        {this.state.list.map((item,i) => (
+        {list.map((item,i) => (
                     <Paper key={i}
                     sx={{
                         textAlign:'left'
@@ -42,13 +49,15 @@ class DisplayFoodList extends Component {
                         <Typography><strong>Serving Unit:</strong> {item.serving_unit}</Typography>
                         <Typography><strong>Serving Qty:</strong> {item.serving_qty}</Typography> 
                     </Paper>
-        ))}
+        ))
+        }
             
         </Stack>
-        </Box>
-            )
+        </Box>)
         }
-    }
+        </>
+    )
 }
 
-export default DisplayFoodList
+
+export default DisplayFoodList;
