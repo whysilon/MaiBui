@@ -1,12 +1,12 @@
 .search{
-    margin-left: 10vw;    
     flex:auto;
-    flex-direction: column;
-    justify-content: center;
     text-align: center;
     height: 15vh;
     
 }
 input{
-    width: 50vh;
+    width: 60vh;
+}
+button{
+    width: 20vh;
 }

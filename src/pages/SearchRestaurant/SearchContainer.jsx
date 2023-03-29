@@ -4,7 +4,7 @@ import "./SearchContainer.css"
 
 const SearchContainer = (props) => {
     return (
-        <div className="container">
+        <div>
             <HomePageNavBar />
             <SearchRestaurant />
         </div>
