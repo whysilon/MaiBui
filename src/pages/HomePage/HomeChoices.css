@@ -59,3 +59,11 @@
     font-size: 1.6rem;
     padding: 10px;
 }
+
+
+/* All a content on page */
+
+.homechoices-container a {
+    text-decoration: none;
+    color: white;
+}

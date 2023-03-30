@@ -61,7 +61,7 @@ function RecommendRestaurant(props)
                 data.map((result) => (
                     <div className="results">
                         <button key={result.id} style={{ width: "500px", height: "50px",}}>
-                            <Link to="/select-restaurant" state={result}>{result.name}</Link>
+                            <Link to={{pathname: `/restaurant/${result.place_id}`, data: data}}>{result.name}</Link>
                         </button>
                     </div>
             )));
