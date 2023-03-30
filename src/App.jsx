@@ -15,6 +15,7 @@ import ForgotPasswordContainer from "./pages/ForgotPasswordPage/ForgotPasswordCo
 import NavigateContainer from "./pages/NavigateRestaurant/NavigateContainer";
 import FoodListContainer from "./pages/FoodListPage/FoodListContainer";
 
+
 const App = () => {
   return (
     <div>
