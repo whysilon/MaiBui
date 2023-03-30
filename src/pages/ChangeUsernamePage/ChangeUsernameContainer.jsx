@@ -5,6 +5,8 @@
 
  */
 import React from "react";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
+import ChangeUsernameForm from "./ChangeUsernameForm";
 
 /**
  * This component is responsible for rendering the Change Username page.
