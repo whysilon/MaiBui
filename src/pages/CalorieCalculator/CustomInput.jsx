@@ -9,7 +9,12 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
 import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
-
+/**
+ * This creates a form where users input the food name and calorie intake
+ * 
+ * 
+ * @returns Calorie Number (int)
+ */
 
 function CustomInput(){
     const [open, setOpen] = React.useState(false);
