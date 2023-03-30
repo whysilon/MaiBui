@@ -16,6 +16,7 @@ import SignupContainer from "./pages/SignupPage/SignupContainer";
 import HomeContainer from "./pages/HomePage/HomeContainer";
 import ForgotPasswordContainer from "./pages/ForgotPasswordPage/ForgotPasswordContainer";
 import FoodListContainer from "./pages/FoodListPage/FoodListContainer";
+import FoodNutritionContainer from "./pages/FoodNutritionPage/FoodNutritionContainer";
 
 
 const App = () => {
@@ -47,8 +48,11 @@ const App = () => {
             element={<ForgotPasswordContainer />}
           />
           <Route path="/food" element={<FoodListContainer />} />
+          <Route path="/nutrition/:id" element={<FoodNutritionContainer/>}/>
         </Routes>
       </Router>
     </div>
   );
 };
+
+export default App;

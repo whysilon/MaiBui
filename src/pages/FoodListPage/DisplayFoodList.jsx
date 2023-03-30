@@ -1,6 +1,6 @@
 import React, {useState , useEffect } from 'react'
 import { Stack } from '@mui/system';
-import { Paper, Box, Typography, CircularProgress, Button, Divider} from '@mui/material';
+import { Paper, Box, Typography, CircularProgress, Button, Divider, Link} from '@mui/material';
 import NutritionixAPIControl from './NutritionixAPIControl';
 import "./DisplayFoodList.css"
 
@@ -33,7 +33,9 @@ function DisplayFoodList({query}){
         ignore = true;
     }
     }, [query])
-
+    const handleClick = () => {
+        
+    }
     return (
         <>
         {loading ? (<CircularProgress/>) : 
@@ -52,12 +54,11 @@ function DisplayFoodList({query}){
                         textAlign:'left',
                         display:'flex',
                     }}>
-                    <Button className='button-style'
-                    onClick={()=>{console.log(item)}}>
+                    <Link href={`/nutrition/${item.food_name}`} underline="hover">
                         <Typography variant = "button">Name: {item.food_name}</Typography>
                         <Typography variant = "button">Serving Unit:{item.serving_unit}</Typography>
                         <Typography variant = "button">Serving Qty: {item.serving_qty}</Typography> 
-                    </Button>
+                    </Link>
                     </Paper>
         ))
         }
