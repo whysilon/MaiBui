@@ -36,7 +36,7 @@ const App = () => {
           />
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/feedback" element={<FeedbackContainer />} />
-          <Route path="/restaurant/:id" element={<SelectRestaurantContainer />} />
+          <Route path="/select-restaurant/::id" element={<SelectRestaurantContainer />} />
           <Route path="/navigate-restaurant" element={<NavigateContainer />} />
           <Route path="/recommend-restaurant" element={<RecommendContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />

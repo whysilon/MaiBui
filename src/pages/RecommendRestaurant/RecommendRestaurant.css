@@ -1,5 +1,14 @@
-.recommend{
-    flex:auto;
+.recommend {
+    flex: auto;
     text-align: center;
     height: 15vh;
+}
+
+.recommend a {
+    text-decoration: none;
+    color: white;
+}
+
+.results {
+    margin-top: 10px;
 }

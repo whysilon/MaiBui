@@ -17,9 +17,10 @@ function RecommendRestaurant(props)
     /**
      * Array of restaurant results requested from the Google Places API.
      */
-    var [data, setData] = React.useState([]);
+    const [data, setData] = React.useState([]);
 
     /**
+     * 
      * Current location of the user.
      */
     var currentLocation = new google.maps.LatLng(props.latitude,props.longitude);
@@ -61,7 +62,7 @@ function RecommendRestaurant(props)
                 data.map((result) => (
                     <div className="results">
                         <button key={result.id} style={{ width: "500px", height: "50px",}}>
-                            <Link to={{pathname: `/restaurant/${result.place_id}`, data: data}}>{result.name}</Link>
+                            <Link to={{pathname: `/select-restaurant/${result.place_id}`, data: data}}>{result.name}</Link>
                         </button>
                     </div>
             )));
