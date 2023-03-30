@@ -1,8 +1,15 @@
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
-import DisplayFoodList from "../pages/FoodListPage/DisplayFoodList.jsx"
+import DisplayFoodList from "./DisplayFoodList.jsx"
 import { Paper,Stack, Box, IconButton, Typography, CircularProgress } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+/**
+* Displays the search bar for searching food
+*
+* @author Valencino Tan
+* @returns SearchBar
+*
+*/
 
 function SearchBar(){
     const [input,setInput] = useState("")
@@ -26,12 +33,12 @@ function SearchBar(){
                 id="search-bar"
                 className="text"
                 onInput={handleInput}
-                label="Enter a city name"
+                label="Enter food name"
                 variant="outlined"
                 placeholder="Search..."
                 size="small"
                 />
-                <IconButton type="submit" aria-label="search">
+                <IconButton type="button" aria-label="search">
                     <SearchIcon style={{ fill: "blue" }} />
             </IconButton>
             </form>

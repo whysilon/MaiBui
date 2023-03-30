@@ -4,6 +4,12 @@ import "./CalorieContainer.css";
 import React from "react";
 import CustomInput from "./CustomInput";
 
+/**
+ * This contains the functions required for Calorie Calculator
+ * This displays the functions
+ * 
+ */
+
 function CalorieContainer() {
   return (
     <body className="background">

@@ -9,10 +9,12 @@ import LoginContainer from "./pages/LoginPage/LoginContainer";
 import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
 import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
 import CalorieContainer from "./pages/CalorieCalculator/CalorieContainer";
+import NavigateContainer from "./pages/NavigateRestaurant/NavigateContainer";
+import RecommendContainer from "./pages/RecommendRestaurant/RecommendContainer";
+import SearchContainer from "./pages/SearchRestaurant/SearchContainer";
 import SignupContainer from "./pages/SignupPage/SignupContainer";
 import HomeContainer from "./pages/HomePage/HomeContainer";
 import ForgotPasswordContainer from "./pages/ForgotPasswordPage/ForgotPasswordContainer";
-import NavigateContainer from "./pages/NavigateRestaurant/NavigateContainer";
 import FoodListContainer from "./pages/FoodListPage/FoodListContainer";
 
 
@@ -36,7 +38,9 @@ const App = () => {
           <Route path="/feedback" element={<FeedbackContainer />} />
           <Route path="/restaurant" element={<SelectRestaurantContainer />} />
           <Route path="/navigate-restaurant" element={<NavigateContainer />} />
+          <Route path="/recommend-restaurant" element={<RecommendContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
+          <Route path="/search-restaurant" element={<SearchContainer />} />
           <Route path="/signup" element={<SignupContainer />} />
           <Route
             path="/forgot-password"
@@ -48,5 +52,3 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
