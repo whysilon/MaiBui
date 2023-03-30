@@ -1,0 +1,12 @@
+.search{
+    flex:auto;
+    text-align: center;
+    height: 15vh;
+    
+}
+input{
+    width: 60vh;
+}
+button{
+    width: 20vh;
+}
