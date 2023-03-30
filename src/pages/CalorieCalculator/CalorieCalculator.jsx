@@ -1,6 +1,12 @@
 import "./CalorieCalculator.css"
 import React from "react"
-
+/**
+ * This displays a progress bar for the daily calorie intake
+ * 
+ * @returns ProgressBar of the current calorie intake
+ * 
+ * 
+ */
 function CalorieCalculator() {
     const ProgressBar = (props) => {
         const {bgcolor,completed } = props;
