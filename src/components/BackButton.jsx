@@ -1,30 +1,31 @@
+/**
+ * Displays BackButton component, which is a button that navigates the user back to the previous page.
+ * @author Xing Mian
+ * @return HTML of Back Button
+ */
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
-// TODO: functionality
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { IconButton } from "@mui/material";
 import { Link } from "react-router-dom";
 
+/**
+ * This function returns the BackButton component.
+ * @returns {JSX.Element} The BackButton component.
+ */
 function BackButton() {
   const navigate = useNavigate();
 
-  //style
-  // const style = {
-  //   marginRight: "1px",
-  //   marginTop: "2.5px",
-  //   width: "4rem",
-  //   height: "4rem",
-  //   cursor: "pointer",
-  // };
-
+  /**
+   * This function handles the click event for the BackButton component.
+   */
   function handleBackClick() {
     console.log("Back Button clicked");
     navigate(-1);
   }
 
   return (
-    // <Link to={"../.."}>
-
     <IconButton style={{ maxWidth: "55px", margin: "2px", padding: "2px" }}>
       <ArrowBackIcon
         alt="Back"
@@ -33,7 +34,6 @@ function BackButton() {
         style={{ color: "black" }}
       ></ArrowBackIcon>
     </IconButton>
-    // </Link>
   );
 }
 
