@@ -1,5 +1,16 @@
-.container {
+/* Entire LoginPage content */
+
+.login-container {
     display: flex;
     height: 100vh;
     width: 100vw;
+}
+
+
+/* Responsive design for smaller width devices */
+
+@media (max-width:1240px) {
+    .picture {
+        display: none;
+    }
 }

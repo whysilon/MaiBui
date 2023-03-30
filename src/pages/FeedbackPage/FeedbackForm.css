@@ -1,49 +1,62 @@
+/* Entire feedback form  */
+
 .feedbackForm {
     display: grid;
     grid-template-rows: 40vh 47.4vh;
 }
 
-input,
-textarea {
-    height: 50px;
-    border-color: black;
-    border-style: solid;
-    border-radius: 40.5px;
-    width: 100%;
-    padding: auto;
-    text-align: center;
-}
+
+/* Title and subheading of feedback
+page */
 
 .feedbackblock-1 {
     grid-column: 1/ span 2;
     align-content: center;
-    padding: 1% 5% 5% 20%;
+    padding: 2% 5% 5% 21.5%;
 }
+
+
+/* Contents of feedback block 1 */
 
 .details {
     font-size: 2rem;
     margin-left: 10%;
 }
 
+
+/* Name and age of feedback form */
+
 .feedbackblock-2 {
     padding: 6% 40% 14% 14%;
 }
 
+
+/* Age input */
+
 .age {
     width: 30%;
 }
+
+
+/* Experience input of feedback form */
 
 .feedbackblock-3 {
     grid-column: 1 / span 3;
     padding: 0 14%;
 }
 
-.feedbackblock-3 textarea {
-    padding: 15px;
-    height: 20vh;
+
+/* Experience textbox */
+
+.feedbackblock-3 .exp {
+    padding: 10px;
+    width: 67vw;
     text-align: left;
     word-wrap: break-word;
 }
+
+
+/* Submit button  */
 
 button {
     width: 150px;

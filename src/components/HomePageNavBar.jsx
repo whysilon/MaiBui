@@ -7,7 +7,7 @@ import "./NavBar.css";
 //Components
 import HomeButton from "./HomeButton";
 import SideBar from "./SideBar";
-
+import { Menu } from "@mui/material";
 // TODO:Functionality
 
 function HomePageNavBar() {
@@ -29,7 +29,7 @@ function HomePageNavBar() {
   return (
     <div
       className="navbar"
-      style={{ display: "flex", margin: "auto", height: "85px" }}
+      style={{ display: "flex", height: "60px", justifyContent: "space-between"}}
     >
       <SideBar />
       <span

@@ -1,24 +1,74 @@
 import "./FeedbackForm.css";
 import React, { useState, useEffect} from "react";
+import { TextField } from "@mui/material";
+
+/**
+ * Displays the feedback form showed on
+ * FeedbackContainer
+ * 
+ * @author Marcus Yeo
+ * @returns HTML of feedback form
+ */
 
 const FeedbackForm = () => {
+
+  /**Storage/setters for feedback form 
+   * input variables */
+
   const [enteredName, setEnteredName] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [enteredExp, setEnteredExp] = useState("");
   const [expCount, setExpCount] = useState("");
+
+  /**
+   * Sets name storage based on change
+   * in name input
+   * 
+   * @param {onChange} event 
+   */
 
   const nameHandler = (event) => {
     setEnteredName(event.target.value);
 
   };
 
+  /**
+   * Sets age storage based on change
+   * in age input
+   * 
+   * @param {onChange} event 
+   */
+
   const ageHandler = (event) => {
     setEnteredAge(event.target.value);
   };
 
+  /**
+   * Sets experience storage based on change
+   * in experience input
+   * 
+   * Warns user in red if input length >= 512 by
+   * making input red
+   * 
+   * @param {onChange} event 
+   */
+
   const expHandler = (event) => {
+    if(enteredExp.length >= 512){
+    document.getElementById("exp").style.color = "red";
+    }
+    else{
+      document.getElementById("exp").style.color = "black";
+    }
     setEnteredExp(event.target.value);
   };
+
+  /**
+   * Coallates all details in feedback form and
+   * POSTS to database
+   * 
+   * @param {onSubmit} event 
+   */
 
   const feedbackHandler = (event) => {
     event.preventDefault();
@@ -37,26 +87,18 @@ const FeedbackForm = () => {
     ) {
       alert("Leave no fields blank!");
       feedbackDetails = {name:"",age:"",exp:""};
-      setEnteredName("");
-      setEnteredAge("");
-      setEnteredExp("");
-      setExpCount(0);
       return;
     }
 
     //Checks if experience is too short
     if(feedbackDetails.exp.length > 512){
       alert("Keep feedback within 512 characters!");
-      setEnteredExp("");
-      setExpCount(0);
       return;
     }
 
     //Checks if name is too long
     if(feedbackDetails.name.length > 512){
       alert("Invalid name!");
-      setEnteredName("");
-      setExpCount(0);
       return;
     }
     //else checks details with database
@@ -69,6 +111,10 @@ const FeedbackForm = () => {
       setExpCount(0);
     }
   };
+
+  /**
+   * Updates character count of experience input
+   */
 
   useEffect(() => {
     // update char count (including whitespaces)
@@ -86,23 +132,64 @@ const FeedbackForm = () => {
       <div className="feedbackblock-2">
         <div className="NameAndAge">
           <p>Name:</p>
-          <input value={enteredName} onChange={nameHandler} type="text" />
+          <TextField
+                value={enteredName}
+                onChange={nameHandler}
+                type={"text"}
+                variant="outlined"
+                label="Enter your name"
+                margin="normal"
+                helperText={
+                  enteredName === ""
+                    ? "Empty field!"
+                    : // : enteredNewPwd !== enteredConfirmedPwd
+                      // ? "Passwords do not match!"
+                      ""
+                }
+              ></TextField>
           <p>Age:</p>
-          <input
-            className="age"
-            value={enteredAge}
-            type="number"
-            min="18"
-            max="150"
-            onChange={ageHandler}
-          />
+          <TextField
+                className="age"
+                value={enteredAge}
+                onChange={ageHandler}
+                type={"number"}
+                variant="outlined"
+                margin="normal"
+                InputProps={{ inputProps: { min: 18, max: 150 } }}
+                helperText={
+                  enteredAge === ""
+                    ? "Empty field!"
+                    : // : enteredNewPwd !== enteredConfirmedPwd
+                      // ? "Passwords do not match!"
+                      ""
+                }
+              ></TextField>
         </div>
       </div>
       <div className="feedbackblock-3">
         <div className = "experience">
           <p>Details Of Experience:</p>
-          <textarea className="exp" value={enteredExp} cols="40" rows="5" onChange={expHandler} />
-          <span>Character Count: {expCount}</span>
+          <TextField
+                className="exp"
+                value={enteredExp}
+                onChange={expHandler}
+                type={"textarea"}
+                variant="outlined"
+                margin="normal"
+                multiline
+                cols={40}
+                rows={5}
+                helperText={
+                  enteredExp === ""
+                    ? "Empty field!"
+                    : // : enteredNewPwd !== enteredConfirmedPwd
+                      // ? "Passwords do not match!"
+                      ""
+                }
+              ></TextField>
+        </div>
+        <div>
+          <span id="exp">Character Count: {expCount}</span>
           <button type="submit">Submit</button>
         </div>
       </div>

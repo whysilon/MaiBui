@@ -1,15 +1,9 @@
-.container{
-    margin-left: 10vw;    
-    flex:auto;
-    flex-direction: column;
-    justify-content: center;
-
-}
-
-.daily{
-    height:fit-content;
-}
-
 .bar{
     height:fit-content;
 }
+
+.alignRight{
+    float: right;
+}
+
+

@@ -1,13 +1,24 @@
 import HomePageNavBar from "../../components/HomePageNavBar";
 import CalorieCalculator from "./CalorieCalculator";
 import "./CalorieContainer.css";
+import React from "react";
+import CustomInput from "./CustomInput";
 
 function CalorieContainer() {
   return (
-    <div className="background">
+    <body className="background">
       <HomePageNavBar />
-      <CalorieCalculator />
-    </div>
+      <div className="aligner">
+        <div>
+        <p className="helloUser">Hello User!</p>
+        <p className="daily">Daily Calorie Limit: 2000</p>
+        <CalorieCalculator />
+        </div>
+        <div>
+          <CustomInput/>
+        </div>
+      </div>
+    </body>
   );
 }
 
