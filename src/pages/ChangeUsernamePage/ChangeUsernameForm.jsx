@@ -1,18 +1,41 @@
+/**
+ * Displays Change Username Form
+ * @author Xing Mian
+ * @return HTML of Change Username Form
+
+ */
 import React, { useState } from "react";
 import { Button, TextField, Stack } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
-import { Link } from "react-router-dom";
 
+/**
+ * A form component for changing the username of an account.
+ * @returns {JSX.Element} A form component for changing the username of an account.
+ */
 const ChangeUsernameForm = () => {
+  /**
+   * State for the new username input field.
+   */
   const [enteredNewUsername, setEnterNewUsername] = useState("");
+  /**
+   * State for the username validation.
+   */
   const [validUsername, setValidUsername] = useState(false);
 
+  /**
+   * A function that handles the submission of the form to change the username.
+   * @param {Event} event - The event object.
+   */
+  //TODO: check duplicated username with database
   const changeUsernameHandler = (event) => {
     event.preventDefault();
     window.location.href = "/account-center";
     console.log({ newUsername: enteredNewUsername });
   };
 
+  /**
+   * A function that handles the cancellation of the form to change the username.
+   */
   const handleCancel = () => {
     if (enteredNewUsername !== "") {
       if (

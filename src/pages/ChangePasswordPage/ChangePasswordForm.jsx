@@ -1,3 +1,9 @@
+/**
+ * Displays Change Password Form
+ * @author Xing Mian
+ * @return HTML of Change Password Form
+
+ */
 import React from "react";
 import { useState } from "react";
 import {
@@ -14,40 +20,87 @@ import { Link } from "react-router-dom";
 import PasswordChecklist from "react-password-checklist";
 
 //CSS
+
 import "./ChangePasswordForm.css";
 import { margin } from "@mui/system";
 
+/**
+ * A form component for changing password.
+ * @param {object} props - React props object.
+ * @returns {JSX.Element} - Rendered component.
+ */
 const ChangePasswordForm = (props) => {
+  /**
+   * State for the old password input field.
+   */
   const [enteredOldPwd, setEnterOldPwd] = useState("");
+  /**
+   * State for the new password input field.
+   */
   const [enteredNewPwd, setEnterNewPwd] = useState("");
+  /**
+   * State for the confirmed password input field.
+   */
   const [enteredConfirmedPwd, setEnterConfirmPwd] = useState("");
+  /**
+   * State for showing/hiding password.
+   */
   const [pwdShown, setPwdShown] = useState(false);
+  /**
+   * State for password validation.
+   */
   const [validPwd, setValidPwd] = useState(false);
 
+  /**
+   * Handler for the old password input field.
+   * @param {object} event - The input event.
+   */
   const oldPwdHandler = (event) => {
     setEnterOldPwd(event.target.value);
   };
+  /**
+   * Handler for the new password input field.
+   * @param {object} event - The input event.
+   */
   const newPwdHandler = (event) => {
     setEnterNewPwd(event.target.value);
   };
+  /**
+   * Handler for the confirmed password input field.
+   * @param {object} event - The input event.
+   */
   const confirmPwdHandler = (event) => {
     setEnterConfirmPwd(event.target.value);
   };
 
+  /**
+   * Handler for password validation.
+   * @param {boolean} valid - The validation result.
+   */
   const validPwdHandler = (valid) => {
     setValidPwd(valid);
   };
 
+  /**
+   * Function for clearing input fields.
+   */
   function clearInputField() {
     setEnterOldPwd("");
     setEnterNewPwd("");
     setEnterConfirmPwd("");
   }
+  /**
+   * Handler for showing/hiding password.
+   */
   const togglePwdShown = () => {
     setPwdShown(!pwdShown);
   };
 
   //TODO: check with DB
+  /**
+   * Handler for changing password.
+   * @param {object} event - The submit event.
+   */
   const changePwdHandler = (event) => {
     event.preventDefault();
 
@@ -60,10 +113,16 @@ const ChangePasswordForm = (props) => {
     console.log(changePwdDetails);
   };
 
+  /**
+   * Handler for confirming password change.
+   */
   const confirmChangeHandler = () => {
     console.log("Password is changed");
   };
 
+  /**
+   * Handler for cancelling password change.
+   */
   const handleCancel = () => {
     if (
       enteredOldPwd !== "" ||

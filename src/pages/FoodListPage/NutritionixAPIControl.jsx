@@ -1,5 +1,15 @@
 import axios from "axios";
 
+/**
+ * Calls the API to fetch the data depending on the input
+ * Calls the instant endpoint of NutritionixAPI
+ * 
+ * 
+ * @param {input}
+ * @returns FoodList
+ * 
+ */
+
 async function NutritionixAPIControl(input) {
     var appid = process.env.REACT_APP_API_ID
     var api = process.env.REACT_APP_API_KEY

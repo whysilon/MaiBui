@@ -7,9 +7,15 @@ import "./AccountCenterContainer.css";
 
 //Components
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
-import LogOutBtn from "./LogOutBtn";
 import UserProfileContainer from "./UserProfileContainer.jsx";
 import { Stack } from "@mui/system";
+
+/**
+ * Displays the account center page for the current user
+ *
+ * @author Xing Mian
+ * @returns HTML page of the Account Center
+ */
 
 function AccountCenterContainer() {
   return (
@@ -28,12 +34,7 @@ function AccountCenterContainer() {
             Change username
           </Link>
         </span>
-        <span
-          onClick={() => {
-            console.log("Change Password is clicked");
-          }}
-          className="self-center hyperlink"
-        >
+        <span className="self-center hyperlink">
           <Link className="hyperlink" to="/account-center/change-password">
             Change password
           </Link>
