@@ -12,6 +12,7 @@ restaurant */
 .block-1 {
     height: 15vh;
     padding: 0;
+    text-align: left;
     padding-left: 10%;
 }
 
@@ -30,9 +31,8 @@ restaurant */
 .block-2 {
     margin-top: 5px;
     height: 15vh;
-    padding: 0;
     padding: 10%;
-    background-color: redd;
+    text-align: left;
 }
 
 

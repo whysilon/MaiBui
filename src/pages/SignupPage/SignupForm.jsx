@@ -157,7 +157,7 @@ const SignupForm = () => {
             }}
           />
 
-          <p>Username:</p>
+          <p className="pHeaders">Username:</p>
           <TextField
             className="signup-text_1"
             value={enteredUsername}
@@ -185,7 +185,7 @@ const SignupForm = () => {
             onChange={(isValid) => {validPwdHandler(isValid)}}
           />
 
-          <p>Password:</p>
+          <p className="pHeaders">Password:</p>
           <TextField
             className="signup-text"
             value={enteredPassword}
@@ -202,7 +202,7 @@ const SignupForm = () => {
             }
           ></TextField>
 
-          <p>Confirm Password:</p>
+          <p className="pHeaders">Confirm Password:</p>
           <TextField
             className="signup-text"
             value={enteredCfmPassword}

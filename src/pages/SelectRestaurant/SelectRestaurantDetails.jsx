@@ -34,10 +34,11 @@ const SelectRestaurantDetails = () => {
       </div>
       <div className="block-3">
         <button ><Link to="/navigate-restaurant">Navigate</Link></button>
-        <button className="oddle">Oddle Eats<a href="https://eats.oddle.me/explore">
-            <img src="https://cdn-icons-png.flaticon.com/512/3313/3313619.png"/>
-            </a>
-        </button>
+        <a href="https://eats.oddle.me/explore" target='_blank'>
+          <button className="oddle">
+            Oddle Eats<img src="https://cdn-icons-png.flaticon.com/512/3313/3313619.png"/>
+          </button>
+        </a>
         <button><Link to="/feedback">Give Feedback</Link></button>
       </div>
     </div>
