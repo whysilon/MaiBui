@@ -1,0 +1,16 @@
+.star-rating button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+.on {
+    color: rgb(185, 185, 44);
+}
+
+.off {
+    color: rgb(240, 240, 225);
+}
