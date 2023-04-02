@@ -19,8 +19,9 @@ function FoodNutritionContainer(){
         res => {
             setData(res)
             setLoading(false)
-        }
-    );
+        });
+
+    console.log(data)
     return(
         <>
         <HomePageNavBar/>
