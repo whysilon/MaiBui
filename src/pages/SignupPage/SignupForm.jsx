@@ -2,10 +2,12 @@
 import "./SignupForm.css";
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, createHashRouter } from "react-router-dom";
 import { TextField, FormControlLabel, Switch } from "@mui/material";
 import PasswordChecklist from "react-password-checklist"
 import { WindowSharp } from "@mui/icons-material";
+import { db } from "../../firebase-config";
+import {collection, addDoc, getDocs} from 'firebase/firestore';
 
 
 //TODO: Must be able to check if username is taken
@@ -18,6 +20,26 @@ import { WindowSharp } from "@mui/icons-material";
  */
 
 const SignupForm = () => {
+
+  const usersCollectionRef = collection(db,"users");
+  const [existUser, setUserExist] = useState(false);
+
+  const userExist = async (details) => {
+    //check for username duplicate
+    const data = await getDocs(usersCollectionRef);
+    data.docs.forEach((doc) => {
+      if(doc.data().username === details.username){
+        setUserExist(true);
+      }
+      else{
+        setUserExist(false);
+      }
+    })
+  }
+
+  const createUser = async (details) => {
+    await addDoc(usersCollectionRef, {username: details.username, password: details.password, calories: 0});
+  };
   /**
    * Storage/setters of username input variable
    */
@@ -131,9 +153,15 @@ const SignupForm = () => {
     }
     //else checks details with database
     else {
-      window.location.href = "/login"
-      alert("Successfully Signed Up! Redirecting...")
-      console.log(signupDetails);
+      userExist(signupDetails);
+      console.log(existUser);
+      if(existUser){
+        createUser(signupDetails);
+        window.location.href = "/login";
+      }
+      else{
+        alert("Username taken!");
+      }
     }
   };
 
