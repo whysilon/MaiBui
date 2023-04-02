@@ -10,3 +10,11 @@ input{
 button{
     width: 20vh;
 }
+.searchBar{
+    font-size: 2vh;
+    height: 5vh;
+    margin-bottom: 4vh;
+}
+.results{
+    margin-bottom: 1vh;
+}

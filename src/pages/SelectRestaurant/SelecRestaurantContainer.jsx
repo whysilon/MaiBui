@@ -1,5 +1,4 @@
-import HomePageNavBar from "../../components/HomePageNavBar";
-import BackButton from "../../components/BackButton";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import SelectRestaurantDetails from "./SelectRestaurantDetails";
 
 /**
@@ -15,7 +14,7 @@ import SelectRestaurantDetails from "./SelectRestaurantDetails";
 const SelectRestaurantContainer = () => {
   return (
     <div>
-      <BackButton />
+      <AccountCenterNavBar />
       <SelectRestaurantDetails />
     </div>
   );

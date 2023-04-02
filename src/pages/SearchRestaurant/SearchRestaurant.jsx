@@ -33,15 +33,6 @@ function SearchRestaurant(props)
     };
 
     /**
-     * Function to handle the submit button of the search bar.
-     * @param {*} event 
-     */
-    const clickHandler = (event) => {
-        event.preventDefault();
-        console.log(restaurantName);
-    }
-
-    /**
      * Object containing information needed for Google Places API request.
      */
     const request = {
@@ -69,7 +60,10 @@ function SearchRestaurant(props)
      * @returns {JSX.Element} HTML of the restaurant results.
      */
     function displayResults(data){
-        if(data.length === 0){
+        if(restaurantName === ""){
+            return(<div><p>Waiting for search entry...</p></div>)
+        }
+        else if(data.length === 0){
             return(<div><p>There are no nearby restaurants!</p></div>);
         }
         else{
@@ -87,14 +81,12 @@ function SearchRestaurant(props)
     return(
         <div className="search">
             <h1 style={{fontSize: 40}}>Search for Healthier Restaurants</h1>
-            <input 
+            <input className="searchBar"
             value={restaurantName}
             onChange={searchHandler}
-            type="text"
+            type="search"
+            placeholder="Enter restaurant name"
             />
-            <div>
-                <button onClick={clickHandler}>Search</button>
-            </div>
             {displayResults(data)}
         </div>
     )

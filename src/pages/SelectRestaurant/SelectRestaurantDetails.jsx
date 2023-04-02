@@ -56,8 +56,7 @@ const SelectRestaurantDetails = () => {
       </div>
       <div className="block-3">
         <button ><Link to={`/navigate-restaurant/${place_id.id}`}>Navigate</Link></button>
-        <button className="oddle">
-            <img src="https://cdn-icons-png.flaticon.com/512/3313/3313619.png" />
+        <button className="website">
             <Link to={details.website }>Website</Link>
         </button>
         <button><Link to="/feedback">Give Feedback</Link></button>
