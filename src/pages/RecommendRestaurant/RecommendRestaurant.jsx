@@ -1,7 +1,9 @@
 import "./RecommendRestaurant.css"
 import React from "react"
+import { createContext } from "react";
 import { Link } from "react-router-dom";
-import SelectRestaurantDetails from "../SelectRestaurant/SelectRestaurantDetails";
+
+const UserContext = createContext();
 
 /**
  * Component for displaying nearby healthy restaurants to users.
@@ -18,6 +20,7 @@ function RecommendRestaurant(props)
      * Array of restaurant results requested from the Google Places API.
      */
     var [data, setData] = React.useState([]);
+    const [retrieved, setRetrieved] = React.useState(false);
 
     /**
      * Current location of the user.
@@ -44,6 +47,7 @@ function RecommendRestaurant(props)
     function callback(results, status) {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             setData(results);
+            setRetrieved(true);
         }
     }
 
@@ -54,16 +58,23 @@ function RecommendRestaurant(props)
      */
     function displayResults(data){
         if(data.length === 0){
-            return(<div><p>There are no nearby restaurants!</p></div>);
+            if(retrieved === true){
+                return(<div><p>There are no nearby restaurants!</p></div>);
+            }
+            else{
+                return(<div><p>Loading...</p></div>)
+            }
         }
         else{
             return(
                 data.map((result) => (
-                    <div className="results">
-                        <button key={result.id} style={{ width: "500px", height: "50px",}}>
-                            <Link to="/select-restaurant" state={result}>{result.name}</Link>
-                        </button>
-                    </div>
+                    <UserContext.Provider value={data}>
+                        <div className="results">
+                            <button key={result.id} style={{ width: "500px", height: "50px",}}>
+                                <Link to={`/select-restaurant/${result.place_id}`}>{result.name}</Link>
+                            </button>
+                        </div>
+                    </UserContext.Provider>
             )));
         }
     }

@@ -77,7 +77,7 @@ function SearchRestaurant(props)
                 data.map((result) => (
                     <div className="results">
                         <button key={result.id} style={{ width: "500px", height: "50px",}}>
-                            <Link to="/select-restaurant" state={result}>{result.name}</Link>
+                        <Link to={`/select-restaurant/${result.place_id}`}>{result.name}</Link>
                         </button>
                     </div>
             )));

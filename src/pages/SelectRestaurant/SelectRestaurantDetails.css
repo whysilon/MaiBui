@@ -13,8 +13,14 @@ restaurant */
     height: 15vh;
     padding: 0;
     padding-left: 10%;
+    margin-bottom: 18vh;
 }
 
+.times{
+    flex:auto;
+    height: 15vh;
+    line-height: 0.2;
+}
 
 /*Bottom buttons */
 
