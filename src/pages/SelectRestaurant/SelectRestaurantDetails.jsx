@@ -2,7 +2,7 @@
 import "./SelectRestaurantDetails.css";
 
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import {db} from '../../firebase-config';
 import {collection, doc, getDocs} from 'firebase/firestore';
 import { useState, useEffect } from "react";
@@ -18,45 +18,77 @@ import { useState, useEffect } from "react";
  */
 
 const SelectRestaurantDetails = () => {
-  const[feedbacks, setFeedbacks] = useState([]);
-  const feedbacksCollectionRef = collection(db,"feedbacks")
-  // Prints all feedbacks from database
-  useEffect(()=>{
-    const getFeedbacks = async () => {
-      const data= await getDocs(feedbacksCollectionRef);
-      setFeedbacks(data.docs.map((doc) =>{
-        if(doc.data().restaurant === "Crowded Bowl"){
-          return({...doc.data(), id:doc.id});
-        }}));
-    };
+  // const[feedbacks, setFeedbacks] = useState([]);
+  // const feedbacksCollectionRef = collection(db,"feedbacks")
+  // // Prints all feedbacks from database
+  // useEffect(()=>{
+  //   const getFeedbacks = async () => {
+  //     const data= await getDocs(feedbacksCollectionRef);
+  //     setFeedbacks(data.docs.map((doc) =>{
+  //       if(doc.data().restaurant === "Crowded Bowl"){
+  //         return({...doc.data(), id:doc.id});
+  //       }}));
+  //   };
 
-    getFeedbacks();
-  }, []);
+  //   getFeedbacks();
+  // }, []);
 
-  const location = useLocation();
-  console.log(location.data);
+  let service;
+  const google = window.google;
+  const place_id = useParams();
+  const [details, setDetails] = useState([]);
+  const [opening_hours, setHours] = useState([]);
+
+  var request = {
+    placeId: place_id.id,
+    fields: ['name', 'formatted_address', 'opening_hours', 'website']
+  };
+
+  service = new google.maps.places.PlacesService(document.createElement('div'));
+  service.getDetails(request, callback);
+
+  function callback(place, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      setDetails(place);
+      setHours(details.opening_hours.weekday_text);
+    }
+  }
+
+  const renderList = (opening_hours).map((item, index) => 
+                             <p key={index} style={{ fontSize: 15 }} >{item}</p>
+                           );
+
   return (
     <div className="details">
       <div className="block-1">
-        <h1>Restaurant Name</h1>
-        <p>Restaurant address</p>
-        <p>Operating Hours</p>
+        <h1>{details.name}</h1>
+        <p>{details.formatted_address}</p>
+        <p  >Operating Hours:</p>
+        <p className="times">{renderList}</p>
       </div>
       <div className="block-2">
         <div className="child-1">
-          <p>Dine In:</p>
-          <p>Takeaway:</p>
-          <p>Number feedbacks: </p>
+          <p>Number feedbacks</p>
         </div>
       </div>
       <div className="block-3">
-        <button ><Link to="/navigate-restaurant">Navigate</Link></button>
-        <a href="https://eats.oddle.me/explore" target='_blank'>
-          <button className="oddle">
-            Oddle Eats<img src="https://cdn-icons-png.flaticon.com/512/3313/3313619.png"/>
+        <Link to={`/navigate-restaurant/${place_id.id}`}>
+          <button>
+            Navigate
           </button>
-        </a>
-        <button><Link to="/feedback">Give Feedback</Link></button>
+        </Link>
+
+        <Link to={details.website}>
+          <button className="website">
+              Website
+          </button>
+        </Link>
+
+        <Link to="/feedback">
+          <button>
+            Give Feedback
+          </button>
+        </Link>
       </div>
     </div>
   );
