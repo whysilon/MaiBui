@@ -3,7 +3,9 @@ import "./SelectRestaurantDetails.css";
 
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
+import {db} from '../../firebase-config';
+import {collection, doc, getDocs} from 'firebase/firestore';
+import { useState, useEffect } from "react";
 
 // To do: Sync Google API with details
 
@@ -16,6 +18,21 @@ import { useLocation } from "react-router-dom";
  */
 
 const SelectRestaurantDetails = () => {
+  const[feedbacks, setFeedbacks] = useState([]);
+  const feedbacksCollectionRef = collection(db,"feedbacks")
+  // Prints all feedbacks from database
+  useEffect(()=>{
+    const getFeedbacks = async () => {
+      const data= await getDocs(feedbacksCollectionRef);
+      setFeedbacks(data.docs.map((doc) =>{
+        if(doc.data().restaurant === "Crowded Bowl"){
+          return({...doc.data(), id:doc.id});
+        }}));
+    };
+
+    getFeedbacks();
+  }, []);
+
   const location = useLocation();
   console.log(location.data);
   return (
@@ -29,7 +46,7 @@ const SelectRestaurantDetails = () => {
         <div className="child-1">
           <p>Dine In:</p>
           <p>Takeaway:</p>
-          <p>Number feedbacks</p>
+          <p>Number feedbacks: </p>
         </div>
       </div>
       <div className="block-3">

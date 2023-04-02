@@ -2,7 +2,6 @@ import "./FeedbackForm.css";
 import React, { useState, useEffect} from "react";
 import { TextField } from "@mui/material";
 import StarRating from "../../components/StarRating";
-
 /**
  * Displays the feedback form showed on
  * FeedbackContainer
