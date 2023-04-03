@@ -5,10 +5,9 @@ import React, { useState } from "react";
 import { Link, createHashRouter } from "react-router-dom";
 import { TextField, FormControlLabel, Switch } from "@mui/material";
 import PasswordChecklist from "react-password-checklist"
-import {db} from "../../firebase-config";
 import  {addDoc, collection, where, query, getDocs, getCountFromServer, getDoc} from 'firebase/firestore';
-import { auth } from "../../firebase-config.js";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth,db } from "../../firebase-config.js";
+import { createUserWithEmailAndPassword} from "firebase/auth";
 //TODO: Must be able to check if username is taken
 
 /**
@@ -24,11 +23,13 @@ const SignupForm = () => {
   const registerUser = async (details) => {
     try{
       const user = await createUserWithEmailAndPassword(auth, details.email,details.password);
-      console.log(user);
+      await addDoc(usersCollectionRef, {calories:0, email:details.email, password:details.password, username:details.username});
+      window.location.href = "/home";
     } catch(e){
-      console.log(e.message)
+      console.log(e.message);
       alert("Email already taken!");
     }
+    
   }
 
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -151,8 +152,6 @@ const SignupForm = () => {
     //else checks details with database
     else {
       registerUser(signupDetails);
-      window.location.href = "/home";
-      alert('Sign up successful! Logging in....')
     }
   };
 
