@@ -37,10 +37,11 @@ const App = () => {
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/feedback" element={<FeedbackContainer />} />
           <Route path="/restaurant" element={<SelectRestaurantContainer />} />
-          <Route path="/navigate-restaurant" element={<NavigateContainer />} />
+          <Route path="/navigate-restaurant/:id" element={<NavigateContainer />} />
           <Route path="/recommend-restaurant" element={<RecommendContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
           <Route path="/search-restaurant" element={<SearchContainer />} />
+          <Route path="/select-restaurant/:id" element={<SelectRestaurantContainer />} />
           <Route path="/signup" element={<SignupContainer />} />
           <Route
             path="/forgot-password"
@@ -52,3 +53,4 @@ const App = () => {
     </div>
   );
 };
+export default App;
