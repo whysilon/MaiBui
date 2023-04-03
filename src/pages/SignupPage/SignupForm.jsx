@@ -6,10 +6,8 @@ import { Link, createHashRouter } from "react-router-dom";
 import { TextField, FormControlLabel, Switch } from "@mui/material";
 import PasswordChecklist from "react-password-checklist"
 import { WindowSharp } from "@mui/icons-material";
-import { db } from "../../firebase-config";
-import {collection, addDoc, getDocs} from 'firebase/firestore';
-
-
+import {db} from "../../firebase-config";
+import  {addDoc, collection, where, query, getDocs, getCountFromServer} from 'firebase/firestore';
 //TODO: Must be able to check if username is taken
 
 /**
@@ -20,23 +18,21 @@ import {collection, addDoc, getDocs} from 'firebase/firestore';
  */
 
 const SignupForm = () => {
+  const usersCollectionRef = collection(db,'users');
+  const [exist, setExist] = useState(false);
 
-  const usersCollectionRef = collection(db,"users");
-  const [existUser, setUserExist] = useState(false);
-
-  const userExist = async (details) => {
-    //check for username duplicate
-    const data = await getDocs(usersCollectionRef);
-    data.docs.forEach((doc) => {
-      if(doc.data().username === details.username){
-        setUserExist(true);
-      }
-      else{
-        setUserExist(false);
-      }
-    })
-  }
-
+  const checkUser = async (details) => {
+    const q = query(usersCollectionRef, where("username","==",details.username));
+    const snapshot =  await getCountFromServer(q);
+    let count = snapshot.data().count;
+    if (count>0){
+      setExist(true);
+    }
+    else{
+      setExist(false);
+    }
+  };
+  
   const createUser = async (details) => {
     await addDoc(usersCollectionRef, {username: details.username, password: details.password, calories: 0});
   };
@@ -153,11 +149,10 @@ const SignupForm = () => {
     }
     //else checks details with database
     else {
-      userExist(signupDetails);
-      console.log(existUser);
-      if(existUser){
+      checkUser(signupDetails);
+      console.log(exist);
+      if(exist){
         createUser(signupDetails);
-        window.location.href = "/login";
       }
       else{
         alert("Username taken!");

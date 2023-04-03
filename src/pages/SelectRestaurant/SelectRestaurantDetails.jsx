@@ -3,8 +3,6 @@ import "./SelectRestaurantDetails.css";
 
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import {db} from '../../firebase-config';
-import {collection, doc, getDocs} from 'firebase/firestore';
 import { useState, useEffect } from "react";
 
 // To do: Sync Google API with details
@@ -18,20 +16,6 @@ import { useState, useEffect } from "react";
  */
 
 const SelectRestaurantDetails = () => {
-  // const[feedbacks, setFeedbacks] = useState([]);
-  // const feedbacksCollectionRef = collection(db,"feedbacks")
-  // // Prints all feedbacks from database
-  // useEffect(()=>{
-  //   const getFeedbacks = async () => {
-  //     const data= await getDocs(feedbacksCollectionRef);
-  //     setFeedbacks(data.docs.map((doc) =>{
-  //       if(doc.data().restaurant === "Crowded Bowl"){
-  //         return({...doc.data(), id:doc.id});
-  //       }}));
-  //   };
-
-  //   getFeedbacks();
-  // }, []);
 
   let service;
   const google = window.google;

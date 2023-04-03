@@ -4,6 +4,8 @@ import "./LoginForm.css";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
+import { db } from "../../firebase-config";
+import {collection, addDoc, getDocs} from 'firebase/firestore';
 
 /**
  * Displays the login form of LoginContainer 
@@ -13,6 +15,8 @@ import { TextField } from "@mui/material";
  */
 
 const LoginForm = () => {
+
+  const usersCollectionRef = collection(db,"users");
   
   /**
    * Storage/setters for userename input variable in login
@@ -73,6 +77,7 @@ const LoginForm = () => {
     //else checks details with database
     else {
       console.log(loginDetails);
+      alert("Login successful!");
       window.location.href="/home"
     }
   };
@@ -125,7 +130,7 @@ const LoginForm = () => {
         </div>
         <p className="smallText">
             Don't have an account?{" "}
-            <Link to="/signup" className="loginLinks">
+            <Link to="/signup"  className="loginLinks">
               Sign Up
             </Link>
           </p>
