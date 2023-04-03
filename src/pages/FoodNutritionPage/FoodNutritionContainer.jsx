@@ -7,24 +7,27 @@
 import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useParams } from "react-router";
-import HomePageNavBar from "../../components/HomePageNavBar";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import { getNutrition } from "../FoodListPage/NutritionixAPIControl";
 import NutritionInformation from "./NutritionInformation";
+let ignore = false
 
 function FoodNutritionContainer(){
     const [data,setData] = useState("")
     const [loading,setLoading] = useState(true)
     const input = useParams().id
-    getNutrition(input).then(
+    if(!ignore){
+        getNutrition(input).then(
         res => {
             setData(res)
             setLoading(false)
+            ignore = true
+            console.log(data)
         });
-
-    console.log(data)
+    }
     return(
         <>
-        <HomePageNavBar/>
+        <AccountCenterNavBar/>
         {loading ? (<CircularProgress/>) : 
         <NutritionInformation data = {data}/>
         }

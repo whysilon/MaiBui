@@ -15,6 +15,7 @@ function NutritionInformation({data}) {
     }
     */
    const [servings,setServings] = useState(1)
+   /*
    data = {
         'serving_unit' : 'g',
         'food_name': "Tea",
@@ -23,6 +24,7 @@ function NutritionInformation({data}) {
         'nf_saturated_fat' : 2,
         'nf_total_fat' : 42,
         'nf_total_carbohydrate' : 4}
+        */
     const handleInput = (e) => {
         if(e === "") setServings(1);
         setServings(e.target.value);
@@ -43,13 +45,12 @@ function NutritionInformation({data}) {
                 <Typography variant = "subtitle2">Enter your serving size here:</Typography>
                 <form>
                     <TextField
-                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     label="Enter serving size"
                     variant="outlined"
                     placeholder="Search..."
                     size="small"
                     onInput={handleInput}
-                    type = "text"
+                    type = "number"
                     >
                     </TextField>
                     <Button variant="contained">Submit!</Button>

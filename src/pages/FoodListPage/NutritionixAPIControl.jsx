@@ -40,17 +40,9 @@ export default async function NutritionixAPIControl(input) {
 }
 
 export const getNutrition = async(input) => {
-    function newAbortSignal(timeoutMs) {
-        const abortController = new AbortController();
-        setTimeout(() => abortController.abort(), timeoutMs || 0);
-      
-        return abortController.signal;
-    }
-    const fetchData = async() => { 
     try {
-        
         const d = await client.post('natural/nutrients', 
-        {signal: newAbortSignal(500)},{
+        {
         query : input
         },
         {
@@ -67,6 +59,4 @@ export const getNutrition = async(input) => {
         console.error(err)
         return "Error"
     }
-    }
-    return fetchData()
 }
