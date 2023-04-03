@@ -5,9 +5,10 @@ import React, { useState } from "react";
 import { Link, createHashRouter } from "react-router-dom";
 import { TextField, FormControlLabel, Switch } from "@mui/material";
 import PasswordChecklist from "react-password-checklist"
-import { WindowSharp } from "@mui/icons-material";
 import {db} from "../../firebase-config";
-import  {addDoc, collection, where, query, getDocs, getCountFromServer} from 'firebase/firestore';
+import  {addDoc, collection, where, query, getDocs, getCountFromServer, getDoc} from 'firebase/firestore';
+import { auth } from "../../firebase-config.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 //TODO: Must be able to check if username is taken
 
 /**
@@ -19,23 +20,18 @@ import  {addDoc, collection, where, query, getDocs, getCountFromServer} from 'fi
 
 const SignupForm = () => {
   const usersCollectionRef = collection(db,'users');
-  const [exist, setExist] = useState(false);
 
-  const checkUser = async (details) => {
-    const q = query(usersCollectionRef, where("username","==",details.username));
-    const snapshot =  await getCountFromServer(q);
-    let count = snapshot.data().count;
-    if (count>0){
-      setExist(true);
+  const registerUser = async (details) => {
+    try{
+      const user = await createUserWithEmailAndPassword(auth, details.email,details.password);
+      console.log(user);
+    } catch(e){
+      console.log(e.message)
+      alert("Email already taken!");
     }
-    else{
-      setExist(false);
-    }
-  };
-  
-  const createUser = async (details) => {
-    await addDoc(usersCollectionRef, {username: details.username, password: details.password, calories: 0});
-  };
+  }
+
+  const [enteredEmail, setEnteredEmail] = useState("");
   /**
    * Storage/setters of username input variable
    */
@@ -70,6 +66,10 @@ const SignupForm = () => {
   const usernameHandler = (event) => {
     setEnteredUserName(event.target.value);
   };
+
+  const emailHandler = (event) => {
+    setEnteredEmail(event.target.value);
+  }
 
 /**
  * Changes password storage based on password input
@@ -132,6 +132,7 @@ const SignupForm = () => {
     event.preventDefault();
 
     const signupDetails = {
+      email: enteredEmail,
       username: enteredUsername,
       password: enteredPassword,
       cfmPassword: enteredCfmPassword,
@@ -149,14 +150,9 @@ const SignupForm = () => {
     }
     //else checks details with database
     else {
-      checkUser(signupDetails);
-      console.log(exist);
-      if(exist){
-        createUser(signupDetails);
-      }
-      else{
-        alert("Username taken!");
-      }
+      registerUser(signupDetails);
+      window.location.href = "/home";
+      alert('Sign up successful! Logging in....')
     }
   };
 
@@ -191,6 +187,24 @@ const SignupForm = () => {
             margin="normal"
             helperText={
               enteredUsername === ""
+                ? "Empty field!"
+                : // : enteredNewPwd !== enteredConfirmedPwd
+                  // ? "Passwords do not match!"
+                  ""
+            }
+          ></TextField>
+
+          <p className="pHeaders">Email:</p>
+          <TextField
+            className="signup-text_1"
+            value={enteredEmail}
+            onChange={emailHandler}
+            type={"email"}
+            variant="outlined"
+            label="Enter your email"
+            margin="normal"
+            helperText={
+              enteredEmail === ""
                 ? "Empty field!"
                 : // : enteredNewPwd !== enteredConfirmedPwd
                   // ? "Passwords do not match!"
