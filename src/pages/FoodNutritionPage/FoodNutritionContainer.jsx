@@ -4,6 +4,8 @@
  * 
  */
 
+import { CircularProgress } from "@mui/material";
+import { useState } from "react";
 import { useParams } from "react-router";
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import { getNutrition } from "../FoodListPage/NutritionixAPIControl";
@@ -11,12 +13,24 @@ import NutritionInformation from "./NutritionInformation";
 import "./FoodNutritionContainer.css"
 
 let ignore = false
-function FoodNutritionContainer(){
-    const input = useParams().id;
-    console.log(input)
-    return(
 
-        <div className="container">
+function FoodNutritionContainer(){
+    const [data,setData] = useState("")
+    const [loading,setLoading] = useState(true)
+    const input = useParams().id
+    if(!ignore){
+        getNutrition(input).then(
+        res => {
+            setData(res)
+            setLoading(false)
+            ignore = true
+            console.log(data)
+        });
+
+    console.log(data)
+    }
+    return(
+    <div className="container">
         <AccountCenterNavBar/>
             <div className = "nutrition" > 
             {   
