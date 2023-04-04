@@ -4,7 +4,7 @@
  * @author Xavier
  * @returns HTML page of the navigation page
  */
-import BackButton from "../../components/BackButton";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import Navigate from "./Navigate";
 import "./NavigateContainer.css"
 
@@ -15,7 +15,7 @@ import "./NavigateContainer.css"
 const NavigateContainer = (props) => {
     return (
         <div>
-            <BackButton />
+            <AccountCenterNavBar />
             <Navigate />
         </div>
     );
