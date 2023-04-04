@@ -39,7 +39,7 @@ const App = () => {
           />
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/feedback/:id" element={<FeedbackContainer />} />
-          <Route path="/navigate-restaurant" element={<NavigateContainer />} />
+          <Route path="/navigate-restaurant/:id" element={<NavigateContainer />} />
           <Route path="/recommend-restaurant" element={<RecommendContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
           <Route path="/search-restaurant" element={<SearchContainer />} />

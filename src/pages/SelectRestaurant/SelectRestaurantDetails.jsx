@@ -8,7 +8,8 @@ import { getDocs, collection, where, query, getCountFromServer  } from "firebase
 import { useState, useEffect } from "react";
 import LaunchIcon from '@mui/icons-material/Launch';
 import FeedbackPopup from "../../components/FeedbackPopup";
-// To do: Sync Google API with details
+// To do: Display feedbacks in popup
+//        Find a way to display username in feedback
 
 /**
  * Displays the resturant details of the
