@@ -24,8 +24,10 @@ function DisplayFoodList({query}){
     setLoading(true)
     if(!ignore){
     NutritionixAPIControl(query).then(res => {
+        if(!ignore) {
             setList(res)
             setLoading(false)
+        }
     })};
     return () => {
         ignore = true;
