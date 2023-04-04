@@ -4,11 +4,12 @@
  * 
  */
 
-import {Button, TextField, Typography } from "@mui/material"
+import { Button, TextField, Typography } from "@mui/material"
 import { useState } from "react";
 import "./NutritionInformation.css";
 
 function CapitalizeFirstLetter(str){
+    str = str.replace("%20"," ");
     return(
         str.charAt(0).toUpperCase()+str.slice(1).toLowerCase()
     )
@@ -71,13 +72,13 @@ function NutritionInformation({data}) {
                         >
                         </TextField>
                         <Button variant="contained">Submit!</Button>
-                        <Typography variant="subtitle1">Calories: {data.nf_calories*servings}</Typography>
+                        <Typography variant="subtitle1">Calories: {Math.round(data.nf_calories*servings)}</Typography>
                     </form>
                 </div>
             </div>
             <div className ="box-size">
                 {noImage ? <img className="image" src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="Placeholder"/>:
-                <img className="image" src={data.photo.highres} alt={data.food_name+"Picture"}></img>
+                <img className="image" src={data.photo.highres} alt={data.food_name+" picture"}></img>
                 }
             </div>
         </div>

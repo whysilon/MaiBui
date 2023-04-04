@@ -17,6 +17,7 @@ import HomeContainer from "./pages/HomePage/HomeContainer";
 import ForgotPasswordContainer from "./pages/ForgotPasswordPage/ForgotPasswordContainer";
 import FoodListContainer from "./pages/FoodListPage/FoodListContainer";
 import FoodNutritionContainer from "./pages/FoodNutritionPage/FoodNutritionContainer";
+import FoodCategoryContainer from "./pages/FoodCategoryPage/FoodCategoryContainer";
 
 
 const App = () => {
@@ -50,6 +51,7 @@ const App = () => {
           />
           <Route path="/food" element={<FoodListContainer />} />
           <Route path="/nutrition/:id" element={<FoodNutritionContainer/>}/>
+          <Route path="/food-categories" element = {<FoodCategoryContainer/>}/>
         </Routes>
       </Router>
     </div>
