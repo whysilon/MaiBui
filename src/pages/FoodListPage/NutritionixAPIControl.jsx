@@ -10,13 +10,13 @@ import axios from "axios";
  * 
  */
 
-const appid = process.env.REACT_APP_API_ID
-const api = process.env.REACT_APP_API_KEY
-const client = axios.create({
-    baseURL: "https://trackapi.nutritionix.com/v2/"
-    });
+async function NutritionixAPIControl(input) {
+    var appid = process.env.REACT_APP_API_ID
+    var api = process.env.REACT_APP_API_KEY
+    const client = axios.create({
+        baseURL: "https://trackapi.nutritionix.com/v2/"
+        });
 
-export default async function NutritionixAPIControl(input) {
     const getData = async() => {
         try{
         const data = await client.get('search/instant',{
@@ -38,25 +38,4 @@ export default async function NutritionixAPIControl(input) {
     }
     return getData()
 }
-
-export const getNutrition = async(input) => {
-    try {
-        const d = await client.post('natural/nutrients', 
-        {
-        query : input
-        },
-        {
-        headers: {
-            'x-app-id': appid,
-            'x-app-key': api,
-            'x-remote-user-id': '0',
-            }  
-        }  
-    )  
-        return d.data.foods[0] 
-    }
-    catch(err){
-        console.error(err)
-        return "Error"
-    }
-}
+export default NutritionixAPIControl;
