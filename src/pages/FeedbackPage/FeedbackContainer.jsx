@@ -1,6 +1,5 @@
 import FeedbackForm from "./FeedbackForm";
-
-import HomePageNavBar from "../../components/HomePageNavBar";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 
 
 /**
@@ -10,11 +9,11 @@ import HomePageNavBar from "../../components/HomePageNavBar";
  * @author Marcus Yeo
  * 
  */
-const FeedbackContainer = () => {
+const FeedbackContainer = (props) => {
   return (
     <div>
-      <HomePageNavBar />
-      <FeedbackForm />
+      <AccountCenterNavBar/>
+      <FeedbackForm/>
     </div>
   );
 };

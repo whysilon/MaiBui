@@ -38,8 +38,7 @@ const App = () => {
             element={<ChangePasswordContainer />}
           />
           <Route path="/login" element={<LoginContainer />} />
-          <Route path="/feedback" element={<FeedbackContainer />} />
-          <Route path="/select-restaurant/:place_id" element={<SelectRestaurantContainer />} />
+          <Route path="/feedback/:id" element={<FeedbackContainer />} />
           <Route path="/navigate-restaurant" element={<NavigateContainer />} />
           <Route path="/recommend-restaurant" element={<RecommendContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />

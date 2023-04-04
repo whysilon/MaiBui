@@ -2,6 +2,9 @@ import "./FeedbackForm.css";
 import React, { useState, useEffect} from "react";
 import { TextField } from "@mui/material";
 import StarRating from "../../components/StarRating";
+import { db } from "../../firebase-config";
+import { addDoc, collection } from "firebase/firestore";
+import { useParams } from "react-router-dom";
 /**
  * Displays the feedback form showed on
  * FeedbackContainer
@@ -10,7 +13,38 @@ import StarRating from "../../components/StarRating";
  * @returns HTML of feedback form
  */
 
-const FeedbackForm = () => {
+const FeedbackForm = (props) => {
+
+  let service;
+  const place_id = useParams();
+  const google = window.google;
+  const [restaurant, setRestaurant] = useState([]);
+
+  var request = {
+    placeId: place_id.id,
+    fields: ['name', 'formatted_address', 'opening_hours', 'website']
+  };
+  
+  service = new google.maps.places.PlacesService(document.createElement('div'));
+  service.getDetails(request, callback);
+  
+  function callback(place, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+      setRestaurant(place);
+    }
+  }
+  const feedbacksCollectionRef = collection(db,'feedbacks');
+
+  const submitFeedback = async (details) => {
+    try{
+      await addDoc(feedbacksCollectionRef, {experience:details.exp, rating:details.rating, restaurant:restaurant.name});
+      alert("Successful submission!");
+    }
+    catch(e){
+      console.log(e.message);
+      alert("An error occurred. Please try again.");
+    }
+  }
   /**
    * Sets rating storage based on change
    * in StarRating componenet
@@ -79,8 +113,7 @@ const FeedbackForm = () => {
 
     //else checks details with database
     else {
-      console.log(feedbackDetails);
-      alert("Successful submission!");
+      submitFeedback(feedbackDetails);
       setEnteredRating(0)
       setEnteredExp("");
       setExpCount(0);

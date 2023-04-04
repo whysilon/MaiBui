@@ -22,14 +22,14 @@ const SelectRestaurantDetails = () => {
 
   const FBCollectionRef = collection(db, 'feedbacks');
   const [buttonPopup, setButtonPopup] = useState(false);
-  
+  const [restaurantCount, setRestaurantCount] = useState(0);
 
   const checkNoOfFeedbacks = async (name) => {
-    const data = await getDocs(FBCollectionRef);
-    const q = query(data, where('restaurant',"==",name));
+    const q = query(FBCollectionRef, where('restaurant',"==",name));
     const snapshot = await getCountFromServer(q);
-    console.log(snapshot.data().count);
-  }
+    setRestaurantCount(snapshot.data().count);
+  };
+  
 
   let service;
   const place_id = useParams();
@@ -42,18 +42,19 @@ const SelectRestaurantDetails = () => {
     fields: ['name', 'formatted_address', 'opening_hours', 'website']
   };
   
-  service = new google.maps.places.PlacesService(map);
+  service = new google.maps.places.PlacesService(document.createElement('div'));
   service.getDetails(request, callback);
   
   function callback(place, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       setDetails(place);
       setHours(details.opening_hours.weekday_text);
+      checkNoOfFeedbacks(place.name);
     }
   }
   
   const renderList = (opening_hours).map((item, index) => 
-                             <p key={index} style={{ fontSize: 15 }} >{item}</p>
+                             <p key={index} style={{ fontSize: 15}} >{item}</p>
                            );
 
 
@@ -63,14 +64,16 @@ const SelectRestaurantDetails = () => {
         <div className="block-1">
           <h1>{details.name}</h1>
           <p>{details.formatted_address}</p>
-          <p  >Operating Hours:</p>
-          <p className="times">{renderList}</p>
         </div>
+        <div className="times">
+          <p>Operating Hours:</p>
+          {renderList}
+          </div>
         <div className="block-2">
           <div className="child-1">
-            <p>Number of feedbacks: {checkNoOfFeedbacks(details.name)}</p>
+            <p>Number of feedbacks: {restaurantCount}</p>
           </div>
-          <LaunchIcon className="launch-icon" onClick={()=>setButtonPopup(true)}/>
+          <LaunchIcon className="launch-icon" onClick={()=>setButtonPopup(true)}></LaunchIcon>
         </div>
         <div className="block-3">
           <Link to={`/navigate-restaurant/${place_id.id}`}>
@@ -85,7 +88,7 @@ const SelectRestaurantDetails = () => {
             </button>
           </Link>
 
-          <Link to="/feedback">
+          <Link to={`/feedback/${place_id.id}`}>
             <button>
               Give Feedback
             </button>
