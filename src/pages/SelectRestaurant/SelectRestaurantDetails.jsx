@@ -2,8 +2,13 @@
 import "./SelectRestaurantDetails.css";
 
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+=======
+import React from "react";
+import { useParams } from "react-router-dom";
+>>>>>>> 7c4f38abab37a4b60304d81da9ad9d45a7b07647
 
 // To do: Sync Google API with details
 
@@ -16,12 +21,20 @@ import { useState, useEffect } from "react";
  */
 
 const SelectRestaurantDetails = () => {
+<<<<<<< HEAD
 
   let service;
   const google = window.google;
   const place_id = useParams();
   const [details, setDetails] = useState([]);
   const [opening_hours, setHours] = useState([]);
+=======
+  let service;
+  const google = window.google;
+  const place_id = useParams();
+  const [details, setDetails] = React.useState([]);
+  const [opening_hours, setHours] = React.useState([]);
+>>>>>>> 7c4f38abab37a4b60304d81da9ad9d45a7b07647
 
   var request = {
     placeId: place_id.id,

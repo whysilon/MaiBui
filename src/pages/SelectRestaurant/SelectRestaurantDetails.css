@@ -14,6 +14,13 @@ restaurant */
     padding: 0;
     text-align: left;
     padding-left: 10%;
+    margin-bottom: 18vh;
+}
+
+.times {
+    flex: auto;
+    height: 15vh;
+    line-height: 0.2;
 }
 
 
@@ -70,3 +77,9 @@ restaurant */
 
 
 /* Oddle icon in oddle button */
+
+.website {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

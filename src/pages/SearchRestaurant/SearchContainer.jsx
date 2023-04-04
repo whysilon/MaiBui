@@ -1,4 +1,4 @@
-import HomePageNavBar from "../../components/HomePageNavBar";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import SearchRestaurant from "./SearchRestaurant";
 import GetLocation from "../../components/LocationRetriever";
 import "./SearchContainer.css";
@@ -16,7 +16,7 @@ const SearchContainer = () => {
     let location = GetLocation();
     return (
         <div>
-            <HomePageNavBar />
+            <AccountCenterNavBar />
             <SearchRestaurant latitude={location.latitude} longitude={location.longitude} />
         </div>
     );
