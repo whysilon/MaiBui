@@ -1,7 +1,7 @@
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import DisplaySearch from "./DisplaySearch.jsx"
-import { Paper,Stack, Box, IconButton, Typography, CircularProgress } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 /**
 * Displays the search bar for searching food

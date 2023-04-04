@@ -1,8 +1,8 @@
 import React, {useState , useEffect } from 'react'
 import { Stack } from '@mui/system';
 import { Paper, Box, Typography, CircularProgress, Button, Divider, Link} from '@mui/material';
-import NutritionixAPIControl from './NutritionixAPIControl';
 import "./DisplaySearch.css"
+import GetFoodSearch from '../API/NutritionixAPIControl.jsx';
 
 /**
  * Display the food list based on the search bar
@@ -23,7 +23,7 @@ function DisplaySearch({query}){
     }
     setLoading(true)
     if(!ignore){
-    NutritionixAPIControl(query).then(res => {
+    GetFoodSearch(query).then(res => {
         if(!ignore) {
             setList(res)
             setLoading(false)
@@ -33,9 +33,11 @@ function DisplaySearch({query}){
         ignore = true;
     }
     }, [query])
+    /*
     const handleClick = () => {
         
     }
+    */
     return (
         <>
         {loading ? (<CircularProgress/>) : 
