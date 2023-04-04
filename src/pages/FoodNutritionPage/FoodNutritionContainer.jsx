@@ -5,13 +5,26 @@
  */
 
 import { useParams } from "react-router";
-import HomePageNavBar from "../../components/HomePageNavBar";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
+import { getNutrition } from "../FoodListPage/NutritionixAPIControl";
+import NutritionInformation from "./NutritionInformation";
+import "./FoodNutritionContainer.css"
 
+let ignore = false
 function FoodNutritionContainer(){
     const input = useParams().id;
     console.log(input)
     return(
-        <HomePageNavBar/>
+
+        <div className="container">
+        <AccountCenterNavBar/>
+            <div className = "nutrition" > 
+            {   
+                loading ? (<CircularProgress/>) :
+                <NutritionInformation data = {data}/>
+            }
+            </div>
+        </div>
     )
 }
 
