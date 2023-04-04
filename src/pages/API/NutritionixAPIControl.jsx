@@ -16,7 +16,7 @@ const client = axios.create({
     baseURL: "https://trackapi.nutritionix.com/v2/"
     });
 
-export default async function NutritionixAPIControl(input) {
+export default async function GetFoodSearch(input) {
     const getData = async() => {
         try{
         const data = await client.get('search/instant',{

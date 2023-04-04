@@ -72,9 +72,11 @@ function AccountCenterNavBar(props) {
    * @returns {string} - The capitalized string.
    */
   function capitalizeLastSegment(str) {
+
     const segments = str.split("/");
     const lastSegment = segments[segments.length - 1];
     return lastSegment
+      .replace("%20"," ")
       .split("-")
       .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
       .join(" ");

@@ -25,6 +25,9 @@ function SideBar() {
       <a className="menu-item" href="/calorie-calculator">
         Calorie Calculator
       </a>
+      <a className ="menu-item" href="/food-categories">
+        Enquire Healthy Foods        
+      </a>
       <a className="menu-item" href="/account-center">
         Account Center
       </a>
