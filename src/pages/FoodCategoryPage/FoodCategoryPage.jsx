@@ -1,6 +1,5 @@
 import "./FoodCategoryPage.css";
-import { ImageList, ImageListItem, ImageListItemBar, Link } from "@mui/material";
-
+import { ImageList, ImageListItem, ImageListItemBar, } from "@mui/material";
 /**
  * 
  * Displays a list of categories of food
@@ -17,25 +16,27 @@ const CategoryList = [
     {food_name : "Noodles", image_url: "https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&"},
     {food_name : "Korean", image_url: "https://images.unsplash.com/photo-1498654896293-37aacf113fd9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&"}
 ]
+
 function FoodCategoryPage(){
     return (
-        <ImageList sx={{ height: "inherit",width: 600,overflowY: "visible"}} gap = {10}>
+        <ImageList sx={{ height: "inherit",width: 600,overflowY: "auto"}} gap = {10}>
           {CategoryList.map((item) => (
-            <Link href= {`./food-categories/${item.food_name}`}>
-            <ImageListItem sx={{height: "700"}} key={item.food_name}>
-                <img
-                  src={`${item.image_url}?w=248&fit=crop&auto=format`}
-                  srcSet={`${item.image_url}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                  alt={item.food_name}
-                  loading="lazy"
-                />
-                <ImageListItemBar
-                  className= "caption"
-                  title={item.food_name}
-                  position="below"
-                />
-            </ImageListItem>
-            </Link>
+              <ImageListItem sx={{objectFit : "cover",height : "100%",width: "100%"}} key={item.food_name}>
+                  <img 
+                    src={`${item.image_url}?w=248&fit=crop&auto=format`}
+                    srcSet={`${item.image_url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                    alt={item.food_name}
+                    loading="lazy"
+                  />
+                  <a href= {`./food-categories/${item.food_name}`}>
+                    <ImageListItemBar
+                      className= "caption"
+                      title={item.food_name}
+                      position="bottom"
+                    />
+                 </a>
+              </ImageListItem>
+            
           ))}
         </ImageList>
       );

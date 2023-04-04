@@ -8,7 +8,7 @@ import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useParams } from "react-router";
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
-import { getNutrition } from "../FoodListPage/NutritionixAPIControl";
+import { getNutrition } from "../FoodSearchPage/NutritionixAPIControl";
 import NutritionInformation from "./NutritionInformation";
 import "./FoodNutritionContainer.css"
 

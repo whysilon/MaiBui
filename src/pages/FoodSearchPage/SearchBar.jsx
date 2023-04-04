@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
-import DisplayFoodList from "./DisplayFoodList.jsx"
+import DisplaySearch from "./DisplaySearch.jsx"
 import { Paper,Stack, Box, IconButton, Typography, CircularProgress } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 /**
@@ -42,7 +42,7 @@ function SearchBar(){
                     <SearchIcon style={{ fill: "blue" }} />
             </IconButton>
             </form>
-            <DisplayFoodList query = {input}/>
+            <DisplaySearch query = {input}/>
         </Box>
         )
 }

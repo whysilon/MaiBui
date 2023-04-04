@@ -2,7 +2,7 @@ import React, {useState , useEffect } from 'react'
 import { Stack } from '@mui/system';
 import { Paper, Box, Typography, CircularProgress, Button, Divider, Link} from '@mui/material';
 import NutritionixAPIControl from './NutritionixAPIControl';
-import "./DisplayFoodList.css"
+import "./DisplaySearch.css"
 
 /**
  * Display the food list based on the search bar
@@ -13,7 +13,7 @@ import "./DisplayFoodList.css"
  * 
  */
 
-function DisplayFoodList({query}){
+function DisplaySearch({query}){
     const [list,setList] = useState([])
     const [loading,setLoading] = useState(true)
     useEffect(() => {
@@ -69,4 +69,4 @@ function DisplayFoodList({query}){
     )
 }
 
-export default DisplayFoodList;
+export default DisplaySearch;

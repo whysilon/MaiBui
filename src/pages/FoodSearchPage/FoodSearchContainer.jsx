@@ -1,6 +1,6 @@
-import HomePageNavBar from "../../components/HomePageNavBar"
 import SearchBar from "./SearchBar.jsx"
-import "./FoodListContainer.css"
+import "./FoodSearchContainer.css"
+import AccountCenterNavBar from "../../components/AccountCenterNavBar.jsx"
 
 /**
  * FoodListContainer contains the HomePageNavBar and the SearchBar 
@@ -8,14 +8,14 @@ import "./FoodListContainer.css"
  *
  * 
  */
-function FoodListContainer(){
+function FoodSearchContainer(){
     
     return(
         <div>
-            <HomePageNavBar/>
+            <AccountCenterNavBar/>
             <SearchBar/>
         </div>
     )
 }
 
-export default FoodListContainer
+export default FoodSearchContainer
