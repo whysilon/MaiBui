@@ -15,8 +15,10 @@ import SearchContainer from "./pages/SearchRestaurant/SearchContainer";
 import SignupContainer from "./pages/SignupPage/SignupContainer";
 import HomeContainer from "./pages/HomePage/HomeContainer";
 import ForgotPasswordContainer from "./pages/ForgotPasswordPage/ForgotPasswordContainer";
-import FoodListContainer from "./pages/FoodListPage/FoodListContainer";
 import FoodNutritionContainer from "./pages/FoodNutritionPage/FoodNutritionContainer";
+import FoodCategoryContainer from "./pages/FoodCategoryPage/FoodCategoryContainer";
+import FoodSearchContainer from "./pages/FoodSearchPage/FoodSearchContainer";
+import FoodItemContainer from "./pages/FoodCategoryItemPage/FoodItemContainer";
 
 
 const App = () => {
@@ -48,8 +50,10 @@ const App = () => {
             path="/forgot-password"
             element={<ForgotPasswordContainer />}
           />
-          <Route path="/food" element={<FoodListContainer />} />
+          <Route path="/food-search" element={<FoodSearchContainer/>} />
           <Route path="/nutrition/:id" element={<FoodNutritionContainer/>}/>
+          <Route path="/food-categories" element = {<FoodCategoryContainer/>}/>
+          <Route path="/food-categories/:id" element={<FoodItemContainer/>}/>
         </Routes>
       </Router>
     </div>
