@@ -10,6 +10,7 @@ import { useParams } from "react-router";
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import { getNutrition } from "../FoodListPage/NutritionixAPIControl";
 import NutritionInformation from "./NutritionInformation";
+import "./FoodNutritionContainer.css"
 let ignore = false
 
 function FoodNutritionContainer(){
@@ -26,12 +27,15 @@ function FoodNutritionContainer(){
         });
     }
     return(
-        <>
+        <div className="container">
         <AccountCenterNavBar/>
-        {loading ? (<CircularProgress/>) : 
-        <NutritionInformation data = {data}/>
-        }
-        </>
+            <div className = "nutrition" > 
+            {   
+                loading ? (<CircularProgress/>) :
+                <NutritionInformation data = {data}/>
+            }
+            </div>
+        </div>
     )
 }
 
