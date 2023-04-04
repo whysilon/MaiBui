@@ -1,6 +1,5 @@
-import HomePageNavBar from '../../components/HomePageNavBar';
+import AccountCenterNavBar from '../../components/AccountCenterNavBar';
 import HomeChoices from './HomeChoices';
-
 /**
  * Displays the homepage of the application after
  * logging in to the application
@@ -12,7 +11,7 @@ import HomeChoices from './HomeChoices';
 const HomeContainer = () => {
     return (
       <div>
-        <HomePageNavBar />
+        <AccountCenterNavBar />
         <HomeChoices/>
       </div>
     );

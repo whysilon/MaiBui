@@ -13,7 +13,7 @@ restaurant */
     height: 15vh;
     padding: 0;
     text-align: left;
-    padding-left: 10%;
+    padding-left: 5%;
     margin-bottom: 18vh;
 }
 
@@ -36,10 +36,16 @@ restaurant */
 /* Dine in, takeaway and number of feedbacks */
 
 .block-2 {
-    margin-top: 5px;
+    width: 600px;
     height: 15vh;
-    padding: 10%;
+    padding: 5%;
     text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.child-1 {
+    width: 280px;
 }
 
 
@@ -82,4 +88,12 @@ restaurant */
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+
+/* Open all feedbacks */
+
+.launch-icon:hover {
+    color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
 }

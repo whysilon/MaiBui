@@ -8,7 +8,6 @@ import PasswordChecklist from "react-password-checklist"
 import  {addDoc, collection, where, query, getDocs, getCountFromServer, getDoc} from 'firebase/firestore';
 import { auth,db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword} from "firebase/auth";
-//TODO: Must be able to check if username is taken
 
 /**
  * Displays the sign up form of the sign up page 

@@ -6,6 +6,7 @@ import { Typography, Stack } from "@mui/material";
 //Passing data
 import { userProfileData } from "./userProfileData.jsx";
 import { Avatar } from "@mui/material";
+
 /**
  * Displays the user profile, including profile image and username.
  * @author Xing Mian

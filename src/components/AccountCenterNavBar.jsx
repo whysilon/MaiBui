@@ -21,7 +21,6 @@ import SideBar from "./SideBar";
 import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-
 import { userProfileData } from "../pages/AccountCenterPage/userProfileData";
 import Backbutton from "../components/BackButton";
 

@@ -37,13 +37,8 @@ const App = () => {
           />
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/feedback" element={<FeedbackContainer />} />
-<<<<<<< HEAD
           <Route path="/select-restaurant/:place_id" element={<SelectRestaurantContainer />} />
           <Route path="/navigate-restaurant" element={<NavigateContainer />} />
-=======
-          <Route path="/restaurant" element={<SelectRestaurantContainer />} />
-          <Route path="/navigate-restaurant/:id" element={<NavigateContainer />} />
->>>>>>> 7c4f38abab37a4b60304d81da9ad9d45a7b07647
           <Route path="/recommend-restaurant" element={<RecommendContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
           <Route path="/search-restaurant" element={<SearchContainer />} />
