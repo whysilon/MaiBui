@@ -51,9 +51,17 @@ function NutritionInformation({data}) {
                     size="small"
                     onInput={handleInput}
                     type = "number"
+                    InputProps={{
+                        inputProps:{min:0}
+                    }}
+                    onKeyPress={(event) => {
+                        if (event?.key === '-' || event?.key === '+') {
+                          event.preventDefault();
+                    }}}
                     >
                     </TextField>
                     <Button variant="contained">Submit!</Button>
+                    <Typography variant="subtitle1">Calories: {data.nf_calories*servings}</Typography>
                 </form>
             </div>
         </>

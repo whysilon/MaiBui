@@ -3,6 +3,7 @@ import CalorieCalculator from "./CalorieCalculator";
 import "./CalorieContainer.css";
 import React from "react";
 import CustomInput from "./CustomInput";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 
 /**
  * This contains the functions required for Calorie Calculator
@@ -13,7 +14,7 @@ import CustomInput from "./CustomInput";
 function CalorieContainer() {
   return (
     <body className="background">
-      <HomePageNavBar />
+      <AccountCenterNavBar />
       <div className="aligner">
         <div>
         <p className="helloUser">Hello User!</p>
