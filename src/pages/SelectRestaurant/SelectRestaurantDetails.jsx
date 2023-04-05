@@ -4,7 +4,7 @@ import "./SelectRestaurantDetails.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { db, auth } from "../../firebase-config.js";
-import { getDocs, collection, where, query, getCountFromServer,updateDoc  } from "firebase/firestore";
+import {collection, getDocs, updateDoc} from "firebase/firestore";
 import { useState, useEffect } from "react";
 import LaunchIcon from '@mui/icons-material/Launch';
 import FeedbackPopup from "../../components/FeedbackPopup";
@@ -22,28 +22,53 @@ import { getAuth } from "firebase/auth";
 
 const SelectRestaurantDetails = () => {
 
-  const FBCollectionRef = collection(db, 'feedbacks');
+  const FBCollectionRef = collection(db, "feedbacks");
   const [buttonPopup, setButtonPopup] = useState(false);
   const [restaurantCount, setRestaurantCount] = useState(0);
 
-  const checkNoOfFeedbacks = async (name) => {
-    const q = query(FBCollectionRef, where('restaurant',"==",name));
-    const snapshot = await getCountFromServer(q);
-    setRestaurantCount(snapshot.data().count);
-  };
+  // const renderFeedbacks = async (name) => {
+  //   const data = await getDocs(FBCollectionRef);
+  //   data.docs.map((doc)=>{
+  //     if(doc.data().restaurant === name){
+  //       <div>
+  //         <div>
+  //           <p>{doc.data().email}</p>
+  //           <p>{doc.data().rating}</p>
+  //         </div>
+  //         <div>
+  //           <p>{doc.data().experience}</p>
+  //         </div>
+  //       </div>
+  //     }
+  //   })
+  // }
 
-  const visitedRestaurant = async (name) => {
-    try{
-      const user = getAuth().currentUser.email;
-      const userRef = query(collection(db,"users"), where('email','==',user));
-      await updateDoc(userRef, {
-        visited: [...userRef.data().visited, name]});
-    }
-    catch(e){
-      console.log(e.message);
-    }
 
-  }
+  // const visitedRestaurant = async (name) => {
+  //   try{
+  //     const userRef = getAuth().currentUser.email;
+  //     const data = await getDocs(FBCollectionRef);
+  //     data.docs.map((doc)=>{
+  //       if(doc.data().email === name){
+          
+  //       }
+  //     }
+  //   }
+  //   catch(e){
+  //     console.log(e.message);
+  //   }
+  // }
+
+  // const checkFeedbacks = async (name) => {
+  //   let i = 0;
+  //   const data = await getDocs(FBCollectionRef);
+  //   data.docs.map((doc)=>{
+  //     if(doc.data().restaurant == name){
+  //       i = i +1;
+  //     }
+  //   })
+  //   setRestaurantCount(i);
+  // }
   
 
   let service;
@@ -64,14 +89,13 @@ const SelectRestaurantDetails = () => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       setDetails(place);
       setHours(details.opening_hours.weekday_text);
-      checkNoOfFeedbacks(place.name);
+      // checkFeedbacks(place.name);
     }
   }
   
   const renderList = (opening_hours).map((item, index) => 
                              <p key={index} style={{ fontSize: 15}} >{item}</p>
                            );
-
 
   return (
     <div className="details">
@@ -97,7 +121,7 @@ const SelectRestaurantDetails = () => {
             </button>
           </Link>
 
-          <Link to={details.website} target="_blank" onClick={visitedRestaurant(details.name)}>
+          <Link to={details.website} target="_blank">
             <button className="website" >
                 Website
             </button>
@@ -112,7 +136,8 @@ const SelectRestaurantDetails = () => {
       </main>
 
       <FeedbackPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-        <h1>All feedbacks</h1>
+        <h1>Feedbacks</h1>
+        {/* {renderFeedbacks(details.name)} */}
       </FeedbackPopup> 
     </div> 
   );

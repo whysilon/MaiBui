@@ -29,7 +29,7 @@ const SignupForm = () => {
   const registerUser = async (details) => {
     try{
       await createUserWithEmailAndPassword(auth, details.email,details.password);
-      await addDoc(usersCollectionRef, {calories:0, email:details.email, password:details.password, username:details.username, visited: []});
+      await addDoc(usersCollectionRef, {calories:0, email:details.email, username:details.username, visited: []});
       window.location.href = "/home";
       alert(`${details.email} successfully registered!`);
     } catch(e){
