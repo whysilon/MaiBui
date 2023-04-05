@@ -61,7 +61,7 @@ function AccountCenterNavBar(props) {
    * @function handleAccountCenter
    */
   const handleAccountCenter = () => {
-    let path = `/account-center`;
+    let path = '/account-center/';
     navigate(path);
   };
 
@@ -172,7 +172,7 @@ function AccountCenterNavBar(props) {
                 Account Center
               </MenuItem>
               <MenuItem onClick={handleClose}>
-                <Logout />
+                <Logout/>
                 Log Out
               </MenuItem>
             </Menu>

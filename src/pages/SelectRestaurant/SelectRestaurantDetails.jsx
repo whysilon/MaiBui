@@ -3,11 +3,12 @@ import "./SelectRestaurantDetails.css";
 
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { db } from "../../firebase-config.js";
-import { getDocs, collection, where, query, getCountFromServer  } from "firebase/firestore";
+import { db, auth } from "../../firebase-config.js";
+import { getDocs, collection, where, query, getCountFromServer,updateDoc  } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import LaunchIcon from '@mui/icons-material/Launch';
 import FeedbackPopup from "../../components/FeedbackPopup";
+import { getAuth } from "firebase/auth";
 // To do: Display feedbacks in popup
 //        Find a way to display username in feedback
 
@@ -30,6 +31,19 @@ const SelectRestaurantDetails = () => {
     const snapshot = await getCountFromServer(q);
     setRestaurantCount(snapshot.data().count);
   };
+
+  const visitedRestaurant = async (name) => {
+    try{
+      const user = getAuth().currentUser.email;
+      const userRef = query(collection(db,"users"), where('email','==',user));
+      await updateDoc(userRef, {
+        visited: [...userRef.data().visited, name]});
+    }
+    catch(e){
+      console.log(e.message);
+    }
+
+  }
   
 
   let service;
@@ -83,8 +97,8 @@ const SelectRestaurantDetails = () => {
             </button>
           </Link>
 
-          <Link to={details.website}>
-            <button className="website">
+          <Link to={details.website} target="_blank" onClick={visitedRestaurant(details.name)}>
+            <button className="website" >
                 Website
             </button>
           </Link>

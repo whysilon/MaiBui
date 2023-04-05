@@ -2,10 +2,9 @@
 import "./SignupForm.css";
 
 import React, { useState } from "react";
-import { Link, createHashRouter } from "react-router-dom";
 import { TextField, FormControlLabel, Switch } from "@mui/material";
 import PasswordChecklist from "react-password-checklist"
-import  {addDoc, collection, where, query, getDocs, getCountFromServer, getDoc} from 'firebase/firestore';
+import  {addDoc, collection} from 'firebase/firestore';
 import { auth,db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword} from "firebase/auth";
 
@@ -17,16 +16,30 @@ import { createUserWithEmailAndPassword} from "firebase/auth";
  */
 
 const SignupForm = () => {
+  /**
+   * Collects all the documents from the firebase database under the collection user
+   * @returns {Array<DocumentSnapshot>}
+   */
   const usersCollectionRef = collection(db,'users');
 
+  /**
+   * Registers user on the database and at the same time, creates an account on the database to faciliate
+   * login and log out.
+   */
   const registerUser = async (details) => {
     try{
-      const user = await createUserWithEmailAndPassword(auth, details.email,details.password);
-      await addDoc(usersCollectionRef, {calories:0, email:details.email, password:details.password, username:details.username});
+      await createUserWithEmailAndPassword(auth, details.email,details.password);
+      await addDoc(usersCollectionRef, {calories:0, email:details.email, password:details.password, username:details.username, visited: []});
       window.location.href = "/home";
+      alert(`${details.email} successfully registered!`);
     } catch(e){
       console.log(e.message);
-      alert("Email already taken!");
+      if(e.message === 'Firebase: Error (auth/missing-email).'){
+        alert("Email is blank!")
+      }
+      else{
+        alert("Email already taken!");
+      }
     }
     
   }
@@ -140,7 +153,7 @@ const SignupForm = () => {
 
     //Checks if details are blank
     if(!validName && !validPwd){
-      alert("Please enter a username and password");
+      alert("P");
     }
     else if(!validName){
       alert("Username not valid");

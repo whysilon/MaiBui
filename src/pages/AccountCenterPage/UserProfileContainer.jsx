@@ -1,4 +1,3 @@
-import React from "react";
 import "./UserProfile.css";
 
 import { Typography, Stack } from "@mui/material";
@@ -6,6 +5,9 @@ import { Typography, Stack } from "@mui/material";
 //Passing data
 import { userProfileData } from "./userProfileData.jsx";
 import { Avatar } from "@mui/material";
+import { db, auth } from "../../firebase-config";
+import { collection,} from "firebase/firestore";
+import { useState} from "react";
 
 /**
  * Displays the user profile, including profile image and username.
@@ -16,6 +18,9 @@ import { Avatar } from "@mui/material";
 //TODO: get date from database
 
 const UserProfileContainer = () => {
+  const usersCollectionRef = collection(db, "users");
+  const [username, setUsername] = useState("");
+
   return (
     <Stack
       // direction="row"

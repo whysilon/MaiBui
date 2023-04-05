@@ -1,12 +1,11 @@
 // CSS
 import "./LoginForm.css";
 
-import React, { useState } from "react";
+import React, {useState } from "react";
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
-import { db, auth } from "../../firebase-config";
-import {collection, addDoc, getDocs} from 'firebase/firestore';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase-config";
+import { signInWithEmailAndPassword} from "firebase/auth";
 
 /**
  * Displays the login form of LoginContainer 
@@ -16,20 +15,21 @@ import { signInWithEmailAndPassword } from "firebase/auth";
  */
 
 const LoginForm = () => {
-
-  const signIn = async (auth,email,password) => {
+  /**
+   * Authenticates the user on the server
+   */
+  const signIn = async (details) => {
     try{
-      const user = await signInWithEmailAndPassword(auth,email,password);
+      await signInWithEmailAndPassword(auth,details.email,details.password);
       window.location.href = '/home';
       alert('Login successful!')
     }
     catch(e){
-      console.log(e.message);
-      if(e.message=="Firebase: Error (auth/user-not-found)."){
+      if(e.message==="Firebase: Error (auth/user-not-found)."){
         alert("User not found!")
       }
       else{
-        alert("Password wrong!")
+        alert("Wrong password!");
       }
     }
   }
@@ -91,8 +91,7 @@ const LoginForm = () => {
     }
     //else checks details with database
     else {
-      signIn(auth, loginDetails.email,loginDetails.password);
-      // window.location.href="/home"
+      signIn(loginDetails);
     }
   };
 
@@ -138,7 +137,7 @@ const LoginForm = () => {
         </div>
         <div className="login-bottom-box">
           <Link to="/forgot-password" className="loginLinks">
-            Forgot Password?
+            Forgot Password? 
           </Link>
           <button type="submit">Login</button>
         </div>
