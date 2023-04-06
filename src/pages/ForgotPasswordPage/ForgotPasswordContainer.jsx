@@ -1,100 +1,93 @@
-import { TextField } from '@mui/material';
-import { useState } from 'react';
-
+import { TextField } from "@mui/material";
+import { useState } from "react";
+import { auth } from "../../firebase-config";
+import { sendPasswordResetEmail } from "firebase/auth";
 // CSS
-import './ForgotPassword.css';
+import "./ForgotPassword.css";
 
 /*todo : tally username with database and return password.
          display password after username tallied below button
 */
 
-
-
 /**
  * Displays the ForgotPassword page directed from
  * LoginPage page
- * 
+ *
  * @author Marcus Yeo
  * @returns HTML of ForgotPassword page
  */
 
 const ForgotPasswordContainer = () => {
+  //Storage/setter of username input
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [error, setError] = useState("");
 
-    //Storage/setter of username input
+  /**
+   * Changes content of username based on
+   * input
+   *
+   * @param {onChange} event
+   */
 
-    const [forgotUsername, setForgotUsername] = useState("");
+  const forgotEmailHandler = (event) => {
+    setForgotEmail(event.target.value);
+  };
 
-    /**
-     * Changes content of username based on 
-     * input
-     * 
-     * @param {onChange} event 
-     */
+  /**
+   * Tallies username with database and returns
+   * corresponding password
+   *
+   * @param {onSubmit} event
+   */
 
-    const forgotUsernameHandler = (event) => {
-        setForgotUsername(event.target.value);
+  const submitHandler = async (event) => {
+    event.preventDefault();
+
+    let forgotpasswordDetails = {
+      email: forgotEmail,
+    };
+
+    //blank input
+    if (forgotpasswordDetails.email === "") {
+      setError("Please enter an email!");
+      return;
     }
-    
-    /**
-     * Tallies username with database and returns
-     * corresponding password
-     * 
-     * @param {onSubmit} event 
-     */
-
-    const submitHandler = (event) => {
-        event.preventDefault();
-
-        let forgotpasswordDetails = {
-            username : forgotUsername,
-        };
-
-        //blank input
-        if(forgotpasswordDetails.username === ""){
-            alert("Please enter a username!");
-        }
-        //todo: username not found in database
-        //username found
-        else{
-            console.log(forgotpasswordDetails.username);
-            //change css to display
-            let returnButton = document.getElementById("forgotPassword-return");
-            let displayPassword = document.getElementById("forgotPassword-displayContainer");
-            let password = document.getElementById("forgotPassword-display");
-
-            returnButton.style.opacity = "100";
-            returnButton.style.pointerEvents = "auto";
-            displayPassword.style.opacity = "100";
-            password.innerHTML="forgottenPassword";
-        }
+    console.log(forgotpasswordDetails.email);
+    try {
+      await sendPasswordResetEmail(auth, forgotpasswordDetails.email);
+      alert("Password reset email sent!");
+    } catch (error) {
+      if (error.code === "auth/invalid-email") {
+        setError("Invalid email format!");
+      } else if (error.code === "auth/user-not-found") {
+        setError("Email not found. Please try again!");
+      } else {
+        console.log(error);
+      }
     }
+  };
 
-    return (
-      <div className="forgotPassword-container">
-        <form className="forgotPassword-form" onSubmit={submitHandler}>
-          <h1>Forgot Password?</h1>
-          <p1>Key in your username:</p1>
-          <div className="forgotPassword-username-input">
-            <TextField
-              className="forgotUsername-text"
-              value={forgotUsername}
-              onChange={forgotUsernameHandler}
-              type={"text"}
-              variant="outlined"
-              label="Enter your username"
-              helperText={forgotUsername === "" ? "Empty field!" : ""}
-            />
-          </div>
-          <button type="submit">Submit</button>
-
-          {/* Displays password below button */}
-          <span id="forgotPassword-displayContainer">
-            Your password is: <span id="forgotPassword-display"></span>
-          </span>
-          <button id="forgotPassword-return"><a href="/login">Back to login</a></button>
-        </form>
-      </div>
-    );
-}
+  return (
+    <div className="forgotPassword-container">
+      <form className="forgotPassword-form" onSubmit={submitHandler}>
+        <h1>Forgot Password?</h1>
+        <p1>Key in your email:</p1>
+        <div className="forgotPassword-email-input">
+          <TextField
+            className="forgotEmail-text"
+            value={forgotEmail}
+            onChange={forgotEmailHandler}
+            type={"text"}
+            variant="outlined"
+            label="Enter your email"
+            helperText={error}
+            error={error !== ""}
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+};
 
 export default ForgotPasswordContainer;
