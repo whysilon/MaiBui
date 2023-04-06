@@ -18,11 +18,11 @@ import { useState, useEffect } from "react";
 
 const UserProfileContainer = () => {
   const usersCollectionRef = collection(db, "users");
+  const user = auth.currentUser;
 
   const [username, setUsername] = useState(null);
   const [photoURL, setPhotoURL] = useState(null);
   const [uid, setUid] = useState(null);
-  // console.log(auth.currentUser);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {

@@ -8,6 +8,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
+import { generateGravatar } from "../../helpers/accountHelpers";
 
 /**
  * Displays the sign up form of the sign up page
@@ -37,8 +38,7 @@ const SignupForm = () => {
 
       await updateProfile(auth.currentUser, {
         displayName: details.username,
-        photoURL:
-          "https://cod,efun-proj-user-res-1256085488.cos.ap-guangzhou.myqcloud.com/63eaee595a7e3f031030d055/63eaf4d142b69d0011f65b03/16763425892670871737.png",
+        photoURL: generateGravatar(details.email),
       })
         .then(() => {
           console.log("Update username successfully");
