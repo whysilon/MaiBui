@@ -1,8 +1,11 @@
-import HomePageNavBar from "../../components/HomePageNavBar";
 import CalorieCalculator from "./CalorieCalculator";
 import "./CalorieContainer.css";
 import React from "react";
 import CustomInput from "./CustomInput";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
+import { db } from "../../firebase-config";
+import { Timestamp, addDoc, collection, doc, getDoc } from "firebase/firestore";
+import { addCalorieData } from "./CalorieDataControl";
 
 /**
  * This contains the functions required for Calorie Calculator
@@ -11,9 +14,16 @@ import CustomInput from "./CustomInput";
  */
 
 function CalorieContainer() {
+  console.log(Timestamp.now().toDate().toISOString())
+  const data = {
+    calorie: 100,
+    food_name: "tea"
+  }
+  const res = addCalorieData(data,"why@gaho.com")
+  console.log(res)
   return (
     <body className="background">
-      <HomePageNavBar />
+      <AccountCenterNavBar/>
       <div className="aligner">
         <div>
         <p className="helloUser">Hello User!</p>
