@@ -7,6 +7,7 @@ import PasswordChecklist from "react-password-checklist"
 import  {addDoc, collection} from 'firebase/firestore';
 import { auth,db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword} from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
 
 /**
  * Displays the sign up form of the sign up page 
@@ -16,11 +17,6 @@ import { createUserWithEmailAndPassword} from "firebase/auth";
  */
 
 const SignupForm = () => {
-  /**
-   * Collects all the documents from the firebase database under the collection user
-   * @returns {Array<DocumentSnapshot>}
-   */
-  const usersCollectionRef = collection(db,'users');
 
   /**
    * Registers user on the database and at the same time, creates an account on the database to faciliate
@@ -29,7 +25,12 @@ const SignupForm = () => {
   const registerUser = async (details) => {
     try{
       await createUserWithEmailAndPassword(auth, details.email,details.password);
-      await addDoc(usersCollectionRef, {calories:0, email:details.email, username:details.username, visited: []});
+      await setDoc(doc(db, "users", details.email), {
+        calories: 0,
+        username: details.username,
+        visited: []
+      });
+      localStorage.setItem('token', details.email);
       window.location.href = "/home";
       alert(`${details.email} successfully registered!`);
     } catch(e){

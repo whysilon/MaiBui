@@ -1,19 +1,18 @@
 import FeedbackForm from "./FeedbackForm";
-import AccountCenterNavBar from "../../components/AccountCenterNavBar";
-
+import FeedbackNavBar from "../../components/FeedbackNavBar";
 
 /**
- * Displays the full feedback form page of the 
+ * Displays the full feedback form page of the
  * website
- * 
+ *
  * @author Marcus Yeo
- * 
+ *
  */
 const FeedbackContainer = (props) => {
   return (
     <div>
-      <AccountCenterNavBar/>
-      <FeedbackForm/>
+      <FeedbackNavBar />
+      <FeedbackForm />
     </div>
   );
 };
