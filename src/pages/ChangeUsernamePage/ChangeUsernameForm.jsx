@@ -7,6 +7,8 @@
 import React, { useState } from "react";
 import { Button, TextField, Stack } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
+import { auth } from "../../firebase-config";
+import { updateProfile } from "firebase/auth";
 
 /**
  * A form component for changing the username of an account.
@@ -28,8 +30,24 @@ const ChangeUsernameForm = () => {
    */
   //TODO: check duplicated username with database
   const changeUsernameHandler = (event) => {
+    const user = auth.currentUser;
     event.preventDefault();
-    window.location.href = "/account-center";
+    const changeUsernameDetails = {
+      newUsername: enteredNewUsername,
+    };
+    updateProfile(user, {
+      displayName: changeUsernameDetails.newUsername,
+    })
+      .then(() => {
+        console.log(user.displayName);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => {
+        window.location.href = "/account-center";
+      });
+
     console.log({ newUsername: enteredNewUsername });
   };
 

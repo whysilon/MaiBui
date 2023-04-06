@@ -23,7 +23,9 @@ import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import { userProfileData } from "../pages/AccountCenterPage/userProfileData";
 import Backbutton from "../components/BackButton";
-
+import { auth, db } from "../firebase-config";
+import { collection } from "firebase/firestore";
+import { useEffect } from "react";
 /**
  * This function is a component for the navigation bar in the account center page.
  * @function AccountCenterNavBar
@@ -31,13 +33,33 @@ import Backbutton from "../components/BackButton";
  * @returns {JSX.Element} - Rendered component.
  */
 function AccountCenterNavBar(props) {
+  const usersCollectionRef = collection(db, "users");
   const location = useLocation();
   let navigate = useNavigate();
   const pathname = useLocation().pathname;
 
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  const [username, setUsername] = useState("null");
+  const [photoURL, setPhotoURL] = useState("null");
+  const [uid, setUid] = useState("null");
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid);
+        setUsername(user.displayName);
+        setPhotoURL(user.photoURL);
+      } else {
+        setUid("null");
+        setUsername("null");
+        setPhotoURL("null");
+      }
+    });
+
+    return unsubscribe;
+  }, [auth]);
 
   /**
    * This function handles the opening of the user menu.
@@ -61,7 +83,7 @@ function AccountCenterNavBar(props) {
    * @function handleAccountCenter
    */
   const handleAccountCenter = () => {
-    let path = '/account-center/';
+    let path = "/account-center/";
     navigate(path);
   };
 
@@ -72,20 +94,19 @@ function AccountCenterNavBar(props) {
    * @returns {string} - The capitalized string.
    */
   function capitalizeLastSegment(str) {
-
     const segments = str.split("/");
     const lastSegment = segments[segments.length - 1];
     return lastSegment
-      .replace("%20"," ")
+      .replace("%20", " ")
       .split("-")
       .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
       .join(" ");
   }
 
   const currentLocation = capitalizeLastSegment(pathname);
+  // console.log(auth.currentUser);
 
   return (
-    //TODO:conditional redering based on authentication conditions
     //TODO: GET user profile data from databasae
 
     <AppBar position="static" color="inherit" className="navbar">
@@ -122,7 +143,7 @@ function AccountCenterNavBar(props) {
                 }),
               }}
             >
-              <Avatar src={userProfileData.img} />
+              <Avatar src={photoURL} />
             </IconButton>
 
             <Menu
@@ -156,7 +177,7 @@ function AccountCenterNavBar(props) {
                 <Stack direction="row" spacing={2} alignItems="center">
                   <Avatar src={userProfileData.img} />
                   <Typography variant="h6" noWrap>
-                    {userProfileData.username}
+                    {username}
                   </Typography>
                 </Stack>
               </Box>
@@ -171,8 +192,15 @@ function AccountCenterNavBar(props) {
                 <AccountCircle />
                 Account Center
               </MenuItem>
-              <MenuItem onClick={handleClose}>
-                <Logout/>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  auth.signOut().then(() => {
+                    window.location.href = "/";
+                  });
+                }}
+              >
+                <Logout />
                 Log Out
               </MenuItem>
             </Menu>
