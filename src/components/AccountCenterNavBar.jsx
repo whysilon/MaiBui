@@ -175,7 +175,7 @@ function AccountCenterNavBar(props) {
             >
               <Box sx={{ my: 1.5, px: 2.5 }}>
                 <Stack direction="row" spacing={2} alignItems="center">
-                  <Avatar src={userProfileData.img} />
+                  <Avatar src={photoURL} />
                   <Typography variant="h6" noWrap>
                     {username}
                   </Typography>
