@@ -1,9 +1,13 @@
-
 // CSS
 import './HomeChoices.css';
 import { db, auth } from '../../firebase-config';
 import { collection, getDoc, query, where } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
+import { Button, Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
+import RestaurantIcon from '@mui/icons-material/Restaurant';
+import SearchIcon from '@mui/icons-material/Search';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+
 /**
  * Displays the different selections on the 
  * home page.
@@ -32,34 +36,51 @@ const HomeChoices = () => {
     
 
     return (
-      <div className="homechoices-parent-container">
-        <div className = "homechoices-title">
-            <h1>Welcome,</h1>
-            <span>What would you like to do?</span>
-        </div>
-        <div className="homechoices-container">
-          <a href="/calorie-calculator/" className="homechoices-choice">
-            <div>
-              <h1>Calorie Calculator</h1>
-              <span>Calculate the amount of calories you are consuming with our Calorie Calculator!</span>
-            </div>
-          </a>
+      <Grid container direction="column" alignItems="center" spacing={4} className="homechoices-parent-container">
+        <Grid item className = "homechoices-title">
+            <Typography variant="h3" component="h1">Welcome,</Typography>
+            <Typography variant="subtitle1" component="span">What would you like to do?</Typography>
+        </Grid>
+        <Grid item container justifyContent="center" spacing={4} className="homechoices-container">
+          <Grid item>
+            <Card sx={{ maxWidth: 345 }} className="homechoices-choice">
+              <CardHeader title="Calorie Calculator" avatar={<FitnessCenterIcon sx={{ fontSize: 100 }} />} />
+              <CardContent>
+                <Typography variant="body" color="text.secondary">
+                  Calculate the amount of calories you are consuming with our Calorie Calculator!
+                </Typography>
+              </CardContent>
+              <Button href="/calorie-calculator/" size="small">Learn More</Button>
+            </Card>
+          </Grid>
 
-          <a href="/search-restaurant/" className="homechoices-choice">
-            <div>
-              <h1>Search For Restaurant</h1>
-              <span>Get to know any of your favourite restaurants with a click of a button!</span>
-            </div>
-          </a>
+          <Grid item>
 
-          <a href="/recommend-restaurant/" className="homechoices-choice">
-            <div>
-              <h1>Recommend Nearby Healthy Restaurant</h1>
-              <span>Let us recommend you amazing healthy delicacies around you!</span>
-            </div>
-          </a>
-        </div>
-      </div>
+
+            <Card sx={{ maxWidth: 345 }} className="homechoices-choice">
+              <CardHeader title="Search For Restaurant" avatar={<SearchIcon sx={{ fontSize: 100 }} />} />
+              <CardContent>
+                <Typography variant="body" color="text.secondary">
+                  Get to know any of your favourite restaurants with a click of a button!
+                </Typography>
+              </CardContent>
+              <Button href="/search-restaurant/" size="small">Learn More</Button>
+            </Card>
+          </Grid>
+
+          <Grid item>
+            <Card sx={{ maxWidth: 345 }} className="homechoices-choice">
+              <CardHeader title="Recommend Nearby Healthy Restaurant" avatar={<RestaurantIcon sx={{ fontSize: 100 }} />} />
+              <CardContent>
+                <Typography variant="body" color="text.secondary">
+                  Let us recommend you amazing healthy delicacies around you!
+                </Typography>
+              </CardContent>
+              <Button href="/recommend-restaurant/" size="small">Learn More</Button>
+            </Card>
+          </Grid>
+        </Grid>
+      </Grid>
     );
 }
 
