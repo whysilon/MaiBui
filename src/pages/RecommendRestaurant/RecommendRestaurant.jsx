@@ -70,9 +70,9 @@ function RecommendRestaurant(props)
                 data.map((result) => (
                     <UserContext.Provider value={data}>
                         <div className="results">
-                            <button key={result.id} style={{ width: "500px", height: "50px",}}>
-                                <Link to={`/select-restaurant/${result.place_id}`}>{result.name}</Link>
-                            </button>
+                            <Link to={`/select-restaurant/${result.place_id}`}>
+                                <button key={result.id} style={{ width: "500px", height: "50px",}}>{result.name}</button>
+                            </Link>
                         </div>
                     </UserContext.Provider>
             )));
@@ -81,8 +81,8 @@ function RecommendRestaurant(props)
     
     return(
         <div className="recommend">
-            <h1 style={{fontSize: 40}}>Restaurants near you:</h1>
-            {displayResults(data)}
+                <h1 style={{fontSize: 40}}>Restaurants near you:</h1>
+                {displayResults(data)}
         </div>
     )
 }

@@ -10,22 +10,29 @@
 restaurant */
 
 .block-1 {
-    height: 15vh;
+    height: 17vh;
     padding: 0;
-    padding-left: 10%;
+    text-align: left;
+    padding-left: 5%;
     margin-bottom: 18vh;
 }
 
-.times{
-    flex:auto;
-    height: 15vh;
+.times {
+    height: 8vh;
     line-height: 0.2;
+    text-align: left;
+    margin-left: 5%;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
+
 
 /*Bottom buttons */
 
 .block-3 {
-    height: 10vh;
+    height: 3vh;
     display: flex;
     justify-content: space-evenly;
 }
@@ -34,11 +41,15 @@ restaurant */
 /* Dine in, takeaway and number of feedbacks */
 
 .block-2 {
-    margin-top: 5px;
-    height: 15vh;
-    padding: 0;
-    padding: 10%;
-    background-color: redd;
+    height: 13vh;
+    padding: 5%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+}
+
+.child-1 {
+    width: 280px;
 }
 
 
@@ -81,4 +92,12 @@ restaurant */
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+}
+
+
+/* Open all feedbacks */
+
+.launch-icon:hover {
+    color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
 }

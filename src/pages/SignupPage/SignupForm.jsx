@@ -2,13 +2,11 @@
 import "./SignupForm.css";
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { TextField, FormControlLabel, Switch } from "@mui/material";
 import PasswordChecklist from "react-password-checklist"
-import { WindowSharp } from "@mui/icons-material";
-
-
-//TODO: Must be able to check if username is taken
+import  {addDoc, collection} from 'firebase/firestore';
+import { auth,db } from "../../firebase-config.js";
+import { createUserWithEmailAndPassword} from "firebase/auth";
 
 /**
  * Displays the sign up form of the sign up page 
@@ -18,6 +16,35 @@ import { WindowSharp } from "@mui/icons-material";
  */
 
 const SignupForm = () => {
+  /**
+   * Collects all the documents from the firebase database under the collection user
+   * @returns {Array<DocumentSnapshot>}
+   */
+  const usersCollectionRef = collection(db,'users');
+
+  /**
+   * Registers user on the database and at the same time, creates an account on the database to faciliate
+   * login and log out.
+   */
+  const registerUser = async (details) => {
+    try{
+      await createUserWithEmailAndPassword(auth, details.email,details.password);
+      await addDoc(usersCollectionRef, {calories:0, email:details.email, username:details.username, visited: []});
+      window.location.href = "/home";
+      alert(`${details.email} successfully registered!`);
+    } catch(e){
+      console.log(e.message);
+      if(e.message === 'Firebase: Error (auth/missing-email).'){
+        alert("Email is blank!")
+      }
+      else{
+        alert("Email already taken!");
+      }
+    }
+    
+  }
+
+  const [enteredEmail, setEnteredEmail] = useState("");
   /**
    * Storage/setters of username input variable
    */
@@ -52,6 +79,10 @@ const SignupForm = () => {
   const usernameHandler = (event) => {
     setEnteredUserName(event.target.value);
   };
+
+  const emailHandler = (event) => {
+    setEnteredEmail(event.target.value);
+  }
 
 /**
  * Changes password storage based on password input
@@ -114,6 +145,7 @@ const SignupForm = () => {
     event.preventDefault();
 
     const signupDetails = {
+      email: enteredEmail,
       username: enteredUsername,
       password: enteredPassword,
       cfmPassword: enteredCfmPassword,
@@ -121,7 +153,7 @@ const SignupForm = () => {
 
     //Checks if details are blank
     if(!validName && !validPwd){
-      alert("Please enter a username and password");
+      alert("P");
     }
     else if(!validName){
       alert("Username not valid");
@@ -131,9 +163,7 @@ const SignupForm = () => {
     }
     //else checks details with database
     else {
-      window.location.href = "/login"
-      alert("Successfully Signed Up! Redirecting...")
-      console.log(signupDetails);
+      registerUser(signupDetails);
     }
   };
 
@@ -157,7 +187,7 @@ const SignupForm = () => {
             }}
           />
 
-          <p>Username:</p>
+          <p className="pHeaders">Username:</p>
           <TextField
             className="signup-text_1"
             value={enteredUsername}
@@ -175,6 +205,24 @@ const SignupForm = () => {
             }
           ></TextField>
 
+          <p className="pHeaders">Email:</p>
+          <TextField
+            className="signup-text_1"
+            value={enteredEmail}
+            onChange={emailHandler}
+            type={"email"}
+            variant="outlined"
+            label="Enter your email"
+            margin="normal"
+            helperText={
+              enteredEmail === ""
+                ? "Empty field!"
+                : // : enteredNewPwd !== enteredConfirmedPwd
+                  // ? "Passwords do not match!"
+                  ""
+            }
+          ></TextField>
+
           {/* Checks password */}
           <PasswordChecklist
             className = "signup-pwd-checker"
@@ -185,7 +233,7 @@ const SignupForm = () => {
             onChange={(isValid) => {validPwdHandler(isValid)}}
           />
 
-          <p>Password:</p>
+          <p className="pHeaders">Password:</p>
           <TextField
             className="signup-text"
             value={enteredPassword}
@@ -202,7 +250,7 @@ const SignupForm = () => {
             }
           ></TextField>
 
-          <p>Confirm Password:</p>
+          <p className="pHeaders">Confirm Password:</p>
           <TextField
             className="signup-text"
             value={enteredCfmPassword}

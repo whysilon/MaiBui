@@ -7,7 +7,7 @@ import ChangeUsernameContainer from "./pages/ChangeUsernamePage/ChangeUsernameCo
 import ChangePasswordContainer from "./pages/ChangePasswordPage/ChangePasswordContainer";
 import LoginContainer from "./pages/LoginPage/LoginContainer";
 import FeedbackContainer from "./pages/FeedbackPage/FeedbackContainer";
-import SelectRestaurantContainer from "./pages/SelectRestaurant/SelecRestaurantContainer";
+import SelectRestaurantContainer from "./pages/SelectRestaurant/SelectRestaurantContainer";
 import CalorieContainer from "./pages/CalorieCalculator/CalorieContainer";
 import NavigateContainer from "./pages/NavigateRestaurant/NavigateContainer";
 import RecommendContainer from "./pages/RecommendRestaurant/RecommendContainer";
@@ -38,8 +38,7 @@ const App = () => {
             element={<ChangePasswordContainer />}
           />
           <Route path="/login" element={<LoginContainer />} />
-          <Route path="/feedback" element={<FeedbackContainer />} />
-          <Route path="/restaurant" element={<SelectRestaurantContainer />} />
+          <Route path="/feedback/:id" element={<FeedbackContainer />} />
           <Route path="/navigate-restaurant/:id" element={<NavigateContainer />} />
           <Route path="/recommend-restaurant" element={<RecommendContainer />} />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />

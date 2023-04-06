@@ -1,9 +1,11 @@
 // CSS
 import "./LoginForm.css";
 
-import React, { useState } from "react";
+import React, {useState } from "react";
 import { Link } from "react-router-dom";
 import { TextField } from "@mui/material";
+import { auth } from "../../firebase-config";
+import { signInWithEmailAndPassword} from "firebase/auth";
 
 /**
  * Displays the login form of LoginContainer 
@@ -13,13 +15,30 @@ import { TextField } from "@mui/material";
  */
 
 const LoginForm = () => {
-  
+  /**
+   * Authenticates the user on the server
+   */
+  const signIn = async (details) => {
+    try{
+      await signInWithEmailAndPassword(auth,details.email,details.password);
+      window.location.href = '/home';
+      alert('Login successful!')
+    }
+    catch(e){
+      if(e.message==="Firebase: Error (auth/user-not-found)."){
+        alert("User not found!")
+      }
+      else{
+        alert("Wrong password!");
+      }
+    }
+  }
   /**
    * Storage/setters for userename input variable in login
    * form 
    */
 
-  const [enteredUsername, setEnteredUserName] = useState("");
+  const [enteredEmail, setEnteredEmail] = useState("");
   
   /**
   * Storage/setters for password input variable in login
@@ -36,8 +55,8 @@ const LoginForm = () => {
    * @param {onChange} event 
    */
 
-  const usernameHandler = (event) => {
-    setEnteredUserName(event.target.value);
+  const emailHandler = (event) => {
+    setEnteredEmail(event.target.value);
   };
 
   /**
@@ -62,18 +81,17 @@ const LoginForm = () => {
     event.preventDefault();
 
     let loginDetails = {
-      username: enteredUsername,
+      email: enteredEmail,
       password: enteredPassword,
     };
 
     //Checks if details are blank
-    if (loginDetails.username === "" || loginDetails.password === "") {
+    if (loginDetails.email === "" || loginDetails.password === "") {
       alert("Leave no fields blank!");
     }
     //else checks details with database
     else {
-      console.log(loginDetails);
-      window.location.href="/home"
+      signIn(loginDetails);
     }
   };
 
@@ -83,17 +101,17 @@ const LoginForm = () => {
         <h1>Mai Bui</h1>
         <p>Your all in one eating aid</p>
         <div className="formDetails">
-          <p>Username:</p>
+          <p>Email:</p>
           <TextField
             className="login-text"
-            value={enteredUsername}
-            onChange={usernameHandler}
-            type={"text"}
+            value={enteredEmail}
+            onChange={emailHandler}
+            type={"email"}
             variant="outlined"
-            label="Enter your username"
+            label="Enter your email"
             margin="normal"
             helperText={
-              enteredUsername === ""
+              enteredEmail === ""
                 ? "Empty field!"
                 : // : enteredNewPwd !== enteredConfirmedPwd
                   // ? "Passwords do not match!"
@@ -119,13 +137,13 @@ const LoginForm = () => {
         </div>
         <div className="login-bottom-box">
           <Link to="/forgot-password" className="loginLinks">
-            Forgot Password?
+            Forgot Password? 
           </Link>
           <button type="submit">Login</button>
         </div>
         <p className="smallText">
             Don't have an account?{" "}
-            <Link to="/signup" className="loginLinks">
+            <Link to="/signup"  className="loginLinks">
               Sign Up
             </Link>
           </p>

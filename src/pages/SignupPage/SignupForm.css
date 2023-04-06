@@ -71,16 +71,24 @@
     top: 15px;
 }
 
+.pHeaders {
+    margin-top: 40px;
+}
+
 
 /* h1 on page */
 
 h1 {
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 
 /* p on page */
 
 p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+}
+
+span {
+    font-size: 1.2rem;
 }
