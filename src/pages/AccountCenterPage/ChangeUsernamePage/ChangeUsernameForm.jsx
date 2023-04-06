@@ -29,8 +29,8 @@ const ChangeUsernameForm = () => {
         }}
       >
         <form className="change-password-form" onSubmit={changeUsernameHandler}>
-          <div className="change-password-form-container">
-            <div className="form-details">
+          <div className="change-password-form-container" >
+            <div className="form-details" >
               <Stack>
                 <TextField
                   value={enteredNewUsername}

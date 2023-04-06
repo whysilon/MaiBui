@@ -1,10 +1,20 @@
+.search-parentContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .search {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    height: 100vh;
+    height: 80vh;
     margin-top: 70px;
+    background-color: #A3B18A;
+    border-radius: 5px;
+    width: 65vw;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
 input {

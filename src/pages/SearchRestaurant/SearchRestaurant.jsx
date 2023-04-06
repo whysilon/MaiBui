@@ -71,7 +71,7 @@ function SearchRestaurant(props)
                 data.map((result) => (
                     <div>
                         <Link to={`/select-restaurant/${result.place_id}`}>
-                            <div key={result.id} style={{width: "450px", height: "60px", display: "flex", justifyContent: "center", alignItems:"center", fontSize: "17", color:"white", backgroundColor:"#588157",border: "3px white solid"}}>
+                            <div key={result.id} style={{width: "444px", height: "60px", display: "flex", justifyContent: "center", alignItems:"center", fontSize: "17", color:"white", backgroundColor:"#588157",border: "3px white solid"}}>
                                 {result.name}
                             </div>
                         </Link>
@@ -81,16 +81,18 @@ function SearchRestaurant(props)
     }
 
     return(
-        <div className="search">
-            <h1 style={{fontSize: 40}}>Search for Healthier Restaurants</h1>
-            <input className="searchBar"
-            value={restaurantName}
-            onChange={searchHandler}
-            type="search"
-            placeholder="Enter restaurant name"
-            />
-            <div className="searchResults">
-                {displayResults(data)}
+        <div className="search-parentContainer">
+            <div className="search">
+                <h1 style={{fontSize: 40}}>Search for Healthier Restaurants</h1>
+                <input className="searchBar"
+                value={restaurantName}
+                onChange={searchHandler}
+                type="search"
+                placeholder="Enter restaurant name"
+                />
+                <div className="searchResults">
+                    {displayResults(data)}
+                </div>
             </div>
         </div>
     )
