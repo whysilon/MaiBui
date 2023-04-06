@@ -22,18 +22,18 @@ import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 import { userProfileData } from "../pages/AccountCenterPage/userProfileData";
-import Backbutton from "../components/BackButton";
+import Backbutton from "./BackButton";
 import FindUsername from "./findUsername";
 import { auth } from "../firebase-config";
 import { signOut } from "firebase/auth";
 
 /**
  * This function is a component for the navigation bar in the account center page.
- * @function AccountCenterNavBar
+ * @function RestaurantNavBar
  * @param {Object} props - Props for the component.
  * @returns {JSX.Element} - Rendered component.
  */
-function AccountCenterNavBar(props) {
+function FeedbackNavBar(props) {
   const location = useLocation();
   let navigate = useNavigate();
   const pathname = useLocation().pathname;
@@ -95,8 +95,6 @@ function AccountCenterNavBar(props) {
       });
   };
 
-  const currentLocation = capitalizeLastSegment(pathname);
-
   return (
     //TODO:conditional redering based on authentication conditions
     //TODO: GET user profile data from databasae
@@ -112,7 +110,7 @@ function AccountCenterNavBar(props) {
           // noWrap="true"
           sx={{ flexGrow: 1 }}
         >
-          {currentLocation}
+          Feedback
         </Typography>
 
         {auth && (
@@ -169,7 +167,7 @@ function AccountCenterNavBar(props) {
                 <Stack direction="row" spacing={2} alignItems="center">
                   <Avatar src={userProfileData.img} />
                   <Typography variant="p" fontSize={14} noWrap>
-                    <FindUsername/>
+                    <FindUsername />
                   </Typography>
                 </Stack>
               </Box>
@@ -196,4 +194,4 @@ function AccountCenterNavBar(props) {
   );
 }
 
-export default AccountCenterNavBar;
+export default FeedbackNavBar;

@@ -5,9 +5,7 @@ import { Typography, Stack } from "@mui/material";
 //Passing data
 import { userProfileData } from "./userProfileData.jsx";
 import { Avatar } from "@mui/material";
-import { db, auth } from "../../firebase-config";
-import { collection,} from "firebase/firestore";
-import { useState} from "react";
+import FindUsername from "../../components/findUsername";
 
 /**
  * Displays the user profile, including profile image and username.
@@ -18,9 +16,6 @@ import { useState} from "react";
 //TODO: get date from database
 
 const UserProfileContainer = () => {
-  const usersCollectionRef = collection(db, "users");
-  const [username, setUsername] = useState("");
-
   return (
     <Stack
       // direction="row"
@@ -35,7 +30,9 @@ const UserProfileContainer = () => {
         sx={{ width: 200, height: 200 }}
       />
 
-      <Typography variant="h2">Welcome, {userProfileData.username}</Typography>
+      <Typography variant="h2">
+        Welcome, <FindUsername />
+      </Typography>
     </Stack>
   );
 };

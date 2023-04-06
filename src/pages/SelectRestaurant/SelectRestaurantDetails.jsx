@@ -3,12 +3,11 @@ import "./SelectRestaurantDetails.css";
 
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import { db, auth } from "../../firebase-config.js";
-import {collection, getDocs, updateDoc} from "firebase/firestore";
-import { useState, useEffect } from "react";
+import { db } from "../../firebase-config.js";
+import {arrayUnion, collection, doc, getCountFromServer, getDoc, getDocs, query, updateDoc, where} from "firebase/firestore";
+import { useState} from "react";
 import LaunchIcon from '@mui/icons-material/Launch';
 import FeedbackPopup from "../../components/FeedbackPopup";
-import { getAuth } from "firebase/auth";
 // To do: Display feedbacks in popup
 //        Find a way to display username in feedback
 
@@ -25,50 +24,38 @@ const SelectRestaurantDetails = () => {
   const FBCollectionRef = collection(db, "feedbacks");
   const [buttonPopup, setButtonPopup] = useState(false);
   const [restaurantCount, setRestaurantCount] = useState(0);
+  const [feedbacks,setFeedbacks] = useState([]);
 
-  // const renderFeedbacks = async (name) => {
-  //   const data = await getDocs(FBCollectionRef);
-  //   data.docs.map((doc)=>{
-  //     if(doc.data().restaurant === name){
-  //       <div>
-  //         <div>
-  //           <p>{doc.data().email}</p>
-  //           <p>{doc.data().rating}</p>
-  //         </div>
-  //         <div>
-  //           <p>{doc.data().experience}</p>
-  //         </div>
-  //       </div>
-  //     }
-  //   })
-  // }
+  
 
 
-  // const visitedRestaurant = async (name) => {
-  //   try{
-  //     const userRef = getAuth().currentUser.email;
-  //     const data = await getDocs(FBCollectionRef);
-  //     data.docs.map((doc)=>{
-  //       if(doc.data().email === name){
-          
-  //       }
-  //     }
-  //   }
-  //   catch(e){
-  //     console.log(e.message);
-  //   }
-  // }
+  const visitedRestaurant = async () => {
+    const email = localStorage.getItem('token');
+    const q = doc(db,'users',email);
+    const snapshot = await getDoc(q);
+    var arr = snapshot.data().visited;
+    if(!arr.includes(details.name)){
+      arr.push(details.name);
+      await updateDoc(q,{
+        'visited': arr
+      })
+    }
+    
+  }
 
-  // const checkFeedbacks = async (name) => {
-  //   let i = 0;
-  //   const data = await getDocs(FBCollectionRef);
-  //   data.docs.map((doc)=>{
-  //     if(doc.data().restaurant == name){
-  //       i = i +1;
-  //     }
-  //   })
-  //   setRestaurantCount(i);
-  // }
+  const checkFeedbacks = async (name) => {
+    const q = query(FBCollectionRef,where("restaurant",'==',name));
+    const snapshot = await getCountFromServer(q);
+    setRestaurantCount(snapshot.data().count);
+  }
+
+  const renderFeedback = async (restaurant) =>{
+    const q = query(FBCollectionRef, where('restaurant','==', restaurant));
+    const snapshot = await getDocs(q);
+    setFeedbacks(snapshot.docs.map((doc)=>({...doc.data(), id:doc.id})));
+};
+
+
   
 
   let service;
@@ -89,13 +76,16 @@ const SelectRestaurantDetails = () => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       setDetails(place);
       setHours(details.opening_hours.weekday_text);
-      // checkFeedbacks(place.name);
+      checkFeedbacks(place.name);
+      renderFeedback(place.name)
     }
   }
   
   const renderList = (opening_hours).map((item, index) => 
                              <p key={index} style={{ fontSize: 15}} >{item}</p>
                            );
+
+
 
   return (
     <div className="details">
@@ -121,9 +111,9 @@ const SelectRestaurantDetails = () => {
             </button>
           </Link>
 
-          <Link to={details.website} target="_blank">
+          <Link to={details.website} target="_blank" onClick={visitedRestaurant}>
             <button className="website" >
-                Website
+                Reserve
             </button>
           </Link>
 
@@ -135,9 +125,26 @@ const SelectRestaurantDetails = () => {
         </div>
       </main>
 
-      <FeedbackPopup trigger={buttonPopup} setTrigger={setButtonPopup}>
+      <FeedbackPopup trigger={buttonPopup} setTrigger={setButtonPopup} restaurant={details.name}>
         <h1>Feedbacks</h1>
-        {/* {renderFeedbacks(details.name)} */}
+        {feedbacks.map((feedback)=>{
+                      return (
+                          <div className="feedbackbox">
+                              <div className="box-1">
+                                  <div>Email: {feedback.email}</div>
+                                  <div>Rating: {[...Array(feedback.rating)].map((star, index) => {
+                                index += 1;
+                                return (
+                                    <span className="star">&#9733;</span>
+                                );
+                              })}</div>
+                              </div>
+                              <div className="box-2">
+                                  {feedback.experience}
+                              </div>
+                          </div>
+                      )
+                  })}
       </FeedbackPopup> 
     </div> 
   );

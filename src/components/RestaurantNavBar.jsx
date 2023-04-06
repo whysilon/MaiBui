@@ -29,11 +29,11 @@ import { signOut } from "firebase/auth";
 
 /**
  * This function is a component for the navigation bar in the account center page.
- * @function AccountCenterNavBar
+ * @function RestaurantNavBar
  * @param {Object} props - Props for the component.
  * @returns {JSX.Element} - Rendered component.
  */
-function AccountCenterNavBar(props) {
+function RestaurantNavBar(props) {
   const location = useLocation();
   let navigate = useNavigate();
   const pathname = useLocation().pathname;
@@ -95,8 +95,6 @@ function AccountCenterNavBar(props) {
       });
   };
 
-  const currentLocation = capitalizeLastSegment(pathname);
-
   return (
     //TODO:conditional redering based on authentication conditions
     //TODO: GET user profile data from databasae
@@ -112,7 +110,7 @@ function AccountCenterNavBar(props) {
           // noWrap="true"
           sx={{ flexGrow: 1 }}
         >
-          {currentLocation}
+          Restaurant
         </Typography>
 
         {auth && (
@@ -196,4 +194,4 @@ function AccountCenterNavBar(props) {
   );
 }
 
-export default AccountCenterNavBar;
+export default RestaurantNavBar;

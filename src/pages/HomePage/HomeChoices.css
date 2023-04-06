@@ -67,3 +67,15 @@
     text-decoration: none;
     color: white;
 }
+
+.homechoices-title .userDisplay {
+    display: flex;
+    align-items: center;
+    align-content: space-between;
+}
+
+.userDisplay .username {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Microsoft Yahei", sans-serif;
+    margin-left: 5px;
+    font-size: 2.9rem;
+}

@@ -3,7 +3,7 @@ import React, { useState, useEffect} from "react";
 import { TextField } from "@mui/material";
 import StarRating from "../../components/StarRating";
 import { db } from "../../firebase-config";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 import { useParams } from "react-router-dom";
 /**
  * Displays the feedback form showed on
@@ -37,8 +37,16 @@ const FeedbackForm = (props) => {
 
   const submitFeedback = async (details) => {
     try{
-      await addDoc(feedbacksCollectionRef, {experience:details.exp, rating:details.rating, restaurant:restaurant.name});
-      alert("Successful submission!");
+      const email = localStorage.getItem('token')
+      const q = doc(db,'users',email);
+      const snapshot = await getDoc(q);
+      if(snapshot.data().visited.includes(restaurant.name)){
+        await addDoc(feedbacksCollectionRef, {email:email, experience:details.exp, rating:details.rating, restaurant:restaurant.name});
+        alert("Successful submission!");
+      }
+      else{
+        alert("You have not visited the restaurant before...");
+      }
     }
     catch(e){
       console.log(e.message);
