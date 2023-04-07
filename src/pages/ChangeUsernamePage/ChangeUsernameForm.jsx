@@ -28,7 +28,11 @@ const ChangeUsernameForm = () => {
    * A function that handles the submission of the form to change the username.
    * @param {Event} event - The event object.
    */
-  //TODO: check duplicated username with database
+
+  const validUsernameHandler = (isValid) => {
+    setValidUsername(isValid);
+  };
+
   const changeUsernameHandler = (event) => {
     const user = auth.currentUser;
     event.preventDefault();
@@ -98,7 +102,10 @@ const ChangeUsernameForm = () => {
                 maxLength={13}
                 minLength={1}
                 value={enteredNewUsername}
-                onChange={(valid) => setValidUsername(valid)}
+                onChange={(isValid) => {
+                  setValidUsername(isValid);
+                  console.log(isValid);
+                }}
                 messages={{
                   maxLength: "Username must be 13 characters long maximum.",
                   minLength: "Username must be 1 characters long minimally.",
@@ -112,7 +119,7 @@ const ChangeUsernameForm = () => {
 
                 <Button
                   type="submit"
-                  disabled={!enteredNewUsername && !validUsername}
+                  disabled={!enteredNewUsername || !validUsername}
                 >
                   Confirm Change
                 </Button>
