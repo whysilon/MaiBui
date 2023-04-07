@@ -5,7 +5,7 @@ import CustomInput from "./CustomInput";
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import { db } from "../../firebase-config";
 import { Timestamp, addDoc, collection, doc, getDoc } from "firebase/firestore";
-import { addCalorieData } from "./CalorieDataControl";
+import { addCalorieData, getCalorieData } from "./CalorieDataControl";
 
 /**
  * This contains the functions required for Calorie Calculator
@@ -15,11 +15,7 @@ import { addCalorieData } from "./CalorieDataControl";
 
 function CalorieContainer() {
   console.log(Timestamp.now().toDate().toISOString())
-  const data = {
-    calorie: 100,
-    food_name: "tea"
-  }
-  const res = addCalorieData(data,"why@gaho.com")
+  const res = getCalorieData("why@gaho.com")
   console.log(res)
   return (
     <body className="background">
