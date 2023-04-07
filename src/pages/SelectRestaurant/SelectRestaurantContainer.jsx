@@ -1,20 +1,19 @@
-import AccountCenterNavBar from "../../components/AccountCenterNavBar";
+import RestaurantNavBar from "../../components/RestaurantNavBar";
 import SelectRestaurantDetails from "./SelectRestaurantDetails";
-
 /**
  * Displays the restaurant details after
  * restaurant has been selected
- * 
- * 
+ *
+ *
  * @author Marcus Yeo
- * @returns HomePageNavBar and SelectRestaurantDetails 
+ * @returns HomePageNavBar and SelectRestaurantDetails
  * components
  */
 
 const SelectRestaurantContainer = () => {
   return (
     <div>
-      <AccountCenterNavBar />
+      <RestaurantNavBar />
       <SelectRestaurantDetails />
     </div>
   );

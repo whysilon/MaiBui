@@ -9,6 +9,11 @@ import { auth, db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { generateGravatar } from "../../helpers/accountHelpers";
+import PasswordChecklist from "react-password-checklist";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../../firebase-config.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { setDoc, doc } from "firebase/firestore";
 
 /**
  * Displays the sign up form of the sign up page
@@ -18,12 +23,6 @@ import { generateGravatar } from "../../helpers/accountHelpers";
  */
 
 const SignupForm = () => {
-  /**
-   * Collects all the documents from the firebase database under the collection user
-   * @returns {Array<DocumentSnapshot>}
-   */
-  const usersCollectionRef = collection(db, "users");
-
   /**
    * Registers user on the database and at the same time, creates an account on the database to faciliate
    * login and log out.
@@ -48,12 +47,12 @@ const SignupForm = () => {
           console.log(error);
         });
 
-      await addDoc(usersCollectionRef, {
+      await setDoc(doc(db, "users", details.email), {
         calories: 0,
-        email: details.email,
         username: details.username,
         visited: [],
       });
+      localStorage.setItem("token", details.email);
 
       window.location.href = "/home";
       alert(`${details.email} successfully registered!`);

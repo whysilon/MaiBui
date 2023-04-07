@@ -20,7 +20,11 @@ const LoginForm = () => {
    */
   const signIn = async (details) => {
     try{
-      await signInWithEmailAndPassword(auth,details.email,details.password);
+        await signInWithEmailAndPassword(auth,details.email,details.password).then(async (res) =>{
+          const token = details.email;
+          localStorage.setItem('token', token);
+          console.log(localStorage)
+      })
       window.location.href = '/home';
       alert('Login successful!')
     }

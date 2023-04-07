@@ -18,7 +18,9 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 
 /**
  * Displays the different selections on the
+ * Displays the different selections on the
  * home page.
+ *
  *
  * @author Marcus Yeo
  * @returns HTML of HomePage content
