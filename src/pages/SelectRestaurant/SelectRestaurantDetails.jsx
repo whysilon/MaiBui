@@ -115,19 +115,19 @@ const SelectRestaurantDetails = () => {
         </div>
         <div className="block-3">
           <Link to={`/navigate-restaurant/${place_id.id}`}>
-            <button>
+            <button className="restaurantButton">
               Navigate
             </button>
           </Link>
           
-          <Link onClick={visitedRestaurant} >
+          <Link onClick={visitedRestaurant}>
             <button className="website" onClick={verifyWebsite}>
                 Reserve
             </button>
           </Link>
 
           <Link to={`/feedback/${place_id.id}`}>
-            <button>
+            <button className="restaurantButton">
               Give Feedback
             </button>
           </Link>

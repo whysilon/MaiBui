@@ -46,9 +46,8 @@
 .aligner .customInput {
     display: flex;
     justify-content: center;
-    width: 200px;
+    width: 150px;
     margin-top: 50px;
     background-color: #A3B18A;
     border-radius: 5px;
-    border: 1px solid white;
 }

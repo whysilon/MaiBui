@@ -16,6 +16,23 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+    height: 50px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+    color: white;
+    background-color: #344E41;
+    font-size: 1.2rem;
+}
+
+button:hover {
+    opacity: 65%;
+    cursor: pointer;
+}
+
 
 /* body * {
     /* box-sizing: border-box;

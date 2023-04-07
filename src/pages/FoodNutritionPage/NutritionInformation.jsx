@@ -44,7 +44,8 @@ function NutritionInformation({data}) {
         <div className="info-container">
             <div className="wrapper">
                 <div>
-                    <Typography variant = "h2">Food name: {CapitalizeFirstLetter(data.food_name)}</Typography>
+                    <Typography variant = "h2">{CapitalizeFirstLetter(data.food_name)}</Typography>
+                    <br></br>
                     <Typography variant = "h4">For one serving ({data.serving_unit}):</Typography>
                     <Typography variant = "h5">Calories: {data.nf_calories}kcal</Typography>
                     <Typography variant = "h5">Cholesterol: {data.nf_cholesterol}mg</Typography>
@@ -71,7 +72,7 @@ function NutritionInformation({data}) {
                         }}}
                         >
                         </TextField>
-                        <Button variant="contained">Submit!</Button>
+                        <Button variant="contained" style={{marginLeft: "50px", backgroundColor:"#344E41"}}>Submit</Button>
                         <Typography variant="subtitle1">Calories: {Math.round(data.nf_calories*servings)}</Typography>
                     </form>
                 </div>

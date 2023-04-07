@@ -41,24 +41,8 @@ inputs*/
 
 /* All buttons */
 
-button {
-    height: 50px;
-    border-color: black;
-    border-style: solid;
-    border-radius: 5px;
-    width: 100%;
-    text-align: center;
-    color: white;
-    background-color: #344E41;
-    font-size: 1.2rem;
-}
-
-
-/* Hovering over buttons */
-
-button:hover {
-    background-color: #344E41;
-    cursor: pointer;
+.loginForm button {
+    width: 150px;
 }
 
 

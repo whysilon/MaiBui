@@ -58,7 +58,7 @@
 /* General sidebar styles */
 
 .bm-menu {
-    background: #41b723;
+    background: #344E41;
     font-size: 1.3em;
     overflow-y: hidden !important;
 }
@@ -85,11 +85,17 @@
 .bm-item {
     display: inline-block;
     margin-top: 10%;
+    text-decoration: none;
+}
+
+.bm-item:hover {
+    opacity: 65%;
 }
 
 
 /* Styling of overlay */
 
 .bm-overlay {
+    top: 0;
     background: rgba(0, 0, 0, 0.3);
 }
