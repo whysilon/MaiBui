@@ -1,7 +1,9 @@
 .bm-burger-button {
     position: sticky;
-    width: 32px;
-    height: 26px;
+    width: 30px;
+    height: 25px;
+    margin-top: 3px;
+    margin-right: 20px;
 }
 
 .menu-item {
@@ -27,8 +29,8 @@
 /* Position and sizing of clickable cross button */
 
 .bm-cross-button {
-    height: 32px;
-    width: 32px;
+    height: 40px;
+    width: 40px;
 }
 
 
@@ -56,7 +58,7 @@
 /* General sidebar styles */
 
 .bm-menu {
-    background: #3A5A40;
+    background: #41b723;
     font-size: 1.3em;
     overflow-y: hidden !important;
 }
@@ -81,7 +83,6 @@
 /* Individual item */
 
 .bm-item {
-    text-decoration: none;
     display: inline-block;
     margin-top: 10%;
 }
@@ -90,6 +91,5 @@
 /* Styling of overlay */
 
 .bm-overlay {
-    background: rgba(0, 0, 0, 0.2);
-    top: 0;
+    background: rgba(0, 0, 0, 0.3);
 }

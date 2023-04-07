@@ -21,11 +21,11 @@ import SideBar from "./SideBar";
 import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import { userProfileData } from "../pages/AccountCenterPage/userProfileData";
+
 import Backbutton from "../components/BackButton";
-import FindUsername from "./findUsername";
-import { auth } from "../firebase-config";
-import { signOut } from "firebase/auth";
+import { auth, db } from "../firebase-config";
+import { collection } from "firebase/firestore";
+import { useEffect } from "react";
 
 /**
  * This function is a component for the navigation bar in the account center page.
@@ -34,12 +34,33 @@ import { signOut } from "firebase/auth";
  * @returns {JSX.Element} - Rendered component.
  */
 function AccountCenterNavBar(props) {
+  const usersCollectionRef = collection(db, "users");
   const location = useLocation();
   let navigate = useNavigate();
   const pathname = useLocation().pathname;
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  const [username, setUsername] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
+  const [uid, setUid] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid);
+        setUsername(user.displayName);
+        setPhotoURL(user.photoURL);
+      } else {
+        setUid("");
+        setUsername("");
+        setPhotoURL("");
+      }
+    });
+
+    return unsubscribe;
+  }, [auth]);
 
   /**
    * This function handles the opening of the user menu.
@@ -63,6 +84,7 @@ function AccountCenterNavBar(props) {
    * @function handleAccountCenter
    */
   const handleAccountCenter = () => {
+    // let path = "/account-center/";
     let path = "/account-center/";
     navigate(path);
   };
@@ -79,12 +101,12 @@ function AccountCenterNavBar(props) {
     return lastSegment
       .replace("%20", " ")
       .split("-")
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-      .join(" ");
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1));
   }
 
   const logOut = () => {
-    signOut(auth)
+    auth
+      .signOut(auth)
       .then(() => {
         localStorage.removeItem("token");
         window.location.href = "/";
@@ -96,9 +118,9 @@ function AccountCenterNavBar(props) {
   };
 
   const currentLocation = capitalizeLastSegment(pathname);
+  // console.log(auth.currentUser);
 
   return (
-    //TODO:conditional redering based on authentication conditions
     //TODO: GET user profile data from databasae
 
     <AppBar position="static" style={{backgroundColor: "#588157"}} className="navbar" elevation={0}>
@@ -135,7 +157,7 @@ function AccountCenterNavBar(props) {
                 }),
               }}
             >
-              <Avatar src={userProfileData.img} />
+              <Avatar src={photoURL} />
             </IconButton>
 
             <Menu
@@ -167,9 +189,9 @@ function AccountCenterNavBar(props) {
             >
               <Box sx={{ my: 1.5, px: 2.5 }}>
                 <Stack direction="row" spacing={2} alignItems="center">
-                  <Avatar src={userProfileData.img} />
+                  <Avatar src={photoURL} />
                   <Typography variant="p" fontSize={14} noWrap>
-                    <FindUsername/>
+                    {username}
                   </Typography>
                 </Stack>
               </Box>
@@ -184,7 +206,14 @@ function AccountCenterNavBar(props) {
                 <AccountCircle />
                 Account Center
               </MenuItem>
-              <MenuItem onClick={logOut}>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  auth.signOut().then(() => {
+                    window.location.href = "/";
+                  });
+                }}
+              >
                 <Logout />
                 Log Out
               </MenuItem>

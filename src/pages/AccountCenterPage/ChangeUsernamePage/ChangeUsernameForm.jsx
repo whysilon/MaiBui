@@ -46,11 +46,13 @@ const ChangeUsernameForm = () => {
               </Stack>
 
               <Stack sx={{ margin: 5 }} direction="row" spacing={6}>
-                <Link to={"/account-center"}>
-                  <Button type="reset" id="cancel">
-                    Cancel
-                  </Button>
-                </Link>
+                <Button
+                  onClick={window.location.assign("/account-center")}
+                  type="reset"
+                  id="cancel"
+                >
+                  Cancel
+                </Button>
 
                 <Button type="submit" disabled={!enteredNewUsername}>
                   Confirm Change
