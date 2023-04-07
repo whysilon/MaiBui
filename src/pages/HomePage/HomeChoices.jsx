@@ -28,6 +28,7 @@ import CalculateIcon from "@mui/icons-material/Calculate";
 
 const HomeChoices = () => {
   // const [username, setUsername] = useState('');
+  const user = auth.currentUser;
 
   // useEffect(()=>{
   //   const getUsername = async () => {
@@ -54,7 +55,7 @@ const HomeChoices = () => {
       sx={{ marginTop: "50px" }}
     >
       <Stack className="homechoices-title">
-        <Typography variant="h3">Welcome,</Typography>
+        <Typography variant="h3">Welcome,{user.displayName}</Typography>
         <Typography variant="h4">What would you like to do?</Typography>
       </Stack>
       <Grid

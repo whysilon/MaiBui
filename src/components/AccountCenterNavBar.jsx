@@ -83,7 +83,7 @@ function AccountCenterNavBar(props) {
    * @function handleAccountCenter
    */
   const handleAccountCenter = () => {
-    let path = "/account-center/";
+    // let path = "/account-center/";
     let path = "/account-center/";
     navigate(path);
   };
