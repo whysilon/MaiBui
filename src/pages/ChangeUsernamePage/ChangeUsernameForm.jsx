@@ -5,7 +5,7 @@
 
  */
 import React, { useState } from "react";
-import { Button, TextField, Stack } from "@mui/material";
+import { Button, TextField, Stack, Alert, Snackbar } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
 import { auth } from "../../firebase-config";
 import { updateProfile } from "firebase/auth";
@@ -65,10 +65,14 @@ const ChangeUsernameForm = () => {
           "You have unsaved changes. Are you sure you want to cancel?"
         )
       ) {
-        window.location.href = "/account-center";
+        setTimeout(() => {
+          window.location.href = "/account-center";
+        }, 0);
       }
     } else {
-      window.location.href = "/account-center";
+      setTimeout(() => {
+        window.location.href = "/account-center";
+      }, 0);
     }
   };
 
