@@ -42,6 +42,7 @@ function SearchRestaurant(props)
     };
     service = new google.maps.places.PlacesService(document.createElement('div'));
     service.textSearch(request, callback);
+    window.onload = service.textSearch(request, callback);
 
     /**
      * Function for retrieving results from the Google Places API.

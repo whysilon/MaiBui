@@ -1,8 +1,8 @@
-.caption{
+.caption {
     text-align: center;
 }
 
-.image{
-    height: 500px;
-    width: inherit;
+.linkToFoodCat:hover {
+    cursor: pointer;
+    opacity: 68%;
 }

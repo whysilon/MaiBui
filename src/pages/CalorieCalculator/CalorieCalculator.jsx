@@ -12,7 +12,8 @@ function CalorieCalculator() {
         const {bgcolor,completed } = props;
 
         const containerStyles = {
-            width: '20%',
+            width: '300px',
+            height: '30px',
             backgroundColor: "#e0e0de",
             borderRadius: 50,
             margin: 0,
@@ -21,9 +22,11 @@ function CalorieCalculator() {
         
           const fillerStyles = {
             width: `${completed}%`,
+            height: 'inherit',
             backgroundColor: bgcolor,
             borderRadius: 'inherit',
-            textAlign: 'right'
+            textAlign: 'center',
+            color:'white'
           }
         
           const labelStyles = {
@@ -41,7 +44,7 @@ function CalorieCalculator() {
     }
     let limit = 2000;
     let current = 480;
-    const UserData = {bgcolor: "purple", completed: current/limit * 100};
+    const UserData = {bgcolor: "#3A5A40", completed: current/limit * 100};
     
     return (
             <div>

@@ -1,26 +1,54 @@
-.background{
+.imgAndStats .background {
     background-image: url("../../../public/LettuceBG.png");
-    background-position:right;
-    background-color: white;
-    background-repeat: no-repeat;
+    height: 450px;
+    width: 360px;
 }
-.aligner{
+
+.aligner {
     display: flex;
-    flex:auto;
-    flex-direction: column;
-    gap: 10vh;
-    margin-left: 4vw;
+    justify-content: center;
+    align-items: center;
 }
-.daily{
+
+.imgAndStats {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 90vh;
+    width: 100vw;
+}
+
+.stats {
+    display: flex;
+    height: 75%;
+    justify-content: flex-start;
+    align-items: left;
+    flex-direction: column;
+}
+
+.daily {
     display: inline;
     font-size: x-large;
 }
 
-.customInput{
+.customInput {
     gap: 10vh;
- }
+}
 
-.helloUser{
-    font-size:xx-large;
+.helloUser {
+    font-size: 2.5rem;
+    width: 240px;
     font-style: oblique;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.aligner .customInput {
+    display: flex;
+    justify-content: center;
+    width: 200px;
+    margin-top: 50px;
+    background-color: #A3B18A;
+    border-radius: 5px;
+    border: 1px solid white;
 }

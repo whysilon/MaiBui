@@ -1,0 +1,4 @@
+.foodItemObject:hover {
+    opacity: 68%;
+    transform: scale(1.1);
+}
