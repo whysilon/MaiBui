@@ -19,7 +19,7 @@ import FoodNutritionContainer from "./pages/FoodNutritionPage/FoodNutritionConta
 import FoodCategoryContainer from "./pages/FoodCategoryPage/FoodCategoryContainer";
 import FoodSearchContainer from "./pages/FoodSearchPage/FoodSearchContainer";
 import FoodItemContainer from "./pages/FoodCategoryItemPage/FoodItemContainer";
-
+import NotFoundContainer from "./pages/NotFoundPage/NotFoundContainer";
 
 const App = () => {
   return (
@@ -39,20 +39,30 @@ const App = () => {
           />
           <Route path="/login" element={<LoginContainer />} />
           <Route path="/feedback/:id" element={<FeedbackContainer />} />
-          <Route path="/navigate-restaurant/:id" element={<NavigateContainer />} />
-          <Route path="/recommend-restaurant" element={<RecommendContainer />} />
+          <Route
+            path="/navigate-restaurant/:id"
+            element={<NavigateContainer />}
+          />
+          <Route
+            path="/recommend-restaurant"
+            element={<RecommendContainer />}
+          />
           <Route path="/calorie-calculator" element={<CalorieContainer />} />
           <Route path="/search-restaurant" element={<SearchContainer />} />
-          <Route path="/select-restaurant/:id" element={<SelectRestaurantContainer />} />
+          <Route
+            path="/select-restaurant/:id"
+            element={<SelectRestaurantContainer />}
+          />
           <Route path="/signup" element={<SignupContainer />} />
           <Route
             path="/forgot-password"
             element={<ForgotPasswordContainer />}
           />
-          <Route path="/food-search" element={<FoodSearchContainer/>} />
-          <Route path="/nutrition/:id" element={<FoodNutritionContainer/>}/>
-          <Route path="/food-categories" element = {<FoodCategoryContainer/>}/>
-          <Route path="/food-categories/:id" element={<FoodItemContainer/>}/>
+          <Route path="/food-search" element={<FoodSearchContainer />} />
+          <Route path="/nutrition/:id" element={<FoodNutritionContainer />} />
+          <Route path="/food-categories" element={<FoodCategoryContainer />} />
+          <Route path="/food-categories/:id" element={<FoodItemContainer />} />
+          <Route path="*" element={<NotFoundContainer />} />
         </Routes>
       </Router>
     </div>
