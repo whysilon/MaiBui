@@ -3,9 +3,7 @@ import { useState } from "react";
 import {
   Switch,
   FormControlLabel,
-  IconButton,
   TextField,
-  InputAdornment,
   Button,
   Stack,
   Box,
@@ -131,11 +129,13 @@ const ChangePasswordForm = (props) => {
               control={<Switch onClick={togglePwdShown} />}
             />
             <Stack sx={{ margin: 5 }} direction="row" spacing={6}>
-              <Link to={"/account-center"}>
-                <Button type="reset" id="cancel">
-                  Cancel
-                </Button>
-              </Link>
+              <Button
+                onClick={window.location.assign("/account-center")}
+                type="reset"
+                id="cancel"
+              >
+                Cancel
+              </Button>
               <Button
                 type="submit"
                 disabled={

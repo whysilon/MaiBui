@@ -16,8 +16,11 @@ import {
   Stack,
   Box,
 } from "@mui/material";
-import { Link } from "react-router-dom";
 import PasswordChecklist from "react-password-checklist";
+import { auth, db } from "../../firebase-config.js";
+import { reauthenticateWithCredential } from "firebase/auth";
+import { updatePassword } from "firebase/auth";
+import { EmailAuthProvider } from "firebase/auth";
 
 //CSS
 
@@ -103,14 +106,34 @@ const ChangePasswordForm = (props) => {
    */
   const changePwdHandler = (event) => {
     event.preventDefault();
-
+    let user = auth.currentUser;
     const changePwdDetails = {
       oldPwd: enteredOldPwd,
       newPwd: enteredNewPwd,
       confirmedPwd: enteredConfirmedPwd,
     };
-    window.location.href = "/account-center";
-    console.log(changePwdDetails);
+    const credential = EmailAuthProvider.credential(
+      user.email,
+      changePwdDetails.oldPwd
+    );
+
+    reauthenticateWithCredential(auth.currentUser, credential)
+      .then(() => {
+        updatePassword(user, changePwdDetails.newPwd)
+          .then(() => {
+            console.log("Password updated");
+            window.location.href = "/account-center";
+          })
+          .catch((error) => {
+            alert("Error updating password. Please try again.");
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        alert("Wrong old password. Please try again");
+        clearInputField();
+        console.log(error);
+      });
   };
 
   /**

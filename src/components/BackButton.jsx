@@ -26,10 +26,12 @@ function BackButton() {
   }
 
   return (
-    <IconButton style={{ maxWidth: "55px", margin: "2px", padding: "2px" }}>
+    <IconButton
+      style={{ maxWidth: "55px", margin: "2px", padding: "2px" }}
+      onClick={handleBackClick}
+    >
       <ArrowBackIcon
         alt="Back"
-        onClick={handleBackClick}
         fontSize="large"
         style={{ color: "black" }}
       ></ArrowBackIcon>
