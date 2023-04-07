@@ -4,15 +4,15 @@ import "./SignupForm.css";
 import React, { useState } from "react";
 import { TextField, FormControlLabel, Switch } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
-import { addDoc, collection } from "firebase/firestore";
+// import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { generateGravatar } from "../../helpers/accountHelpers";
-import PasswordChecklist from "react-password-checklist";
+// import PasswordChecklist from "react-password-checklist";
 import { addDoc, collection } from "firebase/firestore";
-import { auth, db } from "../../firebase-config.js";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { auth, db } from "../../firebase-config.js";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 /**

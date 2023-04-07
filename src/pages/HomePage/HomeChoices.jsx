@@ -45,6 +45,19 @@ const HomeChoices = () => {
   //   getUsername();
   // },[]);
 
+  const [username, setUsername] = useState("");
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUsername(user.displayName);
+      } else {
+        setUsername("null");
+      }
+    });
+
+    return unsubscribe;
+  }, [auth]);
+
   return (
     <Stack
       container
@@ -55,7 +68,7 @@ const HomeChoices = () => {
       sx={{ marginTop: "50px" }}
     >
       <Stack className="homechoices-title">
-        <Typography variant="h3">Welcome,{user.displayName}</Typography>
+        <Typography variant="h3">Welcome,{username}</Typography>
         <Typography variant="h4">What would you like to do?</Typography>
       </Stack>
       <Grid

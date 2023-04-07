@@ -2,6 +2,7 @@ import { TextField } from "@mui/material";
 import { useState } from "react";
 import { auth } from "../../firebase-config";
 import { sendPasswordResetEmail } from "firebase/auth";
+import BackButton from "../../components/BackButton";
 // CSS
 import "./ForgotPassword.css";
 
@@ -69,6 +70,7 @@ const ForgotPasswordContainer = () => {
 
   return (
     <div className="forgotPassword-container">
+      <BackButton />
       <form className="forgotPassword-form" onSubmit={submitHandler}>
         <h1>Forgot Password?</h1>
         <p1>Key in your email:</p1>

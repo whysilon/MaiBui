@@ -21,11 +21,12 @@ import SideBar from "./SideBar";
 import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
-import { userProfileData } from "../pages/AccountCenterPage/userProfileData";
+
 import Backbutton from "../components/BackButton";
 import { auth, db } from "../firebase-config";
 import { collection } from "firebase/firestore";
 import { useEffect } from "react";
+
 /**
  * This function is a component for the navigation bar in the account center page.
  * @function AccountCenterNavBar
@@ -41,9 +42,9 @@ function AccountCenterNavBar(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
-  const [username, setUsername] = useState("null");
-  const [photoURL, setPhotoURL] = useState("null");
-  const [uid, setUid] = useState("null");
+  const [username, setUsername] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
+  const [uid, setUid] = useState("");
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -52,9 +53,9 @@ function AccountCenterNavBar(props) {
         setUsername(user.displayName);
         setPhotoURL(user.photoURL);
       } else {
-        setUid("null");
-        setUsername("null");
-        setPhotoURL("null");
+        setUid("");
+        setUsername("");
+        setPhotoURL("");
       }
     });
 
@@ -100,12 +101,12 @@ function AccountCenterNavBar(props) {
     return lastSegment
       .replace("%20", " ")
       .split("-")
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-      .join(" ");
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1));
   }
 
   const logOut = () => {
-    signOut(auth)
+    auth
+      .signOut(auth)
       .then(() => {
         localStorage.removeItem("token");
         window.location.href = "/";
