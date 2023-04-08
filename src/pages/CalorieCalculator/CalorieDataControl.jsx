@@ -10,15 +10,22 @@ export function getCurrentDate(){
 export async function addCalorieData(data,email) {
     const docref = doc(db,`calorie_records/${email}/calorie_record_${getCurrentDate()}`,Timestamp.now().toDate().toISOString())
     const res = await setDoc(docref,data)
-    console.log(res)
+    return res
 }
 
 export async function getCalorieData(email){
+    const getCalories = async() => {
+    try{
     const colref = collection(db,`calorie_records/${email}/calorie_record_${getCurrentDate()}`)
     const q = query(colref)
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-// doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.data().calorie);
-    });
+    const querySnapshot = await getDocs(q)
+    console.log("querysnapshot:",querySnapshot)
+    return querySnapshot
+    }
+    catch (err){
+        console.error(err)
+        return "Error!"
+    }
+    }
+    return getCalories()
 }

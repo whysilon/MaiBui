@@ -3,13 +3,16 @@
     background-position:right;
     background-color: white;
     background-repeat: no-repeat;
+    height: 100vh;
 }
 .aligner{
     display: flex;
     flex:auto;
     flex-direction: column;
-    gap: 10vh;
+    justify-content: space-evenly;
+    gap: 3vh;
     margin-left: 4vw;
+    height: inherit;
 }
 .daily{
     display: inline;

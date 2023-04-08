@@ -3,9 +3,11 @@ import "./CalorieContainer.css";
 import React from "react";
 import CustomInput from "./CustomInput";
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
-import { db } from "../../firebase-config";
-import { Timestamp, addDoc, collection, doc, getDoc } from "firebase/firestore";
-import { addCalorieData, getCalorieData } from "./CalorieDataControl";
+import { auth } from "../../firebase-config";
+import { CircularProgress, Typography } from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getCalorieData } from "./CalorieDataControl";
 
 /**
  * This contains the functions required for Calorie Calculator
@@ -13,24 +15,54 @@ import { addCalorieData, getCalorieData } from "./CalorieDataControl";
  * 
  */
 
-function CalorieContainer() {
-  console.log(Timestamp.now().toDate().toISOString())
-  const res = getCalorieData("why@gaho.com")
-  console.log(res)
+function CalorieContainer() { 
+  let limit = 2000;
+  const [total,setTotal] = useState(0)
+  const [loading,setLoading] = useState(true)
+  let user,email,username = "";
+  try{
+    user = auth.currentUser
+    email = user.email
+    username = user.displayName
+  }
+  catch(err){
+    console.error(err)
+  }
+  useEffect(() => {
+    let ignore = false
+    setLoading(true)
+    if(!ignore){
+    getCalorieData(email).then((res) => {
+      console.log("in useeffect:",res)
+      let temp = 0;
+      res.forEach((element) => {
+        console.log(element.data().calorie)
+        temp = temp + parseInt(element.data().calorie)
+        console.log("temp:",temp)
+      })
+      setTotal(parseInt(temp))
+      setLoading(false)
+      ignore = true
+    })
+    }
+  },[])
   return (
-    <body className="background">
+    <div className="background">
       <AccountCenterNavBar/>
       <div className="aligner">
         <div>
-        <p className="helloUser">Hello User!</p>
-        <p className="daily">Daily Calorie Limit: 2000</p>
-        <CalorieCalculator />
+        <Typography variant = "h3">Hello {username}!</Typography>
+        <Typography variant= "subtitle1">Daily Calorie Limit: {limit}</Typography>
+        {
+        loading ? <CircularProgress/> :
+        <CalorieCalculator tot = {total} lim = {limit} />
+        }
         </div>
         <div>
           <CustomInput/>
         </div>
       </div>
-    </body>
+    </div>
   );
 }
 

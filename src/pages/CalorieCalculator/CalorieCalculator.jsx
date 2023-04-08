@@ -1,5 +1,9 @@
+import { auth } from "../../firebase-config";
 import "./CalorieCalculator.css"
-import React from "react"
+import React, { useEffect, useState } from "react"
+import { getCalorieData } from "./CalorieDataControl";
+import { CircularProgress, Typography } from "@mui/material";
+
 /**
  * This displays a progress bar for the daily calorie intake
  * 
@@ -7,41 +11,40 @@ import React from "react"
  * 
  * 
  */
-function CalorieCalculator() {
-    const ProgressBar = (props) => {
-        const {bgcolor,completed } = props;
+const ProgressBar = (props) => {
+  const {bgcolor,completed } = props;
 
-        const containerStyles = {
-            width: '20%',
-            backgroundColor: "#e0e0de",
-            borderRadius: 50,
-            margin: 0,
-            textAlign: 'right'
-          }
-        
-          const fillerStyles = {
-            width: `${completed}%`,
-            backgroundColor: bgcolor,
-            borderRadius: 'inherit',
-            textAlign: 'right'
-          }
-        
-          const labelStyles = {
-            padding: 5,
-            color: 'white',
-            fontWeight: 'bold'
-          }
-        return (
-            <div style={containerStyles}>
-                <div style={fillerStyles}>
-                    <span className={labelStyles}>{`${completed}%`}</span>
-                </div>
-            </div>
-        )
+  const containerStyles = {
+      width: '20%',
+      backgroundColor: "#e0e0de",
+      borderRadius: 50,
+      margin: 0,
+      textAlign: 'right'
     }
-    let limit = 2000;
-    let current = 480;
-    const UserData = {bgcolor: "purple", completed: current/limit * 100};
+  
+    const fillerStyles = {
+      width: `${completed}%`,
+      backgroundColor: bgcolor,
+      borderRadius: 'inherit',
+      textAlign: 'right'
+    }
+  
+    const labelStyles = {
+      padding: 5,
+      color: 'white',
+      fontWeight: 'bold'
+    }
+  return (
+      <div style={containerStyles}>
+          <div style={fillerStyles}>
+              <span className={labelStyles}>{`${completed}%`}</span>
+          </div>
+      </div>
+  )
+}
+
+function CalorieCalculator({tot,lim}) {
+    const UserData = {bgcolor: "purple", completed: tot/lim * 100};
     
     return (
             <div>

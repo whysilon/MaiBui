@@ -9,6 +9,9 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import Stack from '@mui/joy/Stack';
 import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
+import { useState, Fragment } from "react";
+import { addCalorieData } from "./CalorieDataControl";
+import { auth } from "../../firebase-config";
 /**
  * This creates a form where users input the food name and calorie intake
  * 
@@ -17,9 +20,17 @@ import Typography from '@mui/joy/Typography';
  */
 
 function CustomInput(){
-    const [open, setOpen] = React.useState(false);
-  return (
-    <React.Fragment>
+    const [open, setOpen] = useState(false);
+    const [foodName,setFoodName] = useState("");
+    const [calorie,setCalorie] = useState(0);
+    const handleFoodNameChange = (event) => {
+      setFoodName(event.target.value);
+    }
+    const handleCalorieChange = (event) => {
+      setCalorie(event.target.value);
+    }
+    return (
+    <Fragment>
       <Button
         variant="outlined"
         color="neutral"
@@ -43,24 +54,43 @@ function CustomInput(){
           <form
             onSubmit={(event) => {
               event.preventDefault();
+              console.log(foodName)
+              console.log(calorie)
+              const data = {
+                "food_name" : foodName,
+                "calorie" : calorie
+              }
+              addCalorieData(data,auth.currentUser.email).then((res) => {
+              console.log(res)
               setOpen(false);
+              }
+              )
             }}
           >
             <Stack spacing={2}>
               <FormControl>
                 <FormLabel>Food Name</FormLabel>
-                <Input autoFocus required />
+                <Input 
+                name = "food_name"
+                value = {foodName}
+                onChange = {handleFoodNameChange}
+                autoFocus required />
               </FormControl>
               <FormControl>
                 <FormLabel>Custom Calories</FormLabel>
-                <Input required />
+                <Input 
+                name = "calorie"
+                type = "number"
+                value = {calorie}
+                onChange = {handleCalorieChange}
+                required />
               </FormControl>
               <Button type="submit">Submit</Button>
             </Stack>
           </form>
         </ModalDialog>
       </Modal>
-    </React.Fragment>
+    </Fragment>
   );
 }
 
