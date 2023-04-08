@@ -69,25 +69,31 @@ function SearchRestaurant(props)
         else{
             return(
                 data.map((result) => (
-                    <div className="results">
-                        <button key={result.id} style={{ width: "500px", height: "50px",}}>
-                        <Link to={`/select-restaurant/${result.place_id}`}>{result.name}</Link>
-                        </button>
+                    <div>
+                        <Link to={`/select-restaurant/${result.place_id}`}>
+                            <div key={result.id} style={{width: "444px", height: "60px", display: "flex", justifyContent: "center", alignItems:"center", fontSize: "17", color:"white", backgroundColor:"#588157",border: "3px white solid"}}>
+                                {result.name}
+                            </div>
+                        </Link>
                     </div>
             )));
         }
     }
 
     return(
-        <div className="search">
-            <h1 style={{fontSize: 40}}>Search for Healthier Restaurants</h1>
-            <input className="searchBar"
-            value={restaurantName}
-            onChange={searchHandler}
-            type="search"
-            placeholder="Enter restaurant name"
-            />
-            {displayResults(data)}
+        <div className="search-parentContainer">
+            <div className="search">
+                <h1 style={{fontSize: 40}}>Search for Healthier Restaurants</h1>
+                <input className="searchBar"
+                value={restaurantName}
+                onChange={searchHandler}
+                type="search"
+                placeholder="Enter restaurant name"
+                />
+                <div className="searchResults">
+                    {displayResults(data)}
+                </div>
+            </div>
         </div>
     )
 }

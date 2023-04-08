@@ -22,7 +22,7 @@ function AccountCenterContainer() {
 
   return (
     <div className="flex-col page">
-      <AccountCenterNavBar />
+             <AccountCenterNavBar />
       <UserProfileContainer />
 
       <Stack spacing={4} sx={{ marginBottom: 20 }}>

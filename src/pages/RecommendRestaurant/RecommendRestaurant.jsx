@@ -71,7 +71,9 @@ function RecommendRestaurant(props)
                     <UserContext.Provider value={data}>
                         <div className="results">
                             <Link to={`/select-restaurant/${result.place_id}`}>
-                                <button key={result.id} style={{ width: "500px", height: "50px",}}>{result.name}</button>
+                                <div key={result.id} style={{width: "444px", height: "60px", display: "flex", justifyContent: "center", alignItems:"center", fontSize: "17", color:"white", backgroundColor:"#588157",border: "3px white solid"}}>
+                                    {result.name}
+                                </div>
                             </Link>
                         </div>
                     </UserContext.Provider>
@@ -80,9 +82,13 @@ function RecommendRestaurant(props)
     }
     
     return(
-        <div className="recommend">
-                <h1 style={{fontSize: 40}}>Restaurants near you:</h1>
-                {displayResults(data)}
+        <div className="recommend-parentContainer">
+            <div className="recommend">
+                    <h1 style={{fontSize: 40}}>Restaurants near you:</h1>
+                    <div className="recommendResults">
+                        {displayResults(data)}
+                    </div>
+            </div>
         </div>
     )
 }

@@ -8,6 +8,7 @@ import {arrayUnion, collection, doc, getCountFromServer, getDoc, getDocs, query,
 import { useState} from "react";
 import LaunchIcon from '@mui/icons-material/Launch';
 import FeedbackPopup from "../../components/FeedbackPopup";
+import { WindowSharp } from "@mui/icons-material";
 // To do: Display feedbacks in popup
 //        Find a way to display username in feedback
 
@@ -85,6 +86,15 @@ const SelectRestaurantDetails = () => {
                              <p key={index} style={{ fontSize: 15}} >{item}</p>
                            );
 
+  const verifyWebsite = () =>{
+    if(details.website != null){
+      window.open(details.website, "_blank");
+      return;
+    }
+    else{
+      alert('No available website');
+    }
+  }
 
 
   return (
@@ -110,9 +120,9 @@ const SelectRestaurantDetails = () => {
               Navigate
             </button>
           </Link>
-
-          <Link to={details.website} target="_blank" onClick={visitedRestaurant}>
-            <button className="website" >
+          
+          <Link onClick={visitedRestaurant} >
+            <button className="website" onClick={verifyWebsite}>
                 Reserve
             </button>
           </Link>
@@ -126,21 +136,19 @@ const SelectRestaurantDetails = () => {
       </main>
 
       <FeedbackPopup trigger={buttonPopup} setTrigger={setButtonPopup} restaurant={details.name}>
-        <h1>Feedbacks</h1>
+        <h1 style={{color: "white"}}>Feedbacks</h1>
         {feedbacks.map((feedback)=>{
                       return (
                           <div className="feedbackbox">
                               <div className="box-1">
-                                  <div>Email: {feedback.email}</div>
-                                  <div>Rating: {[...Array(feedback.rating)].map((star, index) => {
+                                  <div>{feedback.email}</div>
+                                  <div>{[...Array(feedback.rating)].map((star, index) => {
                                 index += 1;
                                 return (
                                     <span className="star">&#9733;</span>
                                 );
                               })}</div>
-                              </div>
-                              <div className="box-2">
-                                  {feedback.experience}
+                                <div className="exp">{feedback.experience}</div>
                               </div>
                           </div>
                       )
