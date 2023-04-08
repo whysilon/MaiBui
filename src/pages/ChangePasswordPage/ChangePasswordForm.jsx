@@ -9,12 +9,13 @@ import { useState } from "react";
 import {
   Switch,
   FormControlLabel,
-  IconButton,
+  Alert,
   TextField,
-  InputAdornment,
+  Snackbar,
   Button,
   Stack,
   Box,
+  Slide,
 } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
 import { auth, db } from "../../firebase-config.js";
@@ -77,12 +78,38 @@ const ChangePasswordForm = (props) => {
   };
 
   /**
+   * Handle the close of the SnackBar
+   * @param {*} event User clicked
+   * @param {*} reason SnackBar would not be close if the user clicked outside of it
+   *
+   */
+
+  const handleSnackBarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackBarOpen(false);
+  };
+
+  /**
    * Handler for password validation.
    * @param {boolean} valid - The validation result.
    */
   const validPwdHandler = (valid) => {
     setValidPwd(valid);
   };
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
+
+  /**
+   * Set the alert message that will be shown in the SnackBar
+   */
+  const [alertMessage, setAlertMessage] = useState("");
+
+  /**
+   * Set the severity of the SnackBar,
+   * initially "error"
+   */
+  const [snackBarSeverity, setSnackBarSeverity] = useState("");
 
   /**
    * Function for clearing input fields.
@@ -121,16 +148,27 @@ const ChangePasswordForm = (props) => {
       .then(() => {
         updatePassword(user, changePwdDetails.newPwd)
           .then(() => {
-            console.log("Password updated");
-            window.location.href = "/account-center";
+            // console.log("Password updated successfully!");
+            setAlertMessage("Password updated successfully!");
+            setSnackBarOpen(true);
+            setSnackBarSeverity("success");
+            setTimeout(() => {
+              window.location.href = "/account-center";
+            }, 1000);
           })
           .catch((error) => {
-            alert("Error updating password. Please try again.");
+            // alert("Error updating password. Please try again.");
+            setAlertMessage("Error updating password. Please try again.");
+            setSnackBarOpen(true);
+            setSnackBarSeverity("error");
             console.log(error);
           });
       })
       .catch((error) => {
-        alert("Wrong old password. Please try again");
+        // alert("Wrong old password. Please try again");
+        setAlertMessage("Wrong old password. Please try again");
+        setSnackBarOpen(true);
+        setSnackBarSeverity("error");
         clearInputField();
         console.log(error);
       });
@@ -157,10 +195,14 @@ const ChangePasswordForm = (props) => {
           "You have unsaved changes. Are you sure you want to cancel?"
         )
       ) {
-        window.location.href = "/account-center";
+        setTimeout(() => {
+          window.location.href = "/account-center";
+        }, 0);
       }
     } else {
-      window.location.href = "/account-center";
+      setTimeout(() => {
+        window.location.href = "/account-center";
+      }, 0);
     }
   };
 
@@ -275,6 +317,17 @@ const ChangePasswordForm = (props) => {
             </Stack>
           </div>
         </Stack>
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          open={snackBarOpen}
+          autoHideDuration={6000}
+          onClose={handleSnackBarClose}
+          TransitionComponent={Slide}
+        >
+          <Alert onClose={handleSnackBarClose} severity={snackBarSeverity}>
+            {alertMessage}
+          </Alert>
+        </Snackbar>
       </form>
     </Box>
   );

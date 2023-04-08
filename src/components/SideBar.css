@@ -1,9 +1,7 @@
 .bm-burger-button {
     position: sticky;
-    width: 30px;
-    height: 25px;
-    margin-top: 3px;
-    margin-right: 20px;
+    width: 32px;
+    height: 26px;
 }
 
 .menu-item {
@@ -85,7 +83,6 @@
 .bm-item {
     display: inline-block;
     margin-top: 10%;
-    text-decoration: none;
 }
 
 .bm-item:hover {
@@ -96,6 +93,6 @@
 /* Styling of overlay */
 
 .bm-overlay {
-    top: 0;
     background: rgba(0, 0, 0, 0.3);
+    top: 0;
 }

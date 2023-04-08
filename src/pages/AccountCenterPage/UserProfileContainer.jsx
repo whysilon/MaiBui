@@ -41,6 +41,7 @@ const UserProfileContainer = () => {
   }, [auth]);
 
   return (
+      <Stack
     <Stack
       spacing={4}
       alignItems="center"

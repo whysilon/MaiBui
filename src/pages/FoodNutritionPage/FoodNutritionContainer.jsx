@@ -8,7 +8,7 @@ import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useParams } from "react-router";
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
-import { getNutrition } from "../API/NutritionixAPIControl.jsx";
+import { getNutrition } from "../NutritionixAPI/NutritionixAPIControl.jsx";
 import NutritionInformation from "./NutritionInformation";
 import "./FoodNutritionContainer.css"
 
@@ -24,17 +24,17 @@ function FoodNutritionContainer(){
             setData(res)
             setLoading(false)
             ignore = true
-            console.log(data)
         });
-
-    console.log(data)
     }
     return(
     <div className="container">
         <AccountCenterNavBar/>
             <div className = "nutrition" > 
             {   
-                loading ? (<CircularProgress/>) :
+                loading ? (
+                <div className = "progress">
+                <CircularProgress/>
+                </div>) :
                 <NutritionInformation data = {data}/>
             }
             </div>

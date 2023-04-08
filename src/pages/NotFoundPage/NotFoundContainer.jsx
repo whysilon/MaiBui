@@ -1,9 +1,11 @@
 import React from "react";
 import HomeContainer from "../HomePage/HomeContainer";
 import { Container, Typography, Button, Stack } from "@mui/material";
-import { Link } from "react-router-dom";
+
+import { auth } from "../../firebase-config";
 
 const NotFoundContainer = () => {
+  const user = auth.currentUser;
   return (
     <div>
       <Stack
@@ -20,7 +22,9 @@ const NotFoundContainer = () => {
         <Typography variant="h4">Page Not Found</Typography>
         <Button
           onClick={() => {
-            window.location.assign("/home");
+            user
+              ? window.location.assign("/home")
+              : window.location.assign("/");
           }}
           color="error"
         >

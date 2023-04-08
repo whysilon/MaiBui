@@ -7,9 +7,11 @@
 import { Button, TextField, Typography } from "@mui/material"
 import { useState } from "react";
 import "./NutritionInformation.css";
+import { addCalorieData } from "../NutritionixAPI/CalorieDataControl";
+import { auth } from "../../firebase-config";
 
 function CapitalizeFirstLetter(str){
-    str = str.replace("%20"," ");
+    str = str.replace(/%20/g," ");
     return(
         str.charAt(0).toUpperCase()+str.slice(1).toLowerCase()
     )
@@ -22,17 +24,27 @@ function NutritionInformation({data}) {
     }
     */
    const [servings,setServings] = useState(1)
-   console.log(data)
-   /*
-   data = {
-        'serving_unit' : 'g',
-        'food_name': "Tea",
-        'nf_calories' : 10,
-        'nf_cholesterol' : 1,
-        'nf_saturated_fat' : 2,
-        'nf_total_fat' : 42,
-        'nf_total_carbohydrate' : 4}
-        */
+   const handleSubmit = async(e) => {
+        e.preventDefault()
+        const info = {
+            food_name : data.food_name,
+            calorie : Math.round(data.nf_calories*servings)
+        }
+        try{
+            console.log("er")
+            const user = auth.currentUser
+            console.log(user)
+            const email = user.email
+            console.log(email)
+            const res = await addCalorieData(info,email)
+            alert("Success!")
+            console.log(res)
+        }
+        catch(err){
+            console.error(err)
+            alert("Error! Please try again a minute later")
+        }
+   }
     const handleInput = (e) => {
         if(e === "") setServings(1);
         setServings(e.target.value);
@@ -54,8 +66,7 @@ function NutritionInformation({data}) {
                     <Typography variant = "h5">Total Carbohydrates: {data.nf_total_carbohydrate}g</Typography>
                 </div>
                 <div>
-                    <Typography variant = "subtitle2">Enter your serving size here:</Typography>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <TextField
                         label="Enter serving size"
                         variant="outlined"
@@ -67,11 +78,12 @@ function NutritionInformation({data}) {
                             inputProps:{min:0}
                         }}
                         onKeyPress={(event) => {
-                            if (event?.key === '-' || event?.key === '+') {
+                            if (event?.key === '-' || event?.key === '+' || event?.key === 'e') {
                             event.preventDefault();
                         }}}
                         >
                         </TextField>
+                        <Button variant="contained" type="submit">Submit!</Button>
                         <Button variant="contained" style={{marginLeft: "50px", backgroundColor:"#344E41"}}>Submit</Button>
                         <Typography variant="subtitle1">Calories: {Math.round(data.nf_calories*servings)}</Typography>
                     </form>

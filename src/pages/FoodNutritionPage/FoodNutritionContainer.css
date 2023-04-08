@@ -11,3 +11,8 @@
     height: inherit;
     width: 100%;
 }
+
+.progress{
+    justify-content: center;
+    align-items: center;
+}

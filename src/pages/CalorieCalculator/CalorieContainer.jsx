@@ -3,7 +3,13 @@ import "./CalorieContainer.css";
 import React from "react";
 import CustomInput from "./CustomInput";
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
-import FindUsername from "../../components/findUsername";
+import { auth } from "../../firebase-config";
+import { Button, CircularProgress, Link, Typography } from "@mui/material";
+import { useState } from "react";
+import { useEffect } from "react";
+import { getCalorieData } from "../NutritionixAPI/CalorieDataControl";
+import { Search } from "@mui/icons-material";
+import { Stack } from "@mui/system";
 
 /**
  * This contains the functions required for Calorie Calculator
@@ -11,24 +17,59 @@ import FindUsername from "../../components/findUsername";
  * 
  */
 
-function CalorieContainer() {
+function CalorieContainer() { 
+  let limit = 2000;
+  const [total,setTotal] = useState(0)
+  const [loading,setLoading] = useState(true)
+  let user,email,username = "";
+  try{
+    user = auth.currentUser
+    email = user.email
+    username = user.displayName
+  }
+  catch(err){
+    console.error(err)
+  }
+  useEffect(() => {
+    let ignore = false
+    setLoading(true)
+    if(!ignore){
+    getCalorieData(email).then((res) => {
+      let temp = 0;
+      res.forEach((element) => {
+        temp = temp + parseInt(element.data().calorie)
+      })
+      setTotal(parseInt(temp))
+      setLoading(false)
+      ignore = true
+    })
+    }
+    if (email === undefined) setLoading(true);
+  },[])
+  
   return (
-    <body>
+    <div className="background">
       <AccountCenterNavBar/>
       <div className="aligner">
-        <div className="imgAndStats">
-          <div className="stats">
-            <h1 className="helloUser">Hello, <FindUsername/>!</h1>
-            <p className="daily">Daily Calorie Limit: 2000</p>
-            <CalorieCalculator />
-            <div className="customInput">
-              <CustomInput/>
-            </div>
-          </div>
-          <div className="background" src="../../public/LettuceBG.png"></div>
+        <div>
+        <Typography variant = "h3">Hello {username}!</Typography>
+        <Typography variant= "subtitle1">Daily Calorie Limit: {limit}</Typography>
+        {
+        loading ? <CircularProgress/> :
+        <CalorieCalculator tot = {total} lim = {limit} />
+        }
         </div>
+        <Stack direction= "row" spacing = {1}>
+          <CustomInput/>
+          <Link href = {"/food-search"}>
+            <Button variant="outlined" 
+            endIcon = {<Search/>}>
+              Food Search
+            </Button>
+          </Link>
+        </Stack>
       </div>
-    </body>
+    </div>
   );
 }
 

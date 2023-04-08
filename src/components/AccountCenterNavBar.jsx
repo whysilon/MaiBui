@@ -99,9 +99,9 @@ function AccountCenterNavBar(props) {
     const segments = str.split("/");
     const lastSegment = segments[segments.length - 1];
     return lastSegment
-      .replace("%20", " ")
+      .replace(/%20/g, " ")
       .split("-")
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1));
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1) + " ");
   }
 
   const logOut = () => {

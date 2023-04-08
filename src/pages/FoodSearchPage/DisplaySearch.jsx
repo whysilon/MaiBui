@@ -2,7 +2,7 @@ import React, {useState , useEffect } from 'react'
 import { Stack } from '@mui/system';
 import { Paper, Box, Typography, CircularProgress, Button, Divider, Link} from '@mui/material';
 import "./DisplaySearch.css"
-import GetFoodSearch from '../API/NutritionixAPIControl.jsx';
+import GetFoodSearch from '../NutritionixAPI/NutritionixAPIControl';
 
 /**
  * Display the food list based on the search bar

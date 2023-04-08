@@ -1,9 +1,9 @@
 import { useState } from "react";
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
-import GetFoodSearch from "../API/NutritionixAPIControl";
 import { useParams } from "react-router-dom";
 import { CircularProgress} from "@mui/material";
 import FoodCategoryItems from "./FoodCategoryItems";
+import GetFoodSearch from "../NutritionixAPI/NutritionixAPIControl";
 
 let ignore = false
 

@@ -16,6 +16,10 @@
     align-items: center;
     height: 90vh;
     width: 100vw;
+    background-position: right;
+    background-color: white;
+    background-repeat: no-repeat;
+    height: 100vh;
 }
 
 .stats {
@@ -24,6 +28,10 @@
     justify-content: flex-start;
     align-items: left;
     flex-direction: column;
+    justify-content: space-evenly;
+    gap: 3vh;
+    margin-left: 4vw;
+    height: inherit;
 }
 
 .daily {
