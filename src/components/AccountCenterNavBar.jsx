@@ -101,7 +101,7 @@ function AccountCenterNavBar(props) {
     return lastSegment
       .replace("%20", " ")
       .split("-")
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1));
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1) + " ");
   }
 
   const logOut = () => {
@@ -123,7 +123,7 @@ function AccountCenterNavBar(props) {
   return (
     //TODO: GET user profile data from databasae
 
-    <AppBar position="static" color="inherit" className="navbar">
+    <AppBar position="static" style={{backgroundColor: "#588157"}} className="navbar" elevation={0}>
       <Toolbar>
         <SideBar />
         <Backbutton />

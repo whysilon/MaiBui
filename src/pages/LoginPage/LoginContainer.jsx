@@ -1,8 +1,8 @@
 // CSS
 import "./LoginContainer.css";
 
-import LoginPicture from "./LoginPicture";
 import LoginForm from "./LoginForm";
+import LoginPicture from "./LoginPage";
 
 //To do: Sync Login Details with backend
 
