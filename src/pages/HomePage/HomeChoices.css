@@ -1,32 +1,39 @@
 /* Title of homepage */
 
+.homechoices-parent-container {
+    background-color: #DAD7CD;
+    height: 92.8vh;
+}
+
 .homechoices-title {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 30px 0 30px 0;
 }
 
 
 /* All selections on the homepage */
 
 .homechoices-container {
+    background-color: #DAD7CD;
     display: flex;
     justify-content: space-around;
-    height: calc(80vh - 102px);
+    height: 480px;
+    margin-top: 43px;
 }
 
 
 /* Each selection on homepage */
 
 .homechoices-choice {
-    background-color: #41B723;
+    background-color: #344E41;
     width: 20vw;
     height: 85%;
     margin: auto;
     padding: 26px;
     text-align: center;
-    box-shadow: 10px 10px 5px 12px rgb(231, 230, 230);
 }
 
 
@@ -49,15 +56,14 @@
 /* Heading of each selection */
 
 .homechoices-choice h1 {
-    font-size: 3rem;
+    font-size: 2.2rem;
 }
 
 
 /* Description of each selection */
 
 .homechoices-choice span {
-    font-size: 1.6rem;
-    padding: 10px;
+    font-size: 1.4rem;
 }
 
 

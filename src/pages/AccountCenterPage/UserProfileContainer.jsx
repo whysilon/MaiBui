@@ -41,15 +41,23 @@ const UserProfileContainer = () => {
   }, [auth]);
 
   return (
-    <Stack
-      spacing={4}
-      alignItems="center"
-      style={{ margin: "50px", alignSelf: "center" }}
-    >
-      <Avatar src={photoURL} sx={{ width: 200, height: 200 }} />
+        <Stack
+          // direction="row"
+          spacing={4}
+          alignItems="center"
+          // className="self-center"
+          style={{ margin: "50px", alignSelf: "center" }}
+        >
+          <Avatar
+            // className="profile-img"
+            src={userProfileData.img}
+            sx={{ width: 200, height: 200 }}
+          />
 
-      <Typography variant="h2">Welcome, {username}</Typography>
-    </Stack>
+          <Typography style={{display: "flex", justifyContent: "center", fontSize: 60}}>
+            Welcome, <FindUsername />
+          </Typography>
+        </Stack>
   );
 };
 
