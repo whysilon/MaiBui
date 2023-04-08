@@ -2,7 +2,7 @@
 import "./LoginContainer.css";
 
 import LoginForm from "./LoginForm";
-import LoginPicture from "./LoginPage";
+import LoginPicture from "./LoginPicture";
 
 //To do: Sync Login Details with backend
 

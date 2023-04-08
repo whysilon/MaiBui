@@ -10,8 +10,8 @@ import Stack from '@mui/joy/Stack';
 import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
 import { useState, Fragment } from "react";
-import { addCalorieData } from "./CalorieDataControl";
 import { auth } from "../../firebase-config";
+import { addCalorieData } from "../NutritionixAPI/CalorieDataControl";
 /**
  * This creates a form where users input the food name and calorie intake
  * 
@@ -83,7 +83,11 @@ function CustomInput(){
                 type = "number"
                 value = {calorie}
                 onChange = {handleCalorieChange}
-                required />
+                required 
+                onKeyPress={(event) => {
+                    if (event?.key === '-' || event?.key === '+' || event?.key === 'e') {
+                    event.preventDefault();
+                }}}/>
               </FormControl>
               <Button type="submit">Submit</Button>
             </Stack>

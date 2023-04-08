@@ -19,7 +19,6 @@ export async function getCalorieData(email){
     const colref = collection(db,`calorie_records/${email}/calorie_record_${getCurrentDate()}`)
     const q = query(colref)
     const querySnapshot = await getDocs(q)
-    console.log("querysnapshot:",querySnapshot)
     return querySnapshot
     }
     catch (err){

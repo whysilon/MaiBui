@@ -4,10 +4,12 @@ import React from "react";
 import CustomInput from "./CustomInput";
 import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import { auth } from "../../firebase-config";
-import { CircularProgress, Typography } from "@mui/material";
+import { Button, CircularProgress, Link, Typography } from "@mui/material";
 import { useState } from "react";
 import { useEffect } from "react";
-import { getCalorieData } from "./CalorieDataControl";
+import { getCalorieData } from "../NutritionixAPI/CalorieDataControl";
+import { Search } from "@mui/icons-material";
+import { Stack } from "@mui/system";
 
 /**
  * This contains the functions required for Calorie Calculator
@@ -33,19 +35,18 @@ function CalorieContainer() {
     setLoading(true)
     if(!ignore){
     getCalorieData(email).then((res) => {
-      console.log("in useeffect:",res)
       let temp = 0;
       res.forEach((element) => {
-        console.log(element.data().calorie)
         temp = temp + parseInt(element.data().calorie)
-        console.log("temp:",temp)
       })
       setTotal(parseInt(temp))
       setLoading(false)
       ignore = true
     })
     }
+    if (email === undefined) setLoading(true);
   },[])
+  
   return (
     <div className="background">
       <AccountCenterNavBar/>
@@ -58,9 +59,15 @@ function CalorieContainer() {
         <CalorieCalculator tot = {total} lim = {limit} />
         }
         </div>
-        <div>
+        <Stack direction= "row" spacing = {1}>
           <CustomInput/>
-        </div>
+          <Link href = {"/food-search"}>
+            <Button variant="outlined" 
+            endIcon = {<Search/>}>
+              Food Search
+            </Button>
+          </Link>
+        </Stack>
       </div>
     </div>
   );

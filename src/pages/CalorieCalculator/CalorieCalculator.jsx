@@ -1,9 +1,5 @@
-import { auth } from "../../firebase-config";
 import "./CalorieCalculator.css"
 import React, { useEffect, useState } from "react"
-import { getCalorieData } from "./CalorieDataControl";
-import { CircularProgress, Typography } from "@mui/material";
-
 /**
  * This displays a progress bar for the daily calorie intake
  * 
@@ -15,9 +11,9 @@ const ProgressBar = (props) => {
   const {bgcolor,completed } = props;
 
   const containerStyles = {
-      width: '20%',
+      width: '30%',
       backgroundColor: "#e0e0de",
-      borderRadius: 50,
+      borderRadius: 20,
       margin: 0,
       textAlign: 'right'
     }
@@ -44,8 +40,7 @@ const ProgressBar = (props) => {
 }
 
 function CalorieCalculator({tot,lim}) {
-    const UserData = {bgcolor: "purple", completed: tot/lim * 100};
-    
+    const UserData = {bgcolor: "purple", completed: Math.round(tot/lim * 100)};
     return (
             <div>
                 <ProgressBar bgcolor = {UserData.bgcolor}
