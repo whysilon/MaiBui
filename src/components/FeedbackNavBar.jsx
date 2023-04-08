@@ -99,7 +99,7 @@ function FeedbackNavBar(props) {
     //TODO:conditional redering based on authentication conditions
     //TODO: GET user profile data from databasae
 
-    <AppBar position="static" color="inherit" className="navbar">
+    <AppBar position="static" style={{backgroundColor: "#588157"}} className="navbar" elevation={0}>
       <Toolbar>
         <SideBar />
         <Backbutton />
