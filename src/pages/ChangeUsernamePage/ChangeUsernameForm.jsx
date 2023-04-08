@@ -5,7 +5,7 @@
 
  */
 import React, { useState } from "react";
-import { Button, TextField, Stack } from "@mui/material";
+import { Button, TextField, Stack, Alert, Snackbar } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
 import { auth } from "../../firebase-config";
 import { updateProfile } from "firebase/auth";
@@ -28,7 +28,11 @@ const ChangeUsernameForm = () => {
    * A function that handles the submission of the form to change the username.
    * @param {Event} event - The event object.
    */
-  //TODO: check duplicated username with database
+
+  const validUsernameHandler = (isValid) => {
+    setValidUsername(isValid);
+  };
+
   const changeUsernameHandler = (event) => {
     const user = auth.currentUser;
     event.preventDefault();
@@ -61,10 +65,14 @@ const ChangeUsernameForm = () => {
           "You have unsaved changes. Are you sure you want to cancel?"
         )
       ) {
-        window.location.href = "/account-center";
+        setTimeout(() => {
+          window.location.href = "/account-center";
+        }, 0);
       }
     } else {
-      window.location.href = "/account-center";
+      setTimeout(() => {
+        window.location.href = "/account-center";
+      }, 0);
     }
   };
 
@@ -98,7 +106,10 @@ const ChangeUsernameForm = () => {
                 maxLength={13}
                 minLength={1}
                 value={enteredNewUsername}
-                onChange={(valid) => setValidUsername(valid)}
+                onChange={(isValid) => {
+                  setValidUsername(isValid);
+                  console.log(isValid);
+                }}
                 messages={{
                   maxLength: "Username must be 13 characters long maximum.",
                   minLength: "Username must be 1 characters long minimally.",
@@ -112,7 +123,7 @@ const ChangeUsernameForm = () => {
 
                 <Button
                   type="submit"
-                  disabled={!enteredNewUsername && !validUsername}
+                  disabled={!enteredNewUsername || !validUsername}
                 >
                   Confirm Change
                 </Button>
