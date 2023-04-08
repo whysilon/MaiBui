@@ -101,7 +101,7 @@ function AccountCenterNavBar(props) {
     return lastSegment
       .replace("%20", " ")
       .split("-")
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1));
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1) + " ");
   }
 
   const logOut = () => {

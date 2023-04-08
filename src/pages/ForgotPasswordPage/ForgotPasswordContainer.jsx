@@ -3,6 +3,7 @@ import { useState } from "react";
 import { auth } from "../../firebase-config";
 import { sendPasswordResetEmail } from "firebase/auth";
 import BackButton from "../../components/BackButton";
+import { Button } from "@mui/material";
 // CSS
 import "./ForgotPassword.css";
 
@@ -86,7 +87,9 @@ const ForgotPasswordContainer = () => {
             error={error !== ""}
           />
         </div>
-        <button type="submit">Submit</button>
+        <Button id="forgotBtn" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );
