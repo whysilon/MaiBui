@@ -22,29 +22,27 @@ function AccountCenterContainer() {
 
   return (
     <div className="flex-col page">
-        <AccountCenterNavBar />
-        <div className="accountCenterContainer">
-            <UserProfileContainer />
+             <AccountCenterNavBar />
+      <UserProfileContainer />
 
-            <Stack spacing={4} sx={{ marginBottom: 20 }}>
-              <span
-                onClick={() => {
-                  console.log("Change Username is clicked");
-                }}
-                className="self-center hyperlink"
-              >
-                <Link className="hyperlink" to="/account-center/change-username">
-                  Change username
-                </Link>
-              </span>
-              <span className="self-center hyperlink">
-                <Link className="hyperlink" to="/account-center/change-password">
-                  Change password
-                </Link>
-              </span>
-            </Stack>
-            {/* <LogOutBtn /> */}
-        </div>
+      <Stack spacing={4} sx={{ marginBottom: 20 }}>
+        <span
+          onClick={() => {
+            console.log("Change Username is clicked");
+          }}
+          className="self-center hyperlink"
+        >
+          <Link className="hyperlink" to="/account-center/change-username">
+            Change username
+          </Link>
+        </span>
+        <span className="self-center hyperlink">
+          <Link className="hyperlink" to="/account-center/change-password">
+            Change password
+          </Link>
+        </span>
+      </Stack>
+      {/* <LogOutBtn /> */}
     </div>
   );
 }

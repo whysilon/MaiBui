@@ -2,6 +2,7 @@
 import "./LoginContainer.css";
 
 import LoginForm from "./LoginForm";
+import LoginPicture from "./LoginPage";
 
 //To do: Sync Login Details with backend
 
@@ -16,6 +17,7 @@ import LoginForm from "./LoginForm";
 const LoginContainer = () => {
   return (
     <div className="login-container">
+      <LoginPicture/>
       <LoginForm/>
     </div>
   );
