@@ -37,7 +37,7 @@ function RecommendRestaurant(props)
         type: ['restaurant']
     };
     service = new google.maps.places.PlacesService(document.createElement('div'));
-    window.onload = service.nearbySearch(request, callback);
+    service.nearbySearch(request, callback);
 
     /**
      * Function for retrieving results from the Google Places API.

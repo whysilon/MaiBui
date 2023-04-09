@@ -122,7 +122,7 @@ const SelectRestaurantDetails = () => {
           
           <Link onClick={visitedRestaurant}>
             <button className="website" onClick={verifyWebsite}>
-                Reserve
+                Website
             </button>
           </Link>
 

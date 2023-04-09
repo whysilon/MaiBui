@@ -59,8 +59,9 @@
 
 .signup-button {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    padding: 30px;
 }
 
 
@@ -73,6 +74,11 @@
 
 .pHeaders {
     margin-top: 40px;
+}
+
+#signup-link {
+    width: 150px;
+    margin-left: 30px;
 }
 
 

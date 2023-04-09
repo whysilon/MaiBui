@@ -49,14 +49,7 @@
     justify-content: space-between;
 }
 
-
-/* Experience textbox */
-
-.feedbackblock-3 {
-    margin-top: 20px;
-}
-
-.exp {
+.feedbackblock-2 .exp {
     padding: 10px;
     width: 67vw;
     text-align: left;

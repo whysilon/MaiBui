@@ -41,11 +41,10 @@ const UserProfileContainer = () => {
   }, [auth]);
 
   return (
-      <Stack
     <Stack
       spacing={4}
       alignItems="center"
-      style={{ margin: "50px", alignSelf: "center" }}
+      style={{ margin: "100px", alignSelf: "center" }}
     >
       <Avatar src={photoURL} sx={{ width: 200, height: 200 }} />
 

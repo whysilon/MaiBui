@@ -1,0 +1,23 @@
+.innercontainer-foodSearch {
+    background-color: #A3B18A;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
+    height: 80%;
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper-foodSearch {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 100vw;
+}
+
+.parentcontainer-foodSearch {
+    height: 100vh;
+    width: 100vw;
+}
