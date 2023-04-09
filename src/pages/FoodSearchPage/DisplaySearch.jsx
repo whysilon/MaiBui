@@ -39,35 +39,34 @@ function DisplaySearch({query}){
     }
     */
     return (
-        <>
-        {loading ? (<CircularProgress/>) : 
-        (
-        <Box>
-        <Stack spacing={2}
-        divider={<Divider orientation="horizontal" flexItem />}
-        sx={{
-            overflow: 'auto',
-            maxHeight: 500,
-        }}
-        >
-        {list.map((item,i) => (
-                    <Paper key={i}
-                    sx={{
-                        textAlign:'left',
-                        display:'flex',
-                    }}>
-                    <Link href={`/nutrition/${item.food_name}`} underline="hover">
-                        <Typography variant = "button">Name: {item.food_name}</Typography>
-                        <Typography variant = "button">Serving Unit:{item.serving_unit}</Typography>
-                        <Typography variant = "button">Serving Qty: {item.serving_qty}</Typography> 
-                    </Link>
-                    </Paper>
-        ))
-        }
-        </Stack>
-        </Box>)
-        }
-        </>
+        <div className="foodSearch-parentContainer">
+            {loading ? (<CircularProgress/>) : 
+            (
+                <Stack
+                divider={<Divider orientation="horizontal"/>}
+                style={{
+                    overflow: 'auto',
+                    height: '300px',
+                    width: '600px',
+                    marginTop: '50px'
+                }}
+                >
+                    {list.map((item,i) => (
+                                <Paper key={i}
+                                style={{
+                                    textAlign:'left',
+                                }}>
+                                    <Link href={`/nutrition/${item.food_name}`} underline="hover" style={{color: "white", backgroundColor: '#588157', display: 'flex', justifyContent: 'space-between',alignItems:'center', height: '60px', border:'1px white solid'}}>
+                                        <Typography variant = "button">Name: {item.food_name}</Typography>
+                                        <Typography variant = "button">Serving Unit:{item.serving_unit}</Typography>
+                                        <Typography variant = "button">Serving Qty: {item.serving_qty}</Typography> 
+                                    </Link>
+                                </Paper>
+                    ))
+                    }
+                </Stack>)
+            }
+        </div>
     )
 }
 

@@ -8,8 +8,9 @@
 .homechoices-title {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
+    height: 15vh;
     padding: 30px 0 30px 0;
 }
 
@@ -19,9 +20,9 @@
 .homechoices-container {
     background-color: #DAD7CD;
     display: flex;
-    justify-content: space-around;
-    height: 480px;
-    margin-top: 43px;
+    justify-content: space-evenly;
+    height: 500px;
+    margin-top: 30px;
 }
 
 
@@ -37,14 +38,6 @@
 }
 
 
-/* Hovering over a selection */
-
-.homechoices-choice:hover {
-    transform: scale(1.1);
-    cursor: pointer;
-}
-
-
 /* Subheadings of the page */
 
 .homechoices-parent-container span {
@@ -52,18 +45,20 @@
     word-wrap: break-word;
 }
 
-
-/* Heading of each selection */
-
-.homechoices-choice h1 {
-    font-size: 2.2rem;
+.homechoices-choicetitle {
+    display: flex;
+    justify-content: center;
 }
 
 
 /* Description of each selection */
 
+.homechoices-choice h1 {
+    font-size: 1.6rem;
+}
+
 .homechoices-choice span {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 
@@ -74,14 +69,6 @@
     color: white;
 }
 
-.homechoices-title .userDisplay {
-    display: flex;
-    align-items: center;
-    align-content: space-between;
-}
-
-.userDisplay .username {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Microsoft Yahei", sans-serif;
-    margin-left: 5px;
-    font-size: 2.9rem;
+.buttonHover:hover {
+    transform: scale(1.1);
 }

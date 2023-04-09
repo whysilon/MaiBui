@@ -23,11 +23,12 @@ export default function FoodItemContainer(){
         });
     }
     return(
-        <div>
-        <AccountCenterNavBar/>
-        {loading ? (<CircularProgress/>) :
-        <FoodCategoryItems data = {data}/>
-        }
+        <div style={{height: "100vh", width: "auto"}}>
+            <AccountCenterNavBar/>
+            <div style={{display:"flex", justifyContent:"space-around", alignItems:"center", height:"80vh", marginTop:"50px"}}>
+                {loading ? (<CircularProgress/>) :
+                <FoodCategoryItems data = {data}/>}
+            </div>
         </div>
     )
 }

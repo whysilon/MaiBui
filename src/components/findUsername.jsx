@@ -18,7 +18,7 @@ export const FindUsername = () => {
 
     return (
         <div>
-            <p1>{username}</p1>
+            <p1 style={{color: "#24342c"}}>{username}</p1>
         </div>
     )
 }

@@ -8,45 +8,42 @@ import React, { useEffect, useState } from "react"
  * 
  */
 const ProgressBar = (props) => {
-  const {bgcolor,completed } = props;
+  const {bgcolor,completed} = props;
 
   const containerStyles = {
-      width: '30%',
-      backgroundColor: "#e0e0de",
+      width: '110%',
+      backgroundColor: "white",
       borderRadius: 20,
       margin: 0,
-      textAlign: 'right'
     }
   
     const fillerStyles = {
       width: `${completed}%`,
       backgroundColor: bgcolor,
       borderRadius: 'inherit',
-      textAlign: 'right'
-    }
-  
-    const labelStyles = {
-      padding: 5,
-      color: 'white',
-      fontWeight: 'bold'
+      textAlign: 'center',
+      fontSize: '0.9rem',
+      height: '30px',
+      color: 'black',
+      fontWeight: 'bold',
     }
   return (
       <div style={containerStyles}>
           <div style={fillerStyles}>
-              <span className={labelStyles}>{`${completed}%`}</span>
+              <p>{`${completed}%`}</p>  
           </div>
       </div>
-  )
-}
-
-function CalorieCalculator({tot,lim}) {
-    const UserData = {bgcolor: "purple", completed: Math.round(tot/lim * 100)};
-    return (
-            <div>
-                <ProgressBar bgcolor = {UserData.bgcolor}
-                             completed = {UserData.completed}/>
-            </div>
     )
+  }
+
+function CalorieCalculator(props) {
+  const UserData = {bgcolor: "#588157", completed: Math.round((props.tot/props.lim) * 100)};
+  return (
+          <div>
+              <ProgressBar bgcolor = {UserData.bgcolor}
+                            completed = {UserData.completed}/>
+          </div>
+  )
 }
 
 export default CalorieCalculator;

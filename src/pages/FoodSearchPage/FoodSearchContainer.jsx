@@ -11,9 +11,13 @@ import AccountCenterNavBar from "../../components/AccountCenterNavBar.jsx"
 function FoodSearchContainer(){
     
     return(
-        <div>
+        <div className="parentcontainer-foodSearch"> 
             <AccountCenterNavBar/>
-            <SearchBar/>
+            <div className="wrapper-foodSearch">
+                <div className="innercontainer-foodSearch">
+                    <SearchBar/>
+                </div>
+            </div>
         </div>
     )
 }

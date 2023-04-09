@@ -19,27 +19,30 @@ const CategoryList = [
 
 function FoodCategoryPage(){
     return (
-        <ImageList sx={{ height: "inherit",width: 600,overflowY: "auto"}} gap = {10}>
+        <ImageList style={{display: "grid", gridTemplateColumns: "auto auto auto auto" ,overflow: "hidden"}} gap={60}>
           {CategoryList.map((item) => (
-              <ImageListItem sx={{objectFit : "cover",height : "100%",width: "100%"}} key={item.food_name}>
+            <a href= {`./food-categories/${item.food_name}`} className="linkToFoodCat">
+              <ImageListItem style={{objectFit : "cover"}} key={item.food_name}>
                   <img 
-                    src={`${item.image_url}?w=248&fit=crop&auto=format`}
-                    srcSet={`${item.image_url}?w=248&fit=crop&auto=format&dpr=2 2x`}
+                    style={{height: "250px", width: "250px"}}
+                    src={item.image_url}
+                    srcSet={item.image_url}
                     alt={item.food_name}
                     loading="lazy"
                   />
-                  <a href= {`./food-categories/${item.food_name}`}>
+                  <span>
                     <ImageListItemBar
                       className= "caption"
                       title={item.food_name}
                       position="bottom"
+                      style={{backgroundColor: "#A3B18A"}}
                     />
-                 </a>
+                  </span>
               </ImageListItem>
-            
+            </a>
           ))}
         </ImageList>
-      );
+    );
 }
 
 export default FoodCategoryPage;

@@ -46,6 +46,7 @@ const FeedbackForm = (props) => {
       }
       else{
         alert("You have not visited the restaurant before...");
+        window.location.href=`/select-restaurant/${place_id.id}`;
       }
     }
     catch(e){
@@ -161,12 +162,11 @@ const FeedbackForm = (props) => {
                 multiline
                 cols={40}
                 rows={5}
+                sx={{color: "#DAD7CD"}}
                 helperText={
                   enteredExp === ""
                     ? "Empty field!"
-                    : // : enteredNewPwd !== enteredConfirmedPwd
-                      // ? "Passwords do not match!"
-                      ""
+                    : ""
                 }
               ></TextField>
         </div>

@@ -20,7 +20,11 @@
 .feedbackblock-2 {
     margin-top: 60px;
     padding: 30px;
-    border: 3px solid black;
+    width: 68vw;
+    height: 55vh;
+    background-color: #A3B18A;
+    border-radius: 4px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
 }
 
 
@@ -45,14 +49,7 @@
     justify-content: space-between;
 }
 
-
-/* Experience textbox */
-
-.feedbackblock-3 {
-    margin-top: 20px;
-}
-
-.exp {
+.feedbackblock-2 .exp {
     padding: 10px;
     width: 67vw;
     text-align: left;
@@ -62,6 +59,6 @@
 
 /* Submit button  */
 
-button {
+.feedbackBottom button {
     width: 150px;
 }

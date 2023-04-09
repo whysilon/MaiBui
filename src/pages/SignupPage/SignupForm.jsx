@@ -2,7 +2,7 @@
 import "./SignupForm.css";
 
 import React, { useState } from "react";
-import { TextField, FormControlLabel, Switch } from "@mui/material";
+import { TextField, FormControlLabel, Switch, Button } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
 // import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase-config.js";
@@ -303,9 +303,9 @@ const SignupForm = () => {
             label="Show password"
             control={<Switch onClick={togglePwdShown} />}
           />
-          <button type="submit" href="#url" id="signup-link">
+          <Button id="signup-link"  href="#url" type="submit" style={{color: "white", backgroundColor: "#344E41"}}>
             Sign Up
-          </button>
+          </Button>
         </div>
       </div>
     </form>

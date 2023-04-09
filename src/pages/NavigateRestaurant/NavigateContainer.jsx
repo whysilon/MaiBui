@@ -4,7 +4,7 @@
  * @author Xavier
  * @returns HTML page of the navigation page
  */
-import AccountCenterNavBar from "../../components/AccountCenterNavBar";
+import RestaurantNavBar from "../../components/RestaurantNavBar";
 import Navigate from "./Navigate";
 import "./NavigateContainer.css"
 
@@ -15,7 +15,7 @@ import "./NavigateContainer.css"
 const NavigateContainer = (props) => {
     return (
         <div>
-            <AccountCenterNavBar />
+            <RestaurantNavBar/>
             <Navigate />
         </div>
     );

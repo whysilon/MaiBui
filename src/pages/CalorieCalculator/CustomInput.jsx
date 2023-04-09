@@ -32,10 +32,9 @@ function CustomInput(){
     return (
     <Fragment>
       <Button
-        variant="outlined"
-        color="neutral"
         startDecorator={<Add />}
         onClick={() => setOpen(true)}
+        style={{width: "180px", color: "white", backgroundColor:"#588157"}}
       >
         Custom Input
       </Button>

@@ -1,29 +1,68 @@
-.background{
-    background-image: url("../../../public/LettuceBG.png");
-    background-position:right;
-    background-color: white;
-    background-repeat: no-repeat;
-    height: 100vh;
+.calculatorParentContainer {
+    height: 81.9vh;
+    width: 100vw;
+    margin: 0;
 }
-.aligner{
+
+.innerContent {
     display: flex;
-    flex:auto;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 3vh;
-    margin-left: 4vw;
+    width: 100vw;
     height: inherit;
 }
-.daily{
+
+.mainstats {
+    width: 50vw;
+    height: inherit;
+}
+
+.mainstats .block-1 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    width: inherit;
+    margin: 0;
+}
+
+.mainstats .block-2 {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: inherit;
+    height: 50%;
+    margin-top: 50px;
+    margin-left: 30px;
+}
+
+.innerBlock-1 {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 70%;
+    margin-top: 70px;
+}
+
+.calculatorParentContainer .background {
+    background-image: url("../../../public/LettuceBG.png");
+    height: 450px;
+    width: 360px;
+}
+
+.innerContent .imgHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+    width: 50vw;
+}
+
+.daily {
     display: inline;
     font-size: x-large;
 }
 
-.customInput{
+.customInput {
     gap: 10vh;
- }
-
-.helloUser{
-    font-size:xx-large;
-    font-style: oblique;
 }
