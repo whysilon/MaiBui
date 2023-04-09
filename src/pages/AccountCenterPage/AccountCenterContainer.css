@@ -1,38 +1,42 @@
-.space-x-72>*:not(:first-child) {
-    margin-left: 4.5rem;
+body {
+  background: #dad7cd;
+}
+
+.space-x-72 > *:not(:first-child) {
+  margin-left: 4.5rem;
 }
 
 .image {
-    margin-top: auto;
-    width: 3rem;
-    height: 3rem;
+  margin-top: auto;
+  width: 3rem;
+  height: 3rem;
 }
 
 .hyperlink {
-    font-size: 1.88rem;
-    font-family: Inter;
-    line-height: 1.78rem;
-    color: #2b3f35;
-    text-decoration: underline;
-    margin-top: 1.8rem;
-    margin-bottom: 1.8rem;
+  font-size: 1.88rem;
+  font-family: Inter;
+  line-height: 1.78rem;
+  color: #2b3f35;
+  text-decoration: underline;
+  margin-top: 1.8rem;
+  margin-bottom: 1.8rem;
 }
 
 .page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .accountCenterContainer {
-    margin-top: 60px;
-    background-color: #A3B18A;
-    border-radius: 5px;
-    width: 65vw;
-    height: 80vh;
-    padding: 10px;
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  margin-top: 60px;
+  background-color: #a3b18a;
+  border-radius: 5px;
+  width: 65vw;
+  height: 80vh;
+  padding: 10px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
