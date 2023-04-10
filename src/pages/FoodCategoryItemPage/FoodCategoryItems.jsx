@@ -1,6 +1,15 @@
-import { Box, ImageList, ImageListItem, ImageListItemBar, Paper, Typography } from "@mui/material";
+import {ImageList, ImageListItem, ImageListItemBar} from "@mui/material";
 import "./FoodCategoryItems.css";
 
+/**
+ * This component displays the food items searched from the NutritionixAPI
+ * and shows it in a image list.
+ * 
+ * @author Valencino Tan
+ * 
+ * @param {data} (Food items from search/instant endpoint from NutritionixAPI)
+ * @returns HTML of FoodCategoryItems based on data given 
+ */
 
 export default function FoodCategoryItems({data}){
 

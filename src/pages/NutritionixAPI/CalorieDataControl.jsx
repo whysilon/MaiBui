@@ -1,18 +1,37 @@
-import { Timestamp, collection, doc, getDoc, getDocs, query, setDoc, where } from "@firebase/firestore";
+import { Timestamp, collection, doc, getDocs, query, setDoc } from "@firebase/firestore";
 import { db } from "../../firebase-config";
 
+/**
+ * This is a control class to intereact with the FireBase backend
+ * 
+ * @author Valencino Tan
+ */
 
-export function getCurrentDate(){
+
+
+function getCurrentDate(){
     const time = new Date();
     return time.toDateString();
 }
 
+/**
+ * Takes data {food_name, calorie} and email to update the database
+ * 
+ * @param  data 
+ * @param  email 
+ * 
+ */
+
 export async function addCalorieData(data,email) {
     const docref = doc(db,`calorie_records/${email}/calorie_record_${getCurrentDate()}`,Timestamp.now().toDate().toISOString())
-    const res = await setDoc(docref,data)
-    return res
+    await setDoc(docref,data)
 }
-
+/**
+ * Queries calorie data from the database
+ * 
+ * @param  email 
+ * @returns Snapshot of the document queried
+ */
 export async function getCalorieData(email){
     const getCalories = async() => {
     try{

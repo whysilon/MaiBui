@@ -12,33 +12,38 @@ import { Search } from "@mui/icons-material";
 import { Stack } from "@mui/system";
 
 /**
- * This contains the functions required for Calorie Calculator
- * This displays the functions
+ * This contains the functions required for Calorie Calculator which includes a progress bar,
+ * a custom input function and a search button.
  * 
+ * @author Valencino Tan
+ * 
+ * @returns HTML component of CalorieContainer which contains CustomInput HTML and CalorieCalculator HTML
  */
 
 function CalorieContainer() { 
   let limit = 2000;
   const [total,setTotal] = useState(0)
   const [loading,setLoading] = useState(true)
-  let user,email,username = "";
+  const [count, setCount] = useState(0);
+  let user,username = "";
+  let email = localStorage.getItem('token')
 
   try{
     user = auth.currentUser
-    email = user.email
     username = user.displayName
+    email = user.email
   }
   catch(err){
     console.error(err)
   }
 
   useEffect(() => {
+    // This sets an interval of a minute such that the progress bar checks and updates every 2 minutes
 
-    // This is done as useEffect keeps reading null value of user.email as useEffect is ran before the try statement.
-    // I use the local storage to tackle this problem as local storage would always store the email.
-    // using auth.currentUser.email directly also does not fetch the data as the page has not been loaded and no user data can be fetched.
-
-    email = localStorage.getItem('token')
+    const interval = setInterval(() => {
+      setCount(count + 1);
+    }, 120000);
+    
     getCalorieData(email).then((res) => {
       let temp = 0;
       res.forEach((element) => {
@@ -48,7 +53,10 @@ function CalorieContainer() {
       setLoading(false)
     })
     if (email === undefined) setLoading(true);
-  },[])
+    return () => {
+      clearInterval(interval);
+    };
+  },[count,email])
   
   return (
     <div className="calculatorParentContainer">

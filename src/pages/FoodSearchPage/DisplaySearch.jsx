@@ -1,21 +1,24 @@
 import React, {useState , useEffect } from 'react'
 import { Stack } from '@mui/system';
-import { Paper, Box, Typography, CircularProgress, Button, Divider, Link} from '@mui/material';
+import { Paper, Typography, CircularProgress, Divider, Link} from '@mui/material';
 import "./DisplaySearch.css"
 import GetFoodSearch from '../NutritionixAPI/NutritionixAPIControl';
 
 /**
- * Display the food list based on the search bar
+ * Displays food search results based on input into the text field provided
  * 
  * @author Valencino Tan
- * @argument query
- * @returns FoodList
+ * @param query Input of search
+ * @returns HTML component of DisplaySearch
  * 
  */
 
 function DisplaySearch({query}){
     const [list,setList] = useState([])
     const [loading,setLoading] = useState(true)
+
+    // This useEffect updates the search field whenever there is a change in query
+
     useEffect(() => {
     let ignore = false;
     if(query === ""){
@@ -27,17 +30,13 @@ function DisplaySearch({query}){
         if(!ignore) {
             setList(res)
             setLoading(false)
+            console.log(res)
         }
     })};
     return () => {
         ignore = true;
     }
     }, [query])
-    /*
-    const handleClick = () => {
-        
-    }
-    */
     return (
         <div className="foodSearch-parentContainer">
             {loading ? (<CircularProgress/>) : 
@@ -46,8 +45,8 @@ function DisplaySearch({query}){
                 divider={<Divider orientation="horizontal"/>}
                 style={{
                     overflow: 'auto',
-                    height: '300px',
-                    width: '600px',
+                    height: '450px',
+                    width: '800px',
                     marginTop: '50px'
                 }}
                 >
@@ -64,8 +63,9 @@ function DisplaySearch({query}){
                                 </Paper>
                     ))
                     }
-                </Stack>)
-            }
+                </Stack>
+            )
+            }      
         </div>
     )
 }

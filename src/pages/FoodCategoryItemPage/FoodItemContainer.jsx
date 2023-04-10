@@ -5,18 +5,25 @@ import { CircularProgress} from "@mui/material";
 import FoodCategoryItems from "./FoodCategoryItems";
 import GetFoodSearch from "../NutritionixAPI/NutritionixAPIControl";
 
+/**
+ * Displays the list of food items from search/instant endpoint from
+ * NutritionixAPI based on the category chosen.
+ * 
+ * @author Valencino Tan
+ * 
+ * @returns HTML component of FoodItemContainer
+ */
+
 let ignore = false
 
 export default function FoodItemContainer(){
     const [data,setData] = useState("")
     const [loading,setLoading] = useState(true)
     const input = useParams().id
-    console.log(input)
 
     if(!ignore){
         GetFoodSearch(input).then(
         res => {
-            console.log(res)
             setData(res)
             setLoading(false)
             ignore = true

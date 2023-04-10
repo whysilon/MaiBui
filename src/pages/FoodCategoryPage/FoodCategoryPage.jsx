@@ -2,10 +2,13 @@ import "./FoodCategoryPage.css";
 import { ImageList, ImageListItem, ImageListItemBar, } from "@mui/material";
 /**
  * 
- * Displays a list of categories of food
+ * Displays a curated list of categories of food
  * 
- * 
+ * @author Valencino Tan
+ * @returns HTML component of FoodCategoryPage
  */
+
+// Images are taken from unsplash
 const CategoryList = [
     {food_name : "Salad", image_url : "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&"},
     {food_name : "Pasta", image_url : "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&"},

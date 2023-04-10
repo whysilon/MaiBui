@@ -1,9 +1,3 @@
-/**
- * This contains the nutritional information from the Nutritionix API
- * It will display the nutritional information of the food selected
- * 
- */
-
 import { CircularProgress } from "@mui/material";
 import { useState } from "react";
 import { useParams } from "react-router";
@@ -11,6 +5,15 @@ import AccountCenterNavBar from "../../components/AccountCenterNavBar";
 import { getNutrition } from "../NutritionixAPI/NutritionixAPIControl.jsx";
 import NutritionInformation from "./NutritionInformation";
 import "./FoodNutritionContainer.css"
+/**
+ * Displays the Nutritional information of the given food based on
+ * the given id (from navigation)
+ * 
+ * @author Valencino Tan
+ * 
+ * @returns HTML component of FoodNutrition Container
+ */
+
 
 let ignore = false
 
