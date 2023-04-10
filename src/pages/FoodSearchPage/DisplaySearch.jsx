@@ -16,9 +16,9 @@ import GetFoodSearch from '../NutritionixAPI/NutritionixAPIControl';
 function DisplaySearch({query}){
     const [list,setList] = useState([])
     const [loading,setLoading] = useState(true)
-
+    // If list is empty
+    const [emptyArray,setEmptyArray] = useState(false)
     // This useEffect updates the search field whenever there is a change in query
-
     useEffect(() => {
     let ignore = false;
     if(query === ""){
@@ -30,7 +30,8 @@ function DisplaySearch({query}){
         if(!ignore) {
             setList(res)
             setLoading(false)
-            console.log(res)
+            setEmptyArray(false);
+            if(res.length  === 0) setEmptyArray(true);
         }
     })};
     return () => {
@@ -39,7 +40,7 @@ function DisplaySearch({query}){
     }, [query])
     return (
         <div className="foodSearch-parentContainer">
-            {loading ? (<CircularProgress/>) : 
+            {loading ? (<CircularProgress/>) : (emptyArray ? (<Typography variant = "h4">Invalid input</Typography>) : 
             (
                 <Stack
                 divider={<Divider orientation="horizontal"/>}
@@ -50,22 +51,21 @@ function DisplaySearch({query}){
                     marginTop: '50px'
                 }}
                 >
-                    {list.map((item,i) => (
-                                <Paper key={i}
-                                style={{
-                                    textAlign:'left',
-                                }}>
-                                    <Link href={`/nutrition/${item.food_name}`} underline="hover" style={{color: "white", backgroundColor: '#588157', display: 'flex', justifyContent: 'space-between',alignItems:'center', height: '60px', border:'1px white solid'}}>
-                                        <Typography variant = "button">Name: {item.food_name}</Typography>
-                                        <Typography variant = "button">Serving Unit:{item.serving_unit}</Typography>
-                                        <Typography variant = "button">Serving Qty: {item.serving_qty}</Typography> 
-                                    </Link>
-                                </Paper>
+                {list.map((item,i) => (
+                    <Paper key={i}
+                        style={{
+                            textAlign:'left',
+                        }}>
+                            <Link href={`/nutrition/${item.food_name}`} underline="hover" style={{color: "white", backgroundColor: '#588157', display: 'flex', justifyContent: 'space-between',alignItems:'center', height: '60px', border:'1px white solid'}}>
+                                <Typography variant = "button">Name: {item.food_name}</Typography>
+                                <Typography variant = "button">Serving Unit:{item.serving_unit}</Typography>
+                                <Typography variant = "button">Serving Qty: {item.serving_qty}</Typography> 
+                            </Link>
+                    </Paper>
                     ))
                     }
-                </Stack>
-            )
-            }      
+                </Stack>))
+            }
         </div>
     )
 }

@@ -16,7 +16,6 @@ function SearchBar(){
     const [input,setInput] = useState("")
     const handleInput = (e) => {
         setInput(e.target.value.toLowerCase());
-        console.log(input);
     }
     return(
         <Box
