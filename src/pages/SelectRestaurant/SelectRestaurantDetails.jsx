@@ -4,11 +4,10 @@ import "./SelectRestaurantDetails.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { db } from "../../firebase-config.js";
-import {arrayUnion, collection, doc, getCountFromServer, getDoc, getDocs, query, updateDoc, where} from "firebase/firestore";
+import {collection, doc, getCountFromServer, getDoc, getDocs, query, updateDoc, where} from "firebase/firestore";
 import { useState} from "react";
 import LaunchIcon from '@mui/icons-material/Launch';
 import FeedbackPopup from "../../components/FeedbackPopup";
-import { WindowSharp } from "@mui/icons-material";
 // To do: Display feedbacks in popup
 //        Find a way to display username in feedback
 
@@ -71,14 +70,15 @@ const SelectRestaurantDetails = () => {
   };
   
   service = new google.maps.places.PlacesService(document.createElement('div'));
-  service.getDetails(request, callback);
+  window.onload = service.getDetails(request, callback);
+
   
   function callback(place, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       setDetails(place);
       setHours(details.opening_hours.weekday_text);
       checkFeedbacks(place.name);
-      renderFeedback(place.name)
+      renderFeedback(place.name);
     }
   }
   
@@ -95,7 +95,6 @@ const SelectRestaurantDetails = () => {
       alert('No available website');
     }
   }
-
 
   return (
     <div className="details">
@@ -116,19 +115,19 @@ const SelectRestaurantDetails = () => {
         </div>
         <div className="block-3">
           <Link to={`/navigate-restaurant/${place_id.id}`}>
-            <button>
+            <button className="restaurantButton">
               Navigate
             </button>
           </Link>
           
-          <Link onClick={visitedRestaurant} >
+          <Link onClick={visitedRestaurant}>
             <button className="website" onClick={verifyWebsite}>
-                Reserve
+                Website
             </button>
           </Link>
 
           <Link to={`/feedback/${place_id.id}`}>
-            <button>
+            <button className="restaurantButton">
               Give Feedback
             </button>
           </Link>

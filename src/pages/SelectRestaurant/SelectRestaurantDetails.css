@@ -86,15 +86,6 @@ restaurant */
 }
 
 
-/* Oddle icon in oddle button */
-
-.website {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-
 /* Open all feedbacks */
 
 .launch-icon:hover {

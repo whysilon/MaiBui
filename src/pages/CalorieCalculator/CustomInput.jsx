@@ -13,29 +13,41 @@ import { useState, Fragment } from "react";
 import { auth } from "../../firebase-config";
 import { addCalorieData } from "../NutritionixAPI/CalorieDataControl";
 /**
- * This creates a form where users input the food name and calorie intake
+ * This creates a popout form where users input the food name and calorie intake
  * 
+ * @author Valencino Tan
  * 
- * @returns Calorie Number (int)
+ * @returns HTML component of CustomInput
  */
 
 function CustomInput(){
     const [open, setOpen] = useState(false);
     const [foodName,setFoodName] = useState("");
     const [calorie,setCalorie] = useState(0);
+    
+    /**
+     * Handles the text field input for the food name part of the form
+     * 
+     */
+
     const handleFoodNameChange = (event) => {
       setFoodName(event.target.value);
     }
+
+    /**
+     * Handles the text field input for the calorie part of the form
+     * 
+     */
+
     const handleCalorieChange = (event) => {
       setCalorie(event.target.value);
     }
     return (
     <Fragment>
       <Button
-        variant="outlined"
-        color="neutral"
         startDecorator={<Add />}
         onClick={() => setOpen(true)}
+        style={{width: "180px", color: "white", backgroundColor:"#588157"}}
       >
         Custom Input
       </Button>
@@ -54,14 +66,11 @@ function CustomInput(){
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              console.log(foodName)
-              console.log(calorie)
               const data = {
                 "food_name" : foodName,
                 "calorie" : calorie
               }
               addCalorieData(data,auth.currentUser.email).then((res) => {
-              console.log(res)
               setOpen(false);
               }
               )

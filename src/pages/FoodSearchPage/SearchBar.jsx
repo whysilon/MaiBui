@@ -19,14 +19,13 @@ function SearchBar(){
     }
     return(
         <Box
-        sx={{
-            width: 400,
-            height: 660,
-            margin:'100px auto',
-            
-            display:'flex',
-            flexDirection:'column',
-            justifyContent:'space-evenly'
+        style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            height: 'inherit',
+            width: 'inherit',
         }}>
             <form>
                 <TextField

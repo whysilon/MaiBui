@@ -1,11 +1,11 @@
-.foodCategory{
+.foodCategory {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    height: inherit;
+    height: 100vh;
 }
 
-.container{
+.container {
     height: 100vh;
     width: auto;
 }

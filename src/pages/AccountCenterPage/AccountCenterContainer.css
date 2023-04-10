@@ -16,10 +16,14 @@ body {
   font-size: 1.88rem;
   font-family: Inter;
   line-height: 1.78rem;
-  color: #2b3f35;
+  color: #3a5a40;
   text-decoration: underline;
   margin-top: 1.8rem;
   margin-bottom: 1.8rem;
+}
+
+.hyperlink:hover {
+  transform: scale(1.2);
 }
 
 .page {
@@ -30,7 +34,7 @@ body {
 
 .accountCenterContainer {
   margin-top: 60px;
-  background-color: #a3b18a;
+  background-color: #dad7cd;
   border-radius: 5px;
   width: 65vw;
   height: 80vh;

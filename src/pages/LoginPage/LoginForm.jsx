@@ -192,11 +192,11 @@ const LoginForm = () => {
             }
           ></TextField>
         </div>
-        <Stack spacing={2} sx={{ marginTop: "20px" }}>
+        <Stack spacing={2} sx={{ marginTop: "20px"}}>
           <Link to="/forgot-password" className="loginLinks">
             Forgot Password?
           </Link>
-          <Button id="loginBtn" type="submit">
+          <Button id="loginBtn" type="submit" style={{color: "white", backgroundColor: "#344E41"}}>
             Login
           </Button>
         </Stack>
