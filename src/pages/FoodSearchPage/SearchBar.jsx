@@ -4,10 +4,11 @@ import DisplaySearch from "./DisplaySearch.jsx"
 import { Box, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 /**
-* Displays the search bar for searching food
+* Displays the search bar for searching food and sends input
+* to DisplaySearch in order to display search results
 *
 * @author Valencino Tan
-* @returns SearchBar
+* @returns HTML component of SearchBar
 *
 */
 

@@ -92,7 +92,16 @@ function NutritionInformation({data}) {
         if(e === "") setServings(1);
         setServings(e.target.value);
         console.log(servings);
-    }   
+    } 
+    console.log(data)
+    if(data === "Error") {
+        return(<div className="error">
+            <Typography variant = 'h4' align='center' color = 'white'>Unable to find food <br/> information based on input</Typography>
+            <a href="/food-search">
+                <Button variant="contained" style={{ backgroundColor:"#344E41"}}>Return to search?</Button>
+            </a>
+        </div>)
+    }
     let noImage = false;
     if(data.photo.highres === null) noImage = true;
     return (
