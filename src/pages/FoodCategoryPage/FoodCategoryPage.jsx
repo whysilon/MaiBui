@@ -2,9 +2,10 @@ import "./FoodCategoryPage.css";
 import { ImageList, ImageListItem, ImageListItemBar, } from "@mui/material";
 /**
  * 
- * Displays a list of categories of food
+ * Displays a curated list of categories of food
  * 
- * 
+ * @author Valencino Tan
+ * @returns HTML component of FoodCategoryPage
  */
 const CategoryList = [
     {food_name : "Salad", image_url : "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&"},

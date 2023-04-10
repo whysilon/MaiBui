@@ -1,14 +1,19 @@
-/**
- * Contains nutritional information
- * 
- * 
- */
-
 import { useState } from "react";
 import "./NutritionInformation.css";
 import { addCalorieData } from "../NutritionixAPI/CalorieDataControl";
 import { auth } from "../../firebase-config";
 import { Alert, Button, Slide, Snackbar, TextField, Typography } from "@mui/material";
+
+/**
+ * Contains nutritional information
+ * 
+ * @author Valencino Tan
+ * 
+ * @param data (data from NutritionixAPI based on input)
+ * 
+ * @returns HTML of Nutritional Information
+ * 
+ */
 
 function CapitalizeFirstLetter(str){
     str = str.replace(/%20/g," ");
@@ -30,19 +35,26 @@ function NutritionInformation({data}) {
     * Set the severity of the SnackBar,
     * initially "error"
     */
-    const [snackBarSeverity, setSnackBarSeverity] = useState("");
+    const [snackBarSeverity, setSnackBarSeverity] = useState("error");
     /**
     * Set the open state of SnackBar
     */
     const [snackBarOpen, setSnackBarOpen] = useState(false);
-
+    /**
+     * 
+     * If user clicks away from the popup, the snackbar will close
+     * 
+     */
     const handleSnackBarClose = (event, reason) => {
         if (reason === "clickaway") {
           return;
         }
         setSnackBarOpen(false);
       };
-
+    /**
+     * Handles submitting the form into the database
+     * 
+     */
     const handleSubmit = async(e) => {
         e.preventDefault()
         const info = {
@@ -71,6 +83,11 @@ function NutritionInformation({data}) {
             setSnackBarSeverity("error");
         }
    }
+   /**
+    * 
+    * Handles the input of the number of servings the user have ate
+    * 
+    */
     const handleInput = (e) => {
         if(e === "") setServings(1);
         setServings(e.target.value);

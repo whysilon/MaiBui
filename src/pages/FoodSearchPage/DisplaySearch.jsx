@@ -8,7 +8,7 @@ import GetFoodSearch from '../NutritionixAPI/NutritionixAPIControl';
  * Display the food list based on the search bar
  * 
  * @author Valencino Tan
- * @argument query
+ * @param query Input of search
  * @returns FoodList
  * 
  */
@@ -33,11 +33,6 @@ function DisplaySearch({query}){
         ignore = true;
     }
     }, [query])
-    /*
-    const handleClick = () => {
-        
-    }
-    */
     return (
         <div className="foodSearch-parentContainer">
             {loading ? (<CircularProgress/>) : 
