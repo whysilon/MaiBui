@@ -28,7 +28,10 @@ const SelectRestaurantDetails = () => {
 
   
 
-
+  /**
+   * Function that updates the user's visited restaurant array in firebase database
+   * 
+   */
   const visitedRestaurant = async () => {
     const email = localStorage.getItem('token');
     const q = doc(db,'users',email);
@@ -43,12 +46,21 @@ const SelectRestaurantDetails = () => {
     
   }
 
+  /**
+   * Function that counts the number of feedbacks for the particular restaurant
+   * 
+   */
+
   const checkFeedbacks = async (name) => {
     const q = query(FBCollectionRef,where("restaurant",'==',name));
     const snapshot = await getCountFromServer(q);
     setRestaurantCount(snapshot.data().count);
   }
 
+  /**
+   * Function that renders all feedbacks of restaurant from database and stores it in feedback state
+   * 
+   */
   const renderFeedback = async (restaurant) =>{
     const q = query(FBCollectionRef, where('restaurant','==', restaurant));
     const snapshot = await getDocs(q);
@@ -61,18 +73,28 @@ const SelectRestaurantDetails = () => {
   let service;
   const place_id = useParams();
   const google = window.google;
+  /**
+   * Stores the details of the restaurant in array form
+   * 
+   */
   const [details, setDetails] = useState([]);
+  /**
+   * Stores the opening hours of the restaurant in array form
+   * 
+   */
   const [opening_hours, setHours] = useState([]);
 
   var request = {
     placeId: place_id.id,
     fields: ['name', 'formatted_address', 'opening_hours', 'website']
   };
-  
   service = new google.maps.places.PlacesService(document.createElement('div'));
   window.onload = service.getDetails(request, callback);
-
-  
+  /**
+   * API Request to get respective restaurant details and stores it in restaurant state.
+   * @returns Array<String>
+   * 
+   */
   function callback(place, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       setDetails(place);
@@ -81,11 +103,20 @@ const SelectRestaurantDetails = () => {
       renderFeedback(place.name);
     }
   }
-  
+  /**
+   * Function that renders the list of opening hours and prints it out in HTML form
+   * @returns HTML form of opening hours
+   * 
+   */
   const renderList = (opening_hours).map((item, index) => 
                              <p key={index} style={{ fontSize: 15}} >{item}</p>
                            );
 
+  /**
+   * Function that verifies whether the website link is available
+   * @returns boolean 
+   * 
+   */
   const verifyWebsite = () =>{
     if(details.website != null){
       window.open(details.website, "_blank");

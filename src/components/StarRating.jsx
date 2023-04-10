@@ -2,9 +2,15 @@ import { useState } from "react";
 import "./StarRating.css";
 
 const StarRating = (props) => {
-    
+  /**
+   * Stores the rating input of the user
+   */    
     const [rating, setRating] = useState(0);
-
+    
+  /**
+   * Function that takes the inputted value upon clicking and passes it to the parent component for database posting
+   * @param {Event} index 
+   */
     const setRatingHandler = (index) => {
         setRating(index);
         props.onSaveStarRating(index);

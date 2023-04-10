@@ -4,15 +4,10 @@ import "./SignupForm.css";
 import React, { useState } from "react";
 import { TextField, FormControlLabel, Switch, Button } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
-// import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { generateGravatar } from "../../helpers/accountHelpers";
-// import PasswordChecklist from "react-password-checklist";
-import { addDoc, collection } from "firebase/firestore";
-// import { auth, db } from "../../firebase-config.js";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 /**
@@ -174,7 +169,7 @@ const SignupForm = () => {
     };
 
     //Checks if details are blank
-    if (signupDetails.password=="" || signupDetails.username=="" || signupDetails.email=="") {
+    if (signupDetails.password==="" || signupDetails.username==="" || signupDetails.email==="") {
       alert("No blank inputs!");
     }
     else if (!validName) {
