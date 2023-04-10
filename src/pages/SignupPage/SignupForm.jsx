@@ -303,7 +303,7 @@ const SignupForm = () => {
             label="Show password"
             control={<Switch onClick={togglePwdShown} />}
           />
-          <Button id="signup-link"  href="#url" type="submit" style={{color: "white", backgroundColor: "#344E41"}}>
+          <Button id="signup-link"  type="submit" style={{color: "white", backgroundColor: "#344E41"}}>
             Sign Up
           </Button>
         </div>

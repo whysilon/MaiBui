@@ -30,6 +30,7 @@ function DisplaySearch({query}){
         if(!ignore) {
             setList(res)
             setLoading(false)
+            console.log(res)
         }
     })};
     return () => {
@@ -62,8 +63,9 @@ function DisplaySearch({query}){
                                 </Paper>
                     ))
                     }
-                </Stack>)
-            }
+                </Stack>
+            )
+            }      
         </div>
     )
 }
