@@ -1,5 +1,4 @@
 import "./CalorieCalculator.css"
-import React, { useEffect, useState } from "react"
 /**
  * This displays a progress bar for the daily calorie intake
  * 

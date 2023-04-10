@@ -26,11 +26,12 @@ function CalorieContainer() {
   const [loading,setLoading] = useState(true)
   const [count, setCount] = useState(0);
   let user,username = "";
-  const email = localStorage.getItem('token')
+  let email = localStorage.getItem('token')
 
   try{
     user = auth.currentUser
     username = user.displayName
+    email = user.email
   }
   catch(err){
     console.error(err)
@@ -55,7 +56,7 @@ function CalorieContainer() {
     return () => {
       clearInterval(interval);
     };
-  },[count])
+  },[count,email])
   
   return (
     <div className="calculatorParentContainer">
