@@ -65,7 +65,7 @@ const HomeChoices = () => {
       alignItems="center"
       spacing={4}
       className="homechoices-parent-container"
-      sx={{ marginTop: "50px" }}
+      style={{ marginTop: "50px" }}
     >
       <Stack className="homechoices-title">
         <Typography variant="h3">Welcome,{username}</Typography>
@@ -80,20 +80,22 @@ const HomeChoices = () => {
       >
         <Grid item>
           <Card
-            sx={{ maxWidth: 345, background: " #41b723" }}
             className="homechoices-choice"
+            style={{backgroundColor: "#344E41", color: "white"}}
           >
-            <CardHeader
-              title="Calorie Calculator"
-              avatar={<CalculateIcon sx={{ fontSize: 100 }} />}
-            />
+            <div className="homechoices-choicetitle">
+              <CardHeader
+                avatar={<CalculateIcon style={{ fontSize: 70 , color: "white"}} />}
+              />
+              <h1>Calorie Calculator</h1>
+            </div>
             <CardContent>
-              <Typography variant="body" color="text.secondary">
+              <Typography variant="body">
                 Calculate the amount of calories you are consuming with our
                 Calorie Calculator!
               </Typography>
             </CardContent>
-            <Button href="/calorie-calculator/" size="small">
+            <Button href="/calorie-calculator/" size="big" className="buttonHover" style={{color: "#A3B18A"}}>
               Learn More
             </Button>
           </Card>
@@ -101,20 +103,22 @@ const HomeChoices = () => {
 
         <Grid item>
           <Card
-            sx={{ maxWidth: 345, background: " #41b723" }}
             className="homechoices-choice"
+            style={{backgroundColor: "#344E41", color: "white"}}
           >
-            <CardHeader
-              title="Search For Restaurant"
-              avatar={<SearchIcon sx={{ fontSize: 100 }} />}
-            />
+            <div className="homechoices-choicetitle">
+              <CardHeader
+                avatar={<SearchIcon style={{ fontSize: 70, color: "white"}} />}
+              />
+              <h1>Search For Restaurant</h1>
+            </div>
             <CardContent>
-              <Typography variant="body" color="text.secondary">
+              <Typography variant="body">
                 Get to know any of your favourite restaurants with a click of a
                 button!
               </Typography>
             </CardContent>
-            <Button href="/search-restaurant/" size="small">
+            <Button href="/search-restaurant/" size="big" className="buttonHover" style={{color: "#A3B18A"}}>
               Learn More
             </Button>
           </Card>
@@ -122,19 +126,22 @@ const HomeChoices = () => {
 
         <Grid item>
           <Card
-            sx={{ maxWidth: 345, background: " #41b723" }}
             className="homechoices-choice"
+            style={{backgroundColor: "#344E41", color: "white"}}
           >
-            <CardHeader
-              title="Recommend Nearby Healthy Restaurant"
-              avatar={<RestaurantIcon sx={{ fontSize: 100 }} />}
-            />
+            <div className="homechoices-choicetitle">
+              <CardHeader
+                avatar={<RestaurantIcon style={{ fontSize: 70, color: "white"}} />}
+              />
+              <h1>Recommend Nearby Restaurant</h1>
+            </div>
+
             <CardContent>
-              <Typography variant="body" color="text.secondary">
+              <Typography variant="body">
                 Let us recommend you amazing healthy delicacies around you!
               </Typography>
             </CardContent>
-            <Button href="/recommend-restaurant/" size="small">
+            <Button href="/recommend-restaurant/" size="big" className="buttonHover" style={{color: "#A3B18A"}}>
               Learn More
             </Button>
           </Card>

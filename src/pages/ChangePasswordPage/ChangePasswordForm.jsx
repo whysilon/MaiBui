@@ -311,6 +311,7 @@ const ChangePasswordForm = (props) => {
                   enteredNewPwd !== enteredConfirmedPwd ||
                   !validPwd
                 }
+                className="submitButton"
               >
                 Confirm Change
               </Button>

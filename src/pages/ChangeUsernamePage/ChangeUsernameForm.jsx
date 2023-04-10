@@ -124,6 +124,7 @@ const ChangeUsernameForm = () => {
                 <Button
                   type="submit"
                   disabled={!enteredNewUsername || !validUsername}
+                  className="submitButton"
                 >
                   Confirm Change
                 </Button>
