@@ -174,9 +174,10 @@ const SignupForm = () => {
     };
 
     //Checks if details are blank
-    if (!validName && !validPwd) {
-      alert("P");
-    } else if (!validName) {
+    if (signupDetails.password=="" || signupDetails.username=="" || signupDetails.email=="") {
+      alert("No blank inputs!");
+    }
+    else if (!validName) {
       alert("Username not valid");
     } else if (!validPwd) {
       alert("Password not valid");
@@ -303,7 +304,7 @@ const SignupForm = () => {
             label="Show password"
             control={<Switch onClick={togglePwdShown} />}
           />
-          <Button id="signup-link"  href="#url" type="submit" style={{color: "white", backgroundColor: "#344E41"}}>
+          <Button id="signup-link" type="submit" style={{color: "white", backgroundColor: "#344E41"}}>
             Sign Up
           </Button>
         </div>
