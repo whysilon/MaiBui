@@ -20,8 +20,6 @@ function SearchBar(){
     return(
         <Box
         style={{
-            width: 600,
-            height: 800,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-around',

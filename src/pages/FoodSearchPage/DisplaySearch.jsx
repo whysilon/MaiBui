@@ -1,6 +1,6 @@
 import React, {useState , useEffect } from 'react'
 import { Stack } from '@mui/system';
-import { Paper, Box, Typography, CircularProgress, Button, Divider, Link} from '@mui/material';
+import { Paper, Typography, CircularProgress, Divider, Link} from '@mui/material';
 import "./DisplaySearch.css"
 import GetFoodSearch from '../NutritionixAPI/NutritionixAPIControl';
 
@@ -46,8 +46,8 @@ function DisplaySearch({query}){
                 divider={<Divider orientation="horizontal"/>}
                 style={{
                     overflow: 'auto',
-                    height: '300px',
-                    width: '600px',
+                    height: '450px',
+                    width: '800px',
                     marginTop: '50px'
                 }}
                 >

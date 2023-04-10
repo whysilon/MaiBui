@@ -22,7 +22,6 @@ function CalorieContainer() {
   const [total,setTotal] = useState(0)
   const [loading,setLoading] = useState(true)
   let user,email,username = "";
-
   try{
     user = auth.currentUser
     email = user.email

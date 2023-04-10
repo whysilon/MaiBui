@@ -8,7 +8,7 @@ import { useState } from "react";
 import "./NutritionInformation.css";
 import { addCalorieData } from "../NutritionixAPI/CalorieDataControl";
 import { auth } from "../../firebase-config";
-import { Alert, Button, Snackbar, TextField, Typography } from "@mui/material";
+import { Alert, Button, Slide, Snackbar, TextField, Typography } from "@mui/material";
 
 function CapitalizeFirstLetter(str){
     str = str.replace(/%20/g," ");
@@ -36,6 +36,12 @@ function NutritionInformation({data}) {
     */
     const [snackBarOpen, setSnackBarOpen] = useState(false);
 
+    const handleSnackBarClose = (event, reason) => {
+        if (reason === "clickaway") {
+          return;
+        }
+        setSnackBarOpen(false);
+      };
 
     const handleSubmit = async(e) => {
         e.preventDefault()
@@ -112,6 +118,17 @@ function NutritionInformation({data}) {
                 {noImage ? <img className="image" src="https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-network-placeholder-png-image_3416659.jpg" alt="Placeholder"/>:
                 <img className="image" src={data.photo.highres} alt={data.food_name+" picture"}></img>
                 }
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          open={snackBarOpen}
+          autoHideDuration={6000}
+          onClose={handleSnackBarClose}
+          TransitionComponent={Slide}
+        >
+          <Alert onClose={handleSnackBarClose} severity={snackBarSeverity}>
+            {alertMessage}
+          </Alert>
+        </Snackbar>
             </div>
         </div>
         )
