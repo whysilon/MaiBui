@@ -5,17 +5,20 @@ import "./DisplaySearch.css"
 import GetFoodSearch from '../NutritionixAPI/NutritionixAPIControl';
 
 /**
- * Display the food list based on the search bar
+ * Displays food search results based on input into the text field provided
  * 
  * @author Valencino Tan
  * @param query Input of search
- * @returns FoodList
+ * @returns HTML component of DisplaySearch
  * 
  */
 
 function DisplaySearch({query}){
     const [list,setList] = useState([])
     const [loading,setLoading] = useState(true)
+
+    // This useEffect updates the search field whenever there is a change in query
+
     useEffect(() => {
     let ignore = false;
     if(query === ""){

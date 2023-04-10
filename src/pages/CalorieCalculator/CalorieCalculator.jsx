@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react"
 /**
  * This displays a progress bar for the daily calorie intake
  * 
+ * @author Valencino Tan
+ * 
  * @returns ProgressBar of the current calorie intake
  * 
  * 
