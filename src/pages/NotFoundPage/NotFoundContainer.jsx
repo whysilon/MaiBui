@@ -3,9 +3,14 @@ import HomeContainer from "../HomePage/HomeContainer";
 import { Container, Typography, Button, Stack } from "@mui/material";
 
 import { auth } from "../../firebase-config";
+import { onAuthStateChanged } from "firebase/auth";
+/**
+ * Redirect user from the not found page to home if logeed in , else redirect to login page
+ * @returns HTML element of Not Found Page
+ * @author Xing Mian
+ */
 
 const NotFoundContainer = () => {
-  const user = auth.currentUser;
   return (
     <div>
       <Stack
@@ -22,9 +27,15 @@ const NotFoundContainer = () => {
         <Typography variant="h4">Page Not Found</Typography>
         <Button
           onClick={() => {
-            user
-              ? window.location.assign("/home")
-              : window.location.assign("/");
+            onAuthStateChanged(auth, (user) => {
+              if (user) {
+                window.location.assign("/home");
+                const uid = user.uid;
+              } else {
+                // User is signed out
+                window.location.assign("/");
+              }
+            });
           }}
           color="error"
         >
