@@ -77,7 +77,7 @@ const ChangeUsernameForm = () => {
   };
 
   return (
-    <React.Fragment>
+    <div>
       <Stack
         spacing={6}
         sx={{
@@ -87,8 +87,8 @@ const ChangeUsernameForm = () => {
           alignItems: "center",
         }}
       >
-        <form className="change-password-form" onSubmit={changeUsernameHandler}>
-          <div className="change-password-form-container">
+        <form className="change-username-form" onSubmit={changeUsernameHandler}>
+          <div className="change-username-form-container">
             <div className="form-details">
               <Stack>
                 <TextField
@@ -133,7 +133,7 @@ const ChangeUsernameForm = () => {
           </div>
         </form>
       </Stack>
-    </React.Fragment>
+    </div>
   );
 };
 
