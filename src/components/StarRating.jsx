@@ -1,5 +1,11 @@
 import { useState } from "react";
 import "./StarRating.css";
+/**
+ * Displays HomeButton component, which is a button that navigates to the home page.
+ * @author Marcus Yeo
+ * @return HTML of Rating in the form of stars
+ * @param {props} FeedbackPopupComponent
+ */
 
 const StarRating = (props) => {
   /**

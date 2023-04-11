@@ -4,6 +4,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 /**
  * Feedback Popup that comes up when user presses popup icon on Select Restaurant page
+ * @author Marcus Yeo
  * @param {JSX} props 
  * @returns HTML form of the popup
  */
