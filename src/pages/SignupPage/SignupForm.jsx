@@ -301,7 +301,6 @@ const SignupForm = () => {
           />
           <Button
             id="signup-link"
-            href="#url"
             type="submit"
             style={{ color: "white", backgroundColor: "#344E41" }}
           >

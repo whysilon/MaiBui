@@ -63,9 +63,7 @@ function NutritionInformation({data}) {
         }
         try{
             const user = auth.currentUser
-            console.log(user)
             const email = user.email
-            console.log(email)
             const res = await addCalorieData(info,email)
             setAlertMessage("Input successful!");
             setSnackBarOpen(true);
@@ -74,7 +72,6 @@ function NutritionInformation({data}) {
             setTimeout(() => {
               window.location.href = "/calorie-calculator";
             }, 1000);
-            console.log(res)
         }
         catch(err){
             console.error(err)
@@ -91,8 +88,16 @@ function NutritionInformation({data}) {
     const handleInput = (e) => {
         if(e === "") setServings(1);
         setServings(e.target.value);
-        console.log(servings);
-    }   
+    } 
+    console.log(data)
+    if(data === "Error") {
+        return(<div className="error">
+            <Typography variant = 'h4' align='center' color = 'white'>Unable to find food <br/> information based on input</Typography>
+            <a href="/food-search">
+                <Button variant="contained" style={{ backgroundColor:"#344E41"}}>Return to search?</Button>
+            </a>
+        </div>)
+    }
     let noImage = false;
     if(data.photo.highres === null) noImage = true;
     return (
