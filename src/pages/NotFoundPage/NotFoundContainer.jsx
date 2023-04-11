@@ -5,7 +5,7 @@ import { Container, Typography, Button, Stack } from "@mui/material";
 import { auth } from "../../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
 /**
- * Redirect user from the not found page to home if logeed in , else redirect to login page
+ * Redirect user from the not found page to home if logeed in, else redirect to login page
  * @returns HTML element of Not Found Page
  * @author Xing Mian
  */
