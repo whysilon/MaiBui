@@ -91,6 +91,7 @@ function CustomInput(){
                 value = {calorie}
                 onChange = {handleCalorieChange}
                 required 
+                // This makes it so that the user can only input positive numbers
                 onKeyPress={(event) => {
                     if (event?.key === '-' || event?.key === '+' || event?.key === 'e') {
                     event.preventDefault();
