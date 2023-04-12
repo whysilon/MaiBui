@@ -1,6 +1,14 @@
 import React from "react";
 import GetLocation from "../../components/LocationRetriever";
 
+/**
+ * Function used to retrieve nearby restaurant data.
+ * @function RecommendResults
+ * @returns {Array, Boolean} Array of restaurant details and value to check if data has been retrieved successfully.
+ * 
+ * @author Xavier
+ * 
+ */
 export default async function RecommendResults() {
     var [data, setData] = React.useState([]);
     var [check, setCheck] = React.useState(false);
