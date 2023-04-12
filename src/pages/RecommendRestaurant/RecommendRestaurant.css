@@ -1,5 +1,34 @@
-.recommend{
-    flex:auto;
+.recommend-parentContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.recommend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    height: 15vh;
+    height: 80vh;
+    margin-top: 70px;
+    background-color: #A3B18A;
+    border-radius: 5px;
+    width: 65vw;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+.recommend a {
+    text-decoration: none;
+    color: white;
+}
+
+.results {
+    margin-top: 10px;
+}
+
+.recommend .recommendResults {
+    width: 450px;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

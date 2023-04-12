@@ -3,48 +3,121 @@ import "./LoginForm.css";
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { TextField } from "@mui/material";
+import {
+  Alert,
+  Button,
+  Slide,
+  Snackbar,
+  Stack,
+  TextField,
+} from "@mui/material";
+import { auth } from "../../firebase-config";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 /**
- * Displays the login form of LoginContainer 
- * 
+ * Displays the login form of LoginContainer
+ *
  * @author Marcus Yeo
  * @returns HTML of LoginForm
  */
 
 const LoginForm = () => {
-  
+  /**
+   * Authenticates the user on the server
+   */
+  const signIn = async (details) => {
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        details.email,
+        details.password
+      ).then(async (res) => {
+        const token = details.email;
+        localStorage.setItem("token", token);
+        console.log(localStorage);
+      });
+
+      setAlertMessage("Login successful!");
+      setSnackBarOpen(true);
+      setSnackBarSeverity("success");
+
+      setTimeout(() => {
+        window.location.href = "/home";
+      }, 1000); // Redirects to /home after 1 seconds
+    } catch (e) {
+      if (e.message === "Firebase: Error (auth/user-not-found).") {
+        // alert("User not found!");
+        setAlertMessage("User not found!");
+        setSnackBarOpen(true);
+        setSnackBarSeverity("error");
+      } else {
+        // alert("Wrong password!");
+        setAlertMessage("Wrong password!");
+        setSnackBarOpen(true);
+        setSnackBarSeverity("error");
+      }
+    }
+  };
   /**
    * Storage/setters for userename input variable in login
-   * form 
+   * form
    */
 
-  const [enteredUsername, setEnteredUserName] = useState("");
-  
+  const [enteredEmail, setEnteredEmail] = useState("");
+
   /**
-  * Storage/setters for password input variable in login
-  * form 
-  */
-  
+   * Storage/setters for password input variable in login
+   * form
+   */
+
   const [enteredPassword, setEnteredPassword] = useState("");
 
+  /**
+   * Set the open state of SnackBar
+   */
+  const [snackBarOpen, setSnackBarOpen] = useState(false);
 
   /**
-   * Changes the username storage based on 
-   * input
-   * 
-   * @param {onChange} event 
+   * Set the alert message that will be shown in the SnackBar
+   */
+  const [alertMessage, setAlertMessage] = useState("");
+
+  /**
+   * Set the severity of the SnackBar,
+   * initially "error"
+   */
+  const [snackBarSeverity, setSnackBarSeverity] = useState("");
+
+  /**
+   * Handle the close of the SnackBar
+   * @param {*} event User clicked
+   * @param {*} reason SnackBar would not be close if the user clicked outside of it
+   *
    */
 
-  const usernameHandler = (event) => {
-    setEnteredUserName(event.target.value);
+  const handleSnackBarClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackBarOpen(false);
   };
 
   /**
-   * Changes the password storage based on 
+   * Changes the username storage based on
    * input
-   * 
-   * @param {onChange} event 
+   *
+   * @param {onChange} event
+   */
+
+  const emailHandler = (event) => {
+    setEnteredEmail(event.target.value);
+  };
+
+  /**
+   * Changes the password storage based on
+   * input
+   *
+   * @param {onChange} event
    */
 
   const passwordHandler = (event) => {
@@ -54,26 +127,27 @@ const LoginForm = () => {
   /**
    * Tallies the loginDetails with database
    * and transits to Home Page
-   * 
-   * @param {onSubmit} event 
+   *
+   * @param {onSubmit} event
    */
 
   const loginHandler = (event) => {
     event.preventDefault();
 
     let loginDetails = {
-      username: enteredUsername,
+      email: enteredEmail,
       password: enteredPassword,
     };
 
     //Checks if details are blank
-    if (loginDetails.username === "" || loginDetails.password === "") {
-      alert("Leave no fields blank!");
+    if (loginDetails.email === "" || loginDetails.password === "") {
+      setAlertMessage("Leave no fields blank!");
+      setSnackBarOpen(true);
+      setSnackBarSeverity("error");
     }
     //else checks details with database
     else {
-      console.log(loginDetails);
-      window.location.href="/home"
+      signIn(loginDetails);
     }
   };
 
@@ -83,22 +157,16 @@ const LoginForm = () => {
         <h1>Mai Bui</h1>
         <p>Your all in one eating aid</p>
         <div className="formDetails">
-          <p>Username:</p>
+          <p>Email:</p>
           <TextField
             className="login-text"
-            value={enteredUsername}
-            onChange={usernameHandler}
-            type={"text"}
+            value={enteredEmail}
+            onChange={emailHandler}
+            type={"email"}
             variant="outlined"
-            label="Enter your username"
+            label="Enter your email"
             margin="normal"
-            helperText={
-              enteredUsername === ""
-                ? "Empty field!"
-                : // : enteredNewPwd !== enteredConfirmedPwd
-                  // ? "Passwords do not match!"
-                  ""
-            }
+            helperText={enteredEmail === "" ? "Empty field!" : ""}
           ></TextField>
           <p>Password:</p>
           <TextField
@@ -108,27 +176,39 @@ const LoginForm = () => {
             type={"password"}
             variant="outlined"
             label="Enter your password"
-            helperText={
-              enteredPassword === ""
-                ? "Empty field!"
-                : // : enteredNewPwd !== enteredConfirmedPwd
-                  // ? "Passwords do not match!"
-                  ""
-            }
+            helperText={enteredPassword === "" ? "Empty field!" : ""}
           ></TextField>
         </div>
-        <div className="login-bottom-box">
+        <Stack spacing={2} sx={{ marginTop: "20px" }}>
           <Link to="/forgot-password" className="loginLinks">
             Forgot Password?
           </Link>
-          <button type="submit">Login</button>
-        </div>
+          <Button
+            id="loginBtn"
+            type="submit"
+            style={{ color: "white", backgroundColor: "#344E41" }}
+          >
+            Login
+          </Button>
+        </Stack>
+        <div className="login-bottom-box"></div>
         <p className="smallText">
-            Don't have an account?{" "}
-            <Link to="/signup" className="loginLinks">
-              Sign Up
-            </Link>
-          </p>
+          Don't have an account?{" "}
+          <Link to="/signup" className="loginLinks">
+            Sign Up
+          </Link>
+        </p>
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          open={snackBarOpen}
+          autoHideDuration={6000}
+          onClose={handleSnackBarClose}
+          TransitionComponent={Slide}
+        >
+          <Alert onClose={handleSnackBarClose} severity={snackBarSeverity}>
+            {alertMessage}
+          </Alert>
+        </Snackbar>
       </div>
     </form>
   );

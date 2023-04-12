@@ -1,20 +1,35 @@
-.search{
-    flex:auto;
-    text-align: center;
-    height: 15vh;
-    
+.search-parentContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-input{
+
+.search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 80vh;
+    margin-top: 70px;
+    background-color: #A3B18A;
+    border-radius: 5px;
+    width: 65vw;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.6);
+}
+
+input {
     width: 60vh;
 }
-button{
-    width: 20vh;
-}
-.searchBar{
+
+.searchBar {
     font-size: 2vh;
     height: 5vh;
     margin-bottom: 4vh;
 }
-.results{
-    margin-bottom: 1vh;
+
+.search .searchResults {
+    width: 450px;
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

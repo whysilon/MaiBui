@@ -1,40 +1,40 @@
 /* Title of homepage */
 
+.homechoices-parent-container {
+    background-color: #DAD7CD;
+    height: 92.8vh;
+}
+
 .homechoices-title {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     flex-direction: column;
+    height: 15vh;
+    padding: 30px 0 30px 0;
 }
 
 
 /* All selections on the homepage */
 
 .homechoices-container {
+    background-color: #DAD7CD;
     display: flex;
-    justify-content: space-around;
-    height: calc(80vh - 102px);
+    justify-content: space-evenly;
+    height: 500px;
+    margin-top: 30px;
 }
 
 
 /* Each selection on homepage */
 
 .homechoices-choice {
-    background-color: #41B723;
+    background-color: #344E41;
     width: 20vw;
     height: 85%;
     margin: auto;
     padding: 26px;
     text-align: center;
-    box-shadow: 10px 10px 5px 12px rgb(231, 230, 230);
-}
-
-
-/* Hovering over a selection */
-
-.homechoices-choice:hover {
-    transform: scale(1.1);
-    cursor: pointer;
 }
 
 
@@ -45,17 +45,30 @@
     word-wrap: break-word;
 }
 
-
-/* Heading of each selection */
-
-.homechoices-choice h1 {
-    font-size: 3rem;
+.homechoices-choicetitle {
+    display: flex;
+    justify-content: center;
 }
 
 
 /* Description of each selection */
 
-.homechoices-choice span {
+.homechoices-choice h1 {
     font-size: 1.6rem;
-    padding: 10px;
+}
+
+.homechoices-choice span {
+    font-size: 1.2rem;
+}
+
+
+/* All a content on page */
+
+.homechoices-container a {
+    text-decoration: none;
+    color: white;
+}
+
+.buttonHover:hover {
+    transform: scale(1.1);
 }

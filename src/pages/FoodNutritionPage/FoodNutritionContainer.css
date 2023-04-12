@@ -1,0 +1,18 @@
+.container{
+    display: flex;
+    height: 100vh;
+    width: auto;
+    flex-direction: column;
+}
+
+.nutrition{
+    display: flex;
+    flex-direction: row;
+    height: inherit;
+    width: 100%;
+}
+
+.progress{
+    justify-content: center;
+    align-items: center;
+}

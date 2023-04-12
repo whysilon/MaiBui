@@ -1,13 +1,14 @@
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
-import DisplayFoodList from "./DisplayFoodList.jsx"
-import { Paper,Stack, Box, IconButton, Typography, CircularProgress } from "@mui/material";
+import DisplaySearch from "./DisplaySearch.jsx"
+import { Box, IconButton } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 /**
-* Displays the search bar for searching food
+* Displays the search bar for searching food and sends input
+* to DisplaySearch in order to display search results
 *
 * @author Valencino Tan
-* @returns SearchBar
+* @returns HTML component of SearchBar
 *
 */
 
@@ -15,18 +16,16 @@ function SearchBar(){
     const [input,setInput] = useState("")
     const handleInput = (e) => {
         setInput(e.target.value.toLowerCase());
-        console.log(input);
     }
     return(
         <Box
-        sx={{
-            width: 400,
-            height: 660,
-            margin:'100px auto',
-            
-            display:'flex',
-            flexDirection:'column',
-            justifyContent:'space-evenly'
+        style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-around',
+            alignItems: 'center',
+            height: 'inherit',
+            width: 'inherit',
         }}>
             <form>
                 <TextField
@@ -42,7 +41,7 @@ function SearchBar(){
                     <SearchIcon style={{ fill: "blue" }} />
             </IconButton>
             </form>
-            <DisplayFoodList query = {input}/>
+            <DisplaySearch query = {input}/>
         </Box>
         )
 }

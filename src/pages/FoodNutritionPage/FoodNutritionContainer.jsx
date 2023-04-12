@@ -1,17 +1,47 @@
+import { CircularProgress } from "@mui/material";
+import { useState } from "react";
+import { useParams } from "react-router";
+import AccountCenterNavBar from "../../components/AccountCenterNavBar";
+import { getNutrition } from "../NutritionixAPI/NutritionixAPIControl.jsx";
+import NutritionInformation from "./NutritionInformation";
+import "./FoodNutritionContainer.css"
 /**
- * This contains the nutritional information from the Nutritionix API
- * It will display the nutritional information of the food selected
+ * Displays the Nutritional information of the given food based on
+ * the given id (from navigation)
  * 
+ * @author Valencino Tan
+ * 
+ * @returns HTML component of FoodNutrition Container
  */
 
-import { useParams } from "react-router";
-import HomePageNavBar from "../../components/HomePageNavBar";
+
+let ignore = false
 
 function FoodNutritionContainer(){
-    const input = useParams().id;
-    console.log(input)
+    const [data,setData] = useState("")
+    const [loading,setLoading] = useState(true)
+    const input = useParams().id
+    if(!ignore){
+        getNutrition(input).then(
+        res => {
+            setData(res)
+            setLoading(false)
+            ignore = true
+        });
+    }
     return(
-        <HomePageNavBar/>
+    <div className="container">
+        <AccountCenterNavBar/>
+            <div className = "nutrition" > 
+            {   
+                loading ? (
+                <div className = "progress">
+                <CircularProgress/>
+                </div>) :
+                <NutritionInformation data = {data}/>
+            }
+            </div>
+        </div>
     )
 }
 

@@ -1,13 +1,17 @@
+/* The icon of the button */
+
 .bm-burger-button {
     position: sticky;
-    width: 36px;
-    height: 30px;
-    margin-top: 10px;
+    width: 32px;
+    height: 26px;
 }
+
+
+/* Items in the side bar */
 
 .menu-item {
     color: white;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 
@@ -57,7 +61,7 @@
 /* General sidebar styles */
 
 .bm-menu {
-    background: #41B723;
+    background: #344E41;
     font-size: 1.3em;
     overflow-y: hidden !important;
 }
@@ -86,9 +90,14 @@
     margin-top: 10%;
 }
 
+.bm-item:hover {
+    opacity: 65%;
+}
+
 
 /* Styling of overlay */
 
 .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
+    top: 0;
 }

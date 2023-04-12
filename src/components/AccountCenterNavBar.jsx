@@ -22,8 +22,10 @@ import IconButton from "@mui/material/IconButton";
 import Divider from "@mui/material/Divider";
 import Stack from "@mui/material/Stack";
 
-import { userProfileData } from "../pages/AccountCenterPage/userProfileData";
 import Backbutton from "../components/BackButton";
+import { auth, db } from "../firebase-config";
+import { collection } from "firebase/firestore";
+import { useEffect } from "react";
 
 /**
  * This function is a component for the navigation bar in the account center page.
@@ -32,13 +34,33 @@ import Backbutton from "../components/BackButton";
  * @returns {JSX.Element} - Rendered component.
  */
 function AccountCenterNavBar(props) {
+  const usersCollectionRef = collection(db, "users");
   const location = useLocation();
   let navigate = useNavigate();
   const pathname = useLocation().pathname;
 
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  const [username, setUsername] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
+  const [uid, setUid] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid);
+        setUsername(user.displayName);
+        setPhotoURL(user.photoURL);
+      } else {
+        setUid("");
+        setUsername("");
+        setPhotoURL("");
+      }
+    });
+
+    return unsubscribe;
+  }, [auth]);
 
   /**
    * This function handles the opening of the user menu.
@@ -62,7 +84,8 @@ function AccountCenterNavBar(props) {
    * @function handleAccountCenter
    */
   const handleAccountCenter = () => {
-    let path = `/account-center`;
+    // let path = "/account-center/";
+    let path = "/account-center/";
     navigate(path);
   };
 
@@ -76,18 +99,35 @@ function AccountCenterNavBar(props) {
     const segments = str.split("/");
     const lastSegment = segments[segments.length - 1];
     return lastSegment
+      .replace(/%20/g, " ")
       .split("-")
-      .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-      .join(" ");
+      .map((part) => part.charAt(0).toUpperCase() + part.slice(1) + " ");
   }
+
+  const logOut = () => {
+    auth
+      .signOut(auth)
+      .then(() => {
+        localStorage.removeItem("token");
+        window.location.href = "/";
+        alert("Logging out...");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
 
   const currentLocation = capitalizeLastSegment(pathname);
 
   return (
-    //TODO:conditional redering based on authentication conditions
     //TODO: GET user profile data from databasae
 
-    <AppBar position="static" color="inherit" className="navbar">
+    <AppBar
+      position="static"
+      style={{ backgroundColor: "#588157" }}
+      className="navbar"
+      elevation={0}
+    >
       <Toolbar>
         <SideBar />
         <Backbutton />
@@ -121,7 +161,7 @@ function AccountCenterNavBar(props) {
                 }),
               }}
             >
-              <Avatar src={userProfileData.img} />
+              <Avatar src={photoURL} />
             </IconButton>
 
             <Menu
@@ -153,9 +193,9 @@ function AccountCenterNavBar(props) {
             >
               <Box sx={{ my: 1.5, px: 2.5 }}>
                 <Stack direction="row" spacing={2} alignItems="center">
-                  <Avatar src={userProfileData.img} />
-                  <Typography variant="h6" noWrap>
-                    {userProfileData.username}
+                  <Avatar src={photoURL} />
+                  <Typography variant="p" fontSize={14} noWrap>
+                    {username}
                   </Typography>
                 </Stack>
               </Box>
@@ -170,7 +210,14 @@ function AccountCenterNavBar(props) {
                 <AccountCircle />
                 Account Center
               </MenuItem>
-              <MenuItem onClick={handleClose}>
+              <MenuItem
+                onClick={() => {
+                  handleClose();
+                  auth.signOut().then(() => {
+                    window.location.href = "/";
+                  });
+                }}
+              >
                 <Logout />
                 Log Out
               </MenuItem>

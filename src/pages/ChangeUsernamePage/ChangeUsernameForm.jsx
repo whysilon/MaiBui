@@ -5,8 +5,10 @@
 
  */
 import React, { useState } from "react";
-import { Button, TextField, Stack } from "@mui/material";
+import { Button, TextField, Stack} from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
+import { auth } from "../../firebase-config";
+import { updateProfile } from "firebase/auth";
 
 /**
  * A form component for changing the username of an account.
@@ -23,13 +25,38 @@ const ChangeUsernameForm = () => {
   const [validUsername, setValidUsername] = useState(false);
 
   /**
-   * A function that handles the submission of the form to change the username.
-   * @param {Event} event - The event object.
+   * A function that handles the submission of the form to update the username with Firebase Authentication
+   * @param {*} event event - The event object.
    */
-  //TODO: check duplicated username with database
+
+  const validUsernameHandler = (isValid) => {
+    setValidUsername(isValid);
+  };
+
+  /**
+   * A function that handles the submission of the form to update the username with Firebase Authentication
+   * @param {*} event event - The event object.
+   */
+
   const changeUsernameHandler = (event) => {
+    const user = auth.currentUser;
     event.preventDefault();
-    window.location.href = "/account-center";
+    const changeUsernameDetails = {
+      newUsername: enteredNewUsername,
+    };
+    updateProfile(user, {
+      displayName: changeUsernameDetails.newUsername,
+    })
+      .then(() => {
+        console.log(user.displayName);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+      .then(() => {
+        window.location.href = "/account-center";
+      });
+
     console.log({ newUsername: enteredNewUsername });
   };
 
@@ -43,15 +70,19 @@ const ChangeUsernameForm = () => {
           "You have unsaved changes. Are you sure you want to cancel?"
         )
       ) {
-        window.location.href = "/account-center";
+        setTimeout(() => {
+          window.location.href = "/account-center";
+        }, 0);
       }
     } else {
-      window.location.href = "/account-center";
+      setTimeout(() => {
+        window.location.href = "/account-center";
+      }, 0);
     }
   };
 
   return (
-    <React.Fragment>
+    <div>
       <Stack
         spacing={6}
         sx={{
@@ -61,8 +92,8 @@ const ChangeUsernameForm = () => {
           alignItems: "center",
         }}
       >
-        <form className="change-password-form" onSubmit={changeUsernameHandler}>
-          <div className="change-password-form-container">
+        <form className="change-username-form" onSubmit={changeUsernameHandler}>
+          <div className="change-username-form-container">
             <div className="form-details">
               <Stack>
                 <TextField
@@ -80,7 +111,10 @@ const ChangeUsernameForm = () => {
                 maxLength={13}
                 minLength={1}
                 value={enteredNewUsername}
-                onChange={(valid) => setValidUsername(valid)}
+                onChange={(isValid) => {
+                  setValidUsername(isValid);
+                  console.log(isValid);
+                }}
                 messages={{
                   maxLength: "Username must be 13 characters long maximum.",
                   minLength: "Username must be 1 characters long minimally.",
@@ -94,7 +128,8 @@ const ChangeUsernameForm = () => {
 
                 <Button
                   type="submit"
-                  disabled={!enteredNewUsername && !validUsername}
+                  disabled={!enteredNewUsername || !validUsername}
+                  className="submitButton"
                 >
                   Confirm Change
                 </Button>
@@ -103,7 +138,7 @@ const ChangeUsernameForm = () => {
           </div>
         </form>
       </Stack>
-    </React.Fragment>
+    </div>
   );
 };
 

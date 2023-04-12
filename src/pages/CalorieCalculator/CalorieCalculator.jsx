@@ -1,54 +1,51 @@
 import "./CalorieCalculator.css"
-import React from "react"
 /**
  * This displays a progress bar for the daily calorie intake
+ * 
+ * @author Valencino Tan
  * 
  * @returns ProgressBar of the current calorie intake
  * 
  * 
  */
-function CalorieCalculator() {
-    const ProgressBar = (props) => {
-        const {bgcolor,completed } = props;
+const ProgressBar = (props) => {
+  const {bgcolor,completed} = props;
 
-        const containerStyles = {
-            width: '20%',
-            backgroundColor: "#e0e0de",
-            borderRadius: 50,
-            margin: 0,
-            textAlign: 'right'
-          }
-        
-          const fillerStyles = {
-            width: `${completed}%`,
-            backgroundColor: bgcolor,
-            borderRadius: 'inherit',
-            textAlign: 'right'
-          }
-        
-          const labelStyles = {
-            padding: 5,
-            color: 'white',
-            fontWeight: 'bold'
-          }
-        return (
-            <div style={containerStyles}>
-                <div style={fillerStyles}>
-                    <span className={labelStyles}>{`${completed}%`}</span>
-                </div>
-            </div>
-        )
+  const containerStyles = {
+      width: '110%',
+      backgroundColor: "white",
+      borderRadius: 20,
+      margin: 0,
     }
-    let limit = 2000;
-    let current = 480;
-    const UserData = {bgcolor: "purple", completed: current/limit * 100};
-    
-    return (
-            <div>
-                <ProgressBar bgcolor = {UserData.bgcolor}
-                             completed = {UserData.completed}/>
-            </div>
+  
+    const fillerStyles = {
+      width: `${completed}%`,
+      maxWidth: '100%',
+      backgroundColor: bgcolor,
+      borderRadius: 'inherit',
+      textAlign: 'center',
+      fontSize: '0.9rem',
+      height: '30px',
+      color: 'black',
+      fontWeight: 'bold',
+    }
+  return (
+      <div style={containerStyles}>
+          <div style={fillerStyles}>
+              <p>{`${completed}%`}</p>  
+          </div>
+      </div>
     )
+  }
+
+function CalorieCalculator(props) {
+  const UserData = {bgcolor: "#588157", completed: Math.round((props.tot/props.lim) * 100)};
+  return (
+          <div>
+              <ProgressBar bgcolor = {UserData.bgcolor}
+                            completed = {UserData.completed}/>
+          </div>
+  )
 }
 
 export default CalorieCalculator;

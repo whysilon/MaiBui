@@ -46,7 +46,8 @@ const Navigate = () => {
           frameborder="0" style={{border:"0"}}
           referrerpolicy="no-referrer-when-downgrade"
           src={url}
-          allowFullscreen>
+          allowFullscreen
+          >
         </iframe>
       );
     }

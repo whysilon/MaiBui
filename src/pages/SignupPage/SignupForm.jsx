@@ -2,22 +2,66 @@
 import "./SignupForm.css";
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { TextField, FormControlLabel, Switch } from "@mui/material";
-import PasswordChecklist from "react-password-checklist"
-import { WindowSharp } from "@mui/icons-material";
-
-
-//TODO: Must be able to check if username is taken
+import { TextField, FormControlLabel, Switch, Button } from "@mui/material";
+import PasswordChecklist from "react-password-checklist";
+import { auth, db } from "../../firebase-config.js";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
+import { generateGravatar } from "../../helpers/accountHelpers";
+import { setDoc, doc } from "firebase/firestore";
 
 /**
- * Displays the sign up form of the sign up page 
- * 
+ * Displays the sign up form of the sign up page
+ *
  * @author Marcus Yeo
  * @returns HTML of Sign Up form
  */
 
 const SignupForm = () => {
+  /**
+   * Registers user on the database and at the same time, creates an account on the database to faciliate
+   * login and log out.
+   */
+  const registerUser = async (details) => {
+    try {
+      await createUserWithEmailAndPassword(
+        auth,
+        details.email,
+        details.password
+      );
+
+      await updateProfile(auth.currentUser, {
+        displayName: details.username,
+        photoURL: generateGravatar(details.email),
+      })
+        .then(() => {
+          console.log("Update username successfully");
+          console.log(auth.currentUser.displayName);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      await setDoc(doc(db, "users", details.email), {
+        calories: 0,
+        username: details.username,
+        visited: [],
+      });
+      localStorage.setItem("token", details.email);
+
+      window.location.href = "/home";
+      alert(`${details.email} successfully registered!`);
+    } catch (e) {
+      console.log(e.message);
+      if (e.message === "Firebase: Error (auth/missing-email).") {
+        alert("Email is blank!");
+      } else {
+        alert("Email already taken!");
+      }
+    }
+  };
+
+  const [enteredEmail, setEnteredEmail] = useState("");
   /**
    * Storage/setters of username input variable
    */
@@ -28,7 +72,7 @@ const SignupForm = () => {
   const [enteredPassword, setEnteredPassword] = useState("");
   /**
    * Storage/setters of cfmpassword input variable
-   */  
+   */
   const [enteredCfmPassword, setEnteredCfmPassword] = useState("");
   /**
    * Storage/setters of show password boolean variable
@@ -39,101 +83,103 @@ const SignupForm = () => {
    */
   const [validPwd, setValidPwd] = useState(false);
   /**
-  * Storage/setters of name validator boolean variable
-  */
+   * Storage/setters of name validator boolean variable
+   */
   const [validName, setValidName] = useState(false);
 
-/**
- * Changes username storage based on username input
- * 
- * @param {onChange} event 
- */
+  /**
+   * Changes username storage based on username input
+   *
+   * @param {onChange} event
+   */
 
   const usernameHandler = (event) => {
     setEnteredUserName(event.target.value);
   };
 
-/**
- * Changes password storage based on password input
- * 
- * @param {onChange} event 
- */
+  const emailHandler = (event) => {
+    setEnteredEmail(event.target.value);
+  };
+
+  /**
+   * Changes password storage based on password input
+   *
+   * @param {onChange} event
+   */
 
   const passwordHandler = (event) => {
     setEnteredPassword(event.target.value);
   };
 
-/**
- * Changes cfmpassword storage based on cfmpassword input
- * 
- * @param {onChange} event 
- */
+  /**
+   * Changes cfmpassword storage based on cfmpassword input
+   *
+   * @param {onChange} event
+   */
 
   const cfmpasswordHandler = (event) => {
     setEnteredCfmPassword(event.target.value);
   };
 
-/**
- * Changes togglPwd variable based on togglePwd input
- * 
- * @param {onClick} event 
- */
+  /**
+   * Changes togglPwd variable based on togglePwd input
+   *
+   * @param {onClick} event
+   */
 
   const togglePwdShown = () => {
     setPwdShown(!pwdShown);
   };
 
-/**
- * Changes validPwd boolean based on validPwd input
- * 
- * @param {onChange} event 
- */
-  
+  /**
+   * Changes validPwd boolean based on validPwd input
+   *
+   * @param {onChange} event
+   */
+
   const validPwdHandler = (valid) => {
     setValidPwd(valid);
-  }
+  };
 
-/**
- * Changes validName boolean based on validName input
- * 
- * @param {onChange} event 
- */
+  /**
+   * Changes validName boolean based on validName input
+   *
+   * @param {onChange} event
+   */
 
   const validNameHandler = (valid) => {
     setValidName(valid);
-  }
+  };
 
-/**
- * POSTS signup details and logins the user
- * to homepage
- * 
- * @param {onSubmit} event 
- */
+  /**
+   * POSTS signup details and logins the user
+   * to homepage
+   *
+   * @param {onSubmit} event
+   */
 
   const signupHandler = (event) => {
     event.preventDefault();
 
     const signupDetails = {
+      email: enteredEmail,
       username: enteredUsername,
       password: enteredPassword,
       cfmPassword: enteredCfmPassword,
     };
 
     //Checks if details are blank
-    if(!validName && !validPwd){
-      alert("Please enter a username and password");
+    if (signupDetails.password==="" || signupDetails.username==="" || signupDetails.email==="") {
+      alert("No blank inputs!");
     }
-    else if(!validName){
+    else if (!validName) {
       alert("Username not valid");
-    }
-    else if(!validPwd){
+    } else if (!validPwd) {
       alert("Password not valid");
     }
     //else checks details with database
     else {
-      window.location.href = "/login"
-      alert("Successfully Signed Up! Redirecting...")
-      console.log(signupDetails);
+      registerUser(signupDetails);
     }
   };
 
@@ -143,21 +189,22 @@ const SignupForm = () => {
         <h1>Sign Up</h1>
         <p>Start your healthy journey</p>
         <div className="signup-formDetails">
-
           {/* Checks username */}
           <PasswordChecklist
-            rules={["minLength","maxLength"]}
+            rules={["minLength", "maxLength"]}
             maxLength={13}
             minLength={1}
             value={enteredUsername}
-            onChange={(isValid) => {validNameHandler(isValid)}}
+            onChange={(isValid) => {
+              validNameHandler(isValid);
+            }}
             messages={{
               maxLength: "Username must be 13 characters long maximum.",
               minLength: "Username must be 1 characters long minimally.",
             }}
           />
 
-          <p>Username:</p>
+          <p className="pHeaders">Username:</p>
           <TextField
             className="signup-text_1"
             value={enteredUsername}
@@ -175,17 +222,44 @@ const SignupForm = () => {
             }
           ></TextField>
 
+          <p className="pHeaders">Email:</p>
+          <TextField
+            className="signup-text_1"
+            value={enteredEmail}
+            onChange={emailHandler}
+            type={"email"}
+            variant="outlined"
+            label="Enter your email"
+            margin="normal"
+            helperText={
+              enteredEmail === ""
+                ? "Empty field!"
+                : // : enteredNewPwd !== enteredConfirmedPwd
+                  // ? "Passwords do not match!"
+                  ""
+            }
+          ></TextField>
+
           {/* Checks password */}
           <PasswordChecklist
-            className = "signup-pwd-checker"
-            rules={["minLength","capital","lowercase","number","specialChar","match"]}
+            className="signup-pwd-checker"
+            rules={[
+              "minLength",
+              "capital",
+              "lowercase",
+              "number",
+              "specialChar",
+              "match",
+            ]}
             minLength={8}
             value={enteredPassword}
             valueAgain={enteredCfmPassword}
-            onChange={(isValid) => {validPwdHandler(isValid)}}
+            onChange={(isValid) => {
+              validPwdHandler(isValid);
+            }}
           />
 
-          <p>Password:</p>
+          <p className="pHeaders">Password:</p>
           <TextField
             className="signup-text"
             value={enteredPassword}
@@ -202,7 +276,7 @@ const SignupForm = () => {
             }
           ></TextField>
 
-          <p>Confirm Password:</p>
+          <p className="pHeaders">Confirm Password:</p>
           <TextField
             className="signup-text"
             value={enteredCfmPassword}
@@ -222,10 +296,16 @@ const SignupForm = () => {
 
         <div className="signup-button">
           <FormControlLabel
-              label="Show password"
-              control={<Switch onClick={togglePwdShown} />}
-            />
-          <button type="submit" href="#url" id="signup-link">Sign Up</button>
+            label="Show password"
+            control={<Switch onClick={togglePwdShown} />}
+          />
+          <Button
+            id="signup-link"
+            type="submit"
+            style={{ color: "white", backgroundColor: "#344E41" }}
+          >
+            Sign Up
+          </Button>
         </div>
       </div>
     </form>

@@ -15,7 +15,7 @@ const SearchContainer = () => {
      */
     let location = GetLocation();
     return (
-        <div>
+        <div className="searchContainer">
             <AccountCenterNavBar />
             <SearchRestaurant latitude={location.latitude} longitude={location.longitude} />
         </div>

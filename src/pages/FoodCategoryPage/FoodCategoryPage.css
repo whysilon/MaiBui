@@ -1,0 +1,8 @@
+.caption {
+    text-align: center;
+}
+
+.linkToFoodCat:hover {
+    cursor: pointer;
+    opacity: 68%;
+}

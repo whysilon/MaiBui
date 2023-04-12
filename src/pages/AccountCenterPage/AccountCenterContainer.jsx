@@ -1,5 +1,4 @@
 // import React from "react";
-import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 //CSS
@@ -18,6 +17,9 @@ import { Stack } from "@mui/system";
  */
 
 function AccountCenterContainer() {
+
+
+
   return (
     <div className="flex-col page">
       <AccountCenterNavBar />
@@ -40,7 +42,6 @@ function AccountCenterContainer() {
           </Link>
         </span>
       </Stack>
-      {/* <LogOutBtn /> */}
     </div>
   );
 }
