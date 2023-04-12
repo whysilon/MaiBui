@@ -118,12 +118,16 @@ function AccountCenterNavBar(props) {
   };
 
   const currentLocation = capitalizeLastSegment(pathname);
-  // console.log(auth.currentUser);
 
   return (
     //TODO: GET user profile data from databasae
 
-    <AppBar position="static" style={{backgroundColor: "#588157"}} className="navbar" elevation={0}>
+    <AppBar
+      position="static"
+      style={{ backgroundColor: "#588157" }}
+      className="navbar"
+      elevation={0}
+    >
       <Toolbar>
         <SideBar />
         <Backbutton />
