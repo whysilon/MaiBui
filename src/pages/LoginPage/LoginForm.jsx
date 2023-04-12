@@ -141,7 +141,6 @@ const LoginForm = () => {
 
     //Checks if details are blank
     if (loginDetails.email === "" || loginDetails.password === "") {
-      // alert("Leave no fields blank!");
       setAlertMessage("Leave no fields blank!");
       setSnackBarOpen(true);
       setSnackBarSeverity("error");
@@ -167,13 +166,7 @@ const LoginForm = () => {
             variant="outlined"
             label="Enter your email"
             margin="normal"
-            helperText={
-              enteredEmail === ""
-                ? "Empty field!"
-                : // : enteredNewPwd !== enteredConfirmedPwd
-                  // ? "Passwords do not match!"
-                  ""
-            }
+            helperText={enteredEmail === "" ? "Empty field!" : ""}
           ></TextField>
           <p>Password:</p>
           <TextField
@@ -183,20 +176,18 @@ const LoginForm = () => {
             type={"password"}
             variant="outlined"
             label="Enter your password"
-            helperText={
-              enteredPassword === ""
-                ? "Empty field!"
-                : // : enteredNewPwd !== enteredConfirmedPwd
-                  // ? "Passwords do not match!"
-                  ""
-            }
+            helperText={enteredPassword === "" ? "Empty field!" : ""}
           ></TextField>
         </div>
-        <Stack spacing={2} sx={{ marginTop: "20px"}}>
+        <Stack spacing={2} sx={{ marginTop: "20px" }}>
           <Link to="/forgot-password" className="loginLinks">
             Forgot Password?
           </Link>
-          <Button id="loginBtn" type="submit" style={{color: "white", backgroundColor: "#344E41"}}>
+          <Button
+            id="loginBtn"
+            type="submit"
+            style={{ color: "white", backgroundColor: "#344E41" }}
+          >
             Login
           </Button>
         </Stack>

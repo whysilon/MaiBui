@@ -33,6 +33,11 @@ const ChangeUsernameForm = () => {
     setValidUsername(isValid);
   };
 
+  /**
+   * A function that handles the submission of the form to update the username with Firebase Authentication
+   * @param {*} event event - The event object.
+   */
+
   const changeUsernameHandler = (event) => {
     const user = auth.currentUser;
     event.preventDefault();

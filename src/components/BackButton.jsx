@@ -21,7 +21,6 @@ function BackButton() {
    * This function handles the click event for the BackButton component.
    */
   function handleBackClick() {
-    console.log("Back Button clicked");
     navigate(-1);
   }
 

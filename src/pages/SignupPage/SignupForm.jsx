@@ -4,15 +4,11 @@ import "./SignupForm.css";
 import React, { useState } from "react";
 import { TextField, FormControlLabel, Switch, Button } from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
-// import { addDoc, collection } from "firebase/firestore";
 import { auth, db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { generateGravatar } from "../../helpers/accountHelpers";
-// import PasswordChecklist from "react-password-checklist";
 import { addDoc, collection } from "firebase/firestore";
-// import { auth, db } from "../../firebase-config.js";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 
 /**
@@ -303,7 +299,11 @@ const SignupForm = () => {
             label="Show password"
             control={<Switch onClick={togglePwdShown} />}
           />
-          <Button id="signup-link"  type="submit" style={{color: "white", backgroundColor: "#344E41"}}>
+          <Button
+            id="signup-link"
+            type="submit"
+            style={{ color: "white", backgroundColor: "#344E41" }}
+          >
             Sign Up
           </Button>
         </div>

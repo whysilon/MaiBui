@@ -2,7 +2,7 @@ import MD5 from "crypto-js/md5";
 /**
  * Generate random user avatar based on email using Gravatar
  * @param {*} email
- * @returns
+ * @returns A URL to gravatar
  */
 export function generateGravatar(email) {
   // Generate the email hash
