@@ -3,7 +3,7 @@ import "./FoodSearchContainer.css"
 import AccountCenterNavBar from "../../components/AccountCenterNavBar.jsx"
 
 /**
- * FoodListContainer contains the NavBar and the SearchBar 
+ * FoodSearchContainer contains the NavBar and the SearchBar 
  * to find food information based on queries
  *
  * @author Valencino Tan
