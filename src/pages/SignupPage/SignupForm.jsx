@@ -189,6 +189,18 @@ const SignupForm = () => {
         <p>Start your healthy journey</p>
         <div className="signup-formDetails">
           {/* Checks username */}
+
+          <p className="pHeaders">Username:</p>
+          <TextField
+            className="signup-text_1"
+            value={enteredUsername}
+            onChange={usernameHandler}
+            type={"text"}
+            variant="outlined"
+            label="Enter your username"
+            margin="normal"
+            helperText={enteredUsername === "" ? "Empty field!" : ""}
+          ></TextField>
           <PasswordChecklist
             rules={["minLength", "maxLength"]}
             maxLength={13}
@@ -203,18 +215,6 @@ const SignupForm = () => {
             }}
           />
 
-          <p className="pHeaders">Username:</p>
-          <TextField
-            className="signup-text_1"
-            value={enteredUsername}
-            onChange={usernameHandler}
-            type={"text"}
-            variant="outlined"
-            label="Enter your username"
-            margin="normal"
-            helperText={enteredUsername === "" ? "Empty field!" : ""}
-          ></TextField>
-
           <p className="pHeaders">Email:</p>
           <TextField
             className="signup-text_1"
@@ -226,25 +226,6 @@ const SignupForm = () => {
             margin="normal"
             helperText={enteredEmail === "" ? "Empty field!" : ""}
           ></TextField>
-
-          {/* Checks password */}
-          <PasswordChecklist
-            className="signup-pwd-checker"
-            rules={[
-              "minLength",
-              "capital",
-              "lowercase",
-              "number",
-              "specialChar",
-              "match",
-            ]}
-            minLength={8}
-            value={enteredPassword}
-            valueAgain={enteredCfmPassword}
-            onChange={(isValid) => {
-              validPwdHandler(isValid);
-            }}
-          />
 
           <p className="pHeaders">Password:</p>
           <TextField
@@ -267,6 +248,24 @@ const SignupForm = () => {
             label="Confirm password"
             helperText={enteredCfmPassword === "" ? "Empty field!" : ""}
           ></TextField>
+          {/* Checks password */}
+          <PasswordChecklist
+            className="signup-pwd-checker"
+            rules={[
+              "minLength",
+              "capital",
+              "lowercase",
+              "number",
+              "specialChar",
+              "match",
+            ]}
+            minLength={8}
+            value={enteredPassword}
+            valueAgain={enteredCfmPassword}
+            onChange={(isValid) => {
+              validPwdHandler(isValid);
+            }}
+          />
         </div>
 
         <div className="signup-button">
