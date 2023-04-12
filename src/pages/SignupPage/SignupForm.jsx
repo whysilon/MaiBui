@@ -170,17 +170,17 @@ const SignupForm = () => {
     };
 
     //Checks if details are blank
-    if (!validName && !validPwd) {
-      alert("Password and usernmae not valid");
-    } else if (!validName) {
-      alert("Username not valid");
-    } else if (!validPwd) {
-      alert("Password not valid");
-    }
+    // if (!validName && !validPwd) {
+    //   alert("Password and usernmae not valid");
+    // } else if (!validName) {
+    //   alert("Username not valid");
+    // } else if (!validPwd) {
+    //   alert("Password not valid");
+    // }
     //else checks details with database
-    else {
-      registerUser(signupDetails);
-    }
+    // else {
+    registerUser(signupDetails);
+    // }
   };
 
   return (
@@ -303,6 +303,7 @@ const SignupForm = () => {
             id="signup-link"
             type="submit"
             style={{ color: "white", backgroundColor: "#344E41" }}
+            disabled={!validName || !validPwd}
           >
             Sign Up
           </Button>
