@@ -15,26 +15,49 @@ import { useParams } from "react-router-dom";
 
 const FeedbackForm = (props) => {
 
+
+
   let service;
   const place_id = useParams();
   const google = window.google;
-  const [restaurant, setRestaurant] = useState([]);
 
+  /**
+   * Contains all the details of restaurant in array form
+   */
+
+  const [restaurant, setRestaurant] = useState([]);
   var request = {
     placeId: place_id.id,
     fields: ['name', 'formatted_address', 'opening_hours', 'website']
   };
-  
   service = new google.maps.places.PlacesService(document.createElement('div'));
   service.getDetails(request, callback);
   
+
+  /**
+   * API Request to get respective restaurant details and stores it in restaurant state.
+   * @returns Array<String>
+   * 
+   */
   function callback(place, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       setRestaurant(place);
     }
   }
+
+
+
+  /**
+   * Takes the reference of the collection of feedback documents in the firebase database
+   * @returns CollectionReference
+   * 
+   */
   const feedbacksCollectionRef = collection(db,'feedbacks');
 
+  /**
+   * Function that checks if user has visited restaurant and submits the feedback and at the same time 
+   * 
+   */
   const submitFeedback = async (details) => {
     try{
       const email = localStorage.getItem('token')
@@ -54,6 +77,7 @@ const FeedbackForm = (props) => {
       alert("An error occurred. Please try again.");
     }
   }
+
   /**
    * Sets rating storage based on change
    * in StarRating componenet
@@ -63,6 +87,7 @@ const FeedbackForm = (props) => {
   const saveStarRatingHandler = (enteredStarRating) => {
     setEnteredRating(enteredStarRating)
   }
+  
   /**Storage/setters for feedback form 
    * input variables */
   const [enteredRating, setEnteredRating] = useState(0);

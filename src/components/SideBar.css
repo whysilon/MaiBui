@@ -1,8 +1,13 @@
+/* The icon of the button */
+
 .bm-burger-button {
     position: sticky;
     width: 32px;
     height: 26px;
 }
+
+
+/* Items in the side bar */
 
 .menu-item {
     color: white;

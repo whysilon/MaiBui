@@ -5,7 +5,7 @@
 
  */
 import React, { useState } from "react";
-import { Button, TextField, Stack, Alert, Snackbar } from "@mui/material";
+import { Button, TextField, Stack} from "@mui/material";
 import PasswordChecklist from "react-password-checklist";
 import { auth } from "../../firebase-config";
 import { updateProfile } from "firebase/auth";
@@ -25,8 +25,8 @@ const ChangeUsernameForm = () => {
   const [validUsername, setValidUsername] = useState(false);
 
   /**
-   * A function that handles the submission of the form to change the username.
-   * @param {Event} event - The event object.
+   * A function that handles the submission of the form to update the username with Firebase Authentication
+   * @param {*} event event - The event object.
    */
 
   const validUsernameHandler = (isValid) => {

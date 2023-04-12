@@ -8,7 +8,6 @@ import { auth, db } from "../../firebase-config.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { updateProfile } from "firebase/auth";
 import { generateGravatar } from "../../helpers/accountHelpers";
-import { addDoc, collection } from "firebase/firestore";
 import { setDoc, doc } from "firebase/firestore";
 
 /**
@@ -170,9 +169,10 @@ const SignupForm = () => {
     };
 
     //Checks if details are blank
-    if (!validName && !validPwd) {
-      alert("P");
-    } else if (!validName) {
+    if (signupDetails.password==="" || signupDetails.username==="" || signupDetails.email==="") {
+      alert("No blank inputs!");
+    }
+    else if (!validName) {
       alert("Username not valid");
     } else if (!validPwd) {
       alert("Password not valid");
