@@ -171,7 +171,7 @@ const SignupForm = () => {
 
     //Checks if details are blank
     if (!validName && !validPwd) {
-      alert("P");
+      alert("Password and usernmae not valid");
     } else if (!validName) {
       alert("Username not valid");
     } else if (!validPwd) {
