@@ -36,7 +36,6 @@ const SignupForm = () => {
         photoURL: generateGravatar(details.email),
       })
         .then(() => {
-          console.log("Update username successfully");
           console.log(auth.currentUser.displayName);
         })
         .catch((error) => {
@@ -213,13 +212,7 @@ const SignupForm = () => {
             variant="outlined"
             label="Enter your username"
             margin="normal"
-            helperText={
-              enteredUsername === ""
-                ? "Empty field!"
-                : // : enteredNewPwd !== enteredConfirmedPwd
-                  // ? "Passwords do not match!"
-                  ""
-            }
+            helperText={enteredUsername === "" ? "Empty field!" : ""}
           ></TextField>
 
           <p className="pHeaders">Email:</p>
@@ -231,13 +224,7 @@ const SignupForm = () => {
             variant="outlined"
             label="Enter your email"
             margin="normal"
-            helperText={
-              enteredEmail === ""
-                ? "Empty field!"
-                : // : enteredNewPwd !== enteredConfirmedPwd
-                  // ? "Passwords do not match!"
-                  ""
-            }
+            helperText={enteredEmail === "" ? "Empty field!" : ""}
           ></TextField>
 
           {/* Checks password */}
@@ -267,13 +254,7 @@ const SignupForm = () => {
             type={pwdShown ? "text" : "password"}
             variant="outlined"
             label="Enter your password"
-            helperText={
-              enteredPassword === ""
-                ? "Empty field!"
-                : // : enteredNewPwd !== enteredConfirmedPwd
-                  // ? "Passwords do not match!"
-                  ""
-            }
+            helperText={enteredPassword === "" ? "Empty field!" : ""}
           ></TextField>
 
           <p className="pHeaders">Confirm Password:</p>
@@ -284,13 +265,7 @@ const SignupForm = () => {
             type={pwdShown ? "text" : "password"}
             variant="outlined"
             label="Confirm password"
-            helperText={
-              enteredCfmPassword === ""
-                ? "Empty field!"
-                : // : enteredNewPwd !== enteredConfirmedPwd
-                  // ? "Passwords do not match!"
-                  ""
-            }
+            helperText={enteredCfmPassword === "" ? "Empty field!" : ""}
           ></TextField>
         </div>
 
@@ -303,7 +278,14 @@ const SignupForm = () => {
             id="signup-link"
             type="submit"
             style={{ color: "white", backgroundColor: "#344E41" }}
-            disabled={!validName || !validPwd}
+            disabled={
+              !enteredPassword ||
+              !enteredCfmPassword ||
+              !enteredUsername ||
+              !enteredEmail ||
+              !validName ||
+              !validPwd
+            }
           >
             Sign Up
           </Button>
