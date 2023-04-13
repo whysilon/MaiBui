@@ -2,6 +2,7 @@ import "./RecommendRestaurant.css"
 import React from "react"
 import { createContext } from "react";
 import { Link } from "react-router-dom";
+import RecommendResults from "../GoogleAPI/GoogleRecommendControl";
 
 const UserContext = createContext();
 
@@ -11,45 +12,16 @@ const UserContext = createContext();
  * @author Xavier
  * @returns HTML of the Recommend Restaurant component.
  */
-function RecommendRestaurant(props)
+function RecommendRestaurant()
 {
-    let service;
-    const google = window.google;
-
-    /**
-     * Array of restaurant results requested from the Google Places API.
-     */
     var [data, setData] = React.useState([]);
     const [retrieved, setRetrieved] = React.useState(false);
-
-    /**
-     * Current location of the user.
-     */
-    var currentLocation = new google.maps.LatLng(props.latitude,props.longitude);
-
-    /**
-     * Object containing information needed for Google Places API request.
-     */
-    const request = {
-        location: currentLocation,
-        radius: '1000',
-        keyword: 'healthy',
-        type: ['restaurant']
-    };
-    service = new google.maps.places.PlacesService(document.createElement('div'));
-    service.nearbySearch(request, callback);
-
-    /**
-     * Function for retrieving results from the Google Places API.
-     * @param {*} results 
-     * @param {*} status 
-     */
-    function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            setData(results);
-            setRetrieved(true);
-        }
-    }
+    
+    RecommendResults().then(res => {
+        setData(res.data);
+        setRetrieved(res.check);
+        console.log(data);
+    });
 
     /**
      * Function to display restaurant results on the page.
