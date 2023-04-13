@@ -89,7 +89,6 @@ function NutritionInformation({data}) {
         if(e === "") setServings(1);
         setServings(e.target.value);
     } 
-    console.log(data)
     if(data === "Error") {
         return(<div className="error">
             <Typography variant = 'h4' align='center' color = 'white'>Unable to find food <br/> information based on input</Typography>
@@ -109,6 +108,8 @@ function NutritionInformation({data}) {
                     <Typography variant = "h4">For one serving ({data.serving_unit}):</Typography>
                     <Typography variant = "h5">Calories: {data.nf_calories}kcal</Typography>
                     <Typography variant = "h5">Cholesterol: {data.nf_cholesterol}mg</Typography>
+                    <Typography variant = "h5">Protein: {data.nf_protein}g</Typography>
+                    <Typography variant = "h5">Sugar: {data.nf_sugars}g</Typography>
                     <Typography variant = "h5">Saturated Fat: {data.nf_saturated_fat}g</Typography>
                     <Typography variant = "h5">Total Fat: {data.nf_total_fat}g</Typography>
                     <Typography variant = "h5">Total Carbohydrates: {data.nf_total_carbohydrate}g</Typography>
@@ -118,7 +119,6 @@ function NutritionInformation({data}) {
                         <TextField
                         label="Enter serving size"
                         variant="outlined"
-                        placeholder="Search..."
                         size="small"
                         onInput={handleInput}
                         type = "number"

@@ -1,7 +1,6 @@
 // CSS
 import "./HomeChoices.css";
-import { db, auth } from "../../firebase-config";
-import { collection, getDoc, query, where } from "firebase/firestore";
+import { auth } from "../../firebase-config";
 import { useEffect, useState } from "react";
 import {
   Button,
@@ -26,26 +25,17 @@ import CalculateIcon from "@mui/icons-material/Calculate";
  * @returns HTML of HomePage content
  */
 
-const HomeChoices = () => {
-  // const [username, setUsername] = useState('');
-  const user = auth.currentUser;
-
-  // useEffect(()=>{
-  //   const getUsername = async () => {
-  //     try{
-  //       const usersCollectionRef = collection(db,'users');
-  //       const email = auth.currentUser.email;
-  //       const q = query(usersCollectionRef,where('email','==',email));
-  //       setUsername(getDoc(q).data().username);
-  //     }
-  //     catch (e){
-  //       alert("No user");
-  //     }
-  //   }
-  //   getUsername();
-  // },[]);
-
+const HomeChoices = () => {;
+  /**
+   * Stores the username of the current user
+   * 
+   */
   const [username, setUsername] = useState("");
+
+  /**
+   * Sets the username of the current user on username state upon loading of homepage
+   * 
+   */
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
@@ -56,7 +46,7 @@ const HomeChoices = () => {
     });
 
     return unsubscribe;
-  }, [auth]);
+  }, []);
 
   return (
     <Stack

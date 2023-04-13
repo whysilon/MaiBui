@@ -8,8 +8,8 @@ import Stack from '@mui/joy/Stack';
 import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
 import { useState, Fragment } from "react";
-import { auth } from "../../firebase-config";
 import { addCalorieData } from "../NutritionixAPI/CalorieDataControl";
+import { Alert, Slide, Snackbar} from "@mui/material";
 /**
  * This creates a popout form where users input the food name and calorie intake
  * 
@@ -22,7 +22,30 @@ function CustomInput(){
     const [open, setOpen] = useState(false);
     const [foodName,setFoodName] = useState("");
     const [calorie,setCalorie] = useState(0);
-    
+    /**
+    * Set the alert message that will be shown in the SnackBar
+    */
+    const [alertMessage, setAlertMessage] = useState("");
+    /**
+    * Set the severity of the SnackBar,
+    * initially "error"
+    */
+    const [snackBarSeverity, setSnackBarSeverity] = useState("error");
+    /**
+    * Set the open state of SnackBar
+    */
+    const [snackBarOpen, setSnackBarOpen] = useState(false);
+    /**
+    *   
+    * If user clicks away from the popup, the snackbar will close
+    * 
+    */
+    const handleSnackBarClose = (event, reason) => {
+      if (reason === "clickaway") {
+        return;
+      }
+        setSnackBarOpen(false);
+      };
     /**
      * Handles the text field input for the food name part of the form
      * 
@@ -39,6 +62,39 @@ function CustomInput(){
 
     const handleCalorieChange = (event) => {
       setCalorie(event.target.value);
+    }
+    /**
+     * Handles submitting the relevant data
+     * 
+     */
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      const data = {
+        "food_name" : foodName,
+        "calorie" : calorie
+      }
+    try{
+      const res = await addCalorieData(data,localStorage.token)
+      // Error in add calorie data
+      if(res === "Error!" || res === undefined){
+          setSnackBarSeverity("error")
+          setAlertMessage("Error in submitting, please wait one minute")
+          setSnackBarOpen(true)
+        }
+      else{
+          setAlertMessage("Input successful!");
+          setSnackBarOpen(true);
+          setSnackBarSeverity("success");
+          setOpen(false);
+        }
+      }
+      // Any other error
+    catch(err){
+        console.error(err)
+        setSnackBarSeverity("error")
+        setAlertMessage("Unknown Error occured, please wait a while before submitting again")
+        setSnackBarOpen(true)
+      }
     }
     return (
     <Fragment>
@@ -62,17 +118,7 @@ function CustomInput(){
             Fill in the food name and calories
           </Typography>
           <form
-            onSubmit={(event) => {
-              event.preventDefault();
-              const data = {
-                "food_name" : foodName,
-                "calorie" : calorie
-              }
-              addCalorieData(data,auth.currentUser.email).then((res) => {
-              setOpen(false);
-              }
-              )
-            }}
+            onSubmit={handleSubmit}
           >
             <Stack spacing={2}>
               <FormControl>
@@ -91,6 +137,7 @@ function CustomInput(){
                 value = {calorie}
                 onChange = {handleCalorieChange}
                 required 
+                // This makes it so that the user can only input positive numbers
                 onKeyPress={(event) => {
                     if (event?.key === '-' || event?.key === '+' || event?.key === 'e') {
                     event.preventDefault();
@@ -101,8 +148,21 @@ function CustomInput(){
           </form>
         </ModalDialog>
       </Modal>
+      <div>
+      <Snackbar
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+            open={snackBarOpen}
+            autoHideDuration={6000}
+            onClose={handleSnackBarClose}
+            TransitionComponent={Slide}
+          >
+            <Alert onClose={handleSnackBarClose} severity={snackBarSeverity}>
+              {alertMessage}
+            </Alert>
+        </Snackbar>
+      </div>
     </Fragment>
-  );
+  )
 }
 
 export default CustomInput;

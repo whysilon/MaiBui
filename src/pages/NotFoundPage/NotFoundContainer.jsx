@@ -1,6 +1,5 @@
 import React from "react";
-import HomeContainer from "../HomePage/HomeContainer";
-import { Container, Typography, Button, Stack } from "@mui/material";
+import { Typography, Button, Stack } from "@mui/material";
 
 import { auth } from "../../firebase-config";
 import { onAuthStateChanged } from "firebase/auth";
@@ -30,7 +29,6 @@ const NotFoundContainer = () => {
             onAuthStateChanged(auth, (user) => {
               if (user) {
                 window.location.assign("/home");
-                const uid = user.uid;
               } else {
                 // User is signed out
                 window.location.assign("/");

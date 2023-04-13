@@ -23,8 +23,18 @@ function getCurrentDate(){
  */
 
 export async function addCalorieData(data,email) {
+    if (email === undefined){
+        return "Error!"
+    }
     const docref = doc(db,`calorie_records/${email}/calorie_record_${getCurrentDate()}`,Timestamp.now().toDate().toISOString())
-    await setDoc(docref,data)
+    try{
+        await setDoc(docref,data)
+        return "Success"
+    }
+    catch (err){
+        console.log(err)
+        return "Error!"
+    }
 }
 /**
  * Queries calorie data from the database
@@ -33,6 +43,9 @@ export async function addCalorieData(data,email) {
  * @returns Snapshot of the document queried
  */
 export async function getCalorieData(email){
+    if(email === undefined){
+        return "Error!"
+    }
     const getCalories = async() => {
     try{
     const colref = collection(db,`calorie_records/${email}/calorie_record_${getCurrentDate()}`)
